@@ -57,7 +57,7 @@ Open PaaS Controller를 설치하기 전에 IaaS(AWS) 환경이 정상적으로 
 
 #### 2.2.1. Dashboard(Console)
 
-![](./../images/openpaas-controller/controller_aws_image001.png)
+![](./../images/openpaas-controller/controller_aws_image001.jpeg)
 
 **[그림출처]: Open PaaS 사업단 개발환경**
 
@@ -66,11 +66,11 @@ AWS Dashboard(Console)으로 정상 접속되어야 하고, Open PaaS Controller
 #### 2.2.2. Security Group
 SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 엑세스 할 수 있도록 Security Group을 설정한다.(주의: 내부 네트워크 구간에서는 모든 Procotol이 사용 가능하도록 구성해야 한다.)
 
-![](./../images/openpaas-controller/controller_aws_image002.png)
+![](./../images/openpaas-controller/controller_aws_image002.jpeg)
 
-![](./../images/openpaas-controller/controller_aws_image003.png)
+![](./../images/openpaas-controller/controller_aws_image003.jpeg)
 
-![](./../images/openpaas-controller/controller_aws_image004.png)
+![](./../images/openpaas-controller/controller_aws_image004.jpeg)
 
 ***PaaS-TA v2.0 이상의 버전에서는 다음을 참조하여 시큐리티 그룹을 설정한다.***
 [https://docs.cloudfoundry.org/deploying/openstack/security_group.html](https://docs.cloudfoundry.org/deploying/openstack/security_group.html)
@@ -1537,6 +1537,5 @@ Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된�
 ### 4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
 
-![](./../images/openpaas-controller/controller_aws_image016]
-
+![](./../images/openpaas-controller/controller_aws_image016.png]
 

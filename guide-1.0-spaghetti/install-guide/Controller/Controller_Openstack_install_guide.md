@@ -42,7 +42,7 @@
 
 
 ###1.3. 참고 자료
--[**http://docs.cloudfoundry.org/deploying/openstack/**](http://docs.cloudfoundry.org/deploying/openstack/)<br>
+- [**http://docs.cloudfoundry.org/deploying/openstack/**](http://docs.cloudfoundry.org/deploying/openstack/)
 - [**https://github.com/cloudfoundry/cf-release**](https://github.com/cloudfoundry/cf-release)
 
 
