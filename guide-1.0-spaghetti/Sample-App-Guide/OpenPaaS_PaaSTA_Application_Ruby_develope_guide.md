@@ -41,15 +41,15 @@
 
 <div id='5'></div>
 ##### 1.1.3.    참고 자료
-**<http://rubyinstaller.org/>**
-**<https://docs.pivotal.io/pivotalcf/buildpacks/ruby/index.html/>**
-**<http://rubykr.github.io/rails_guides/getting_started.html/>**
-**<https://github.com/brianmario/mysql2/>**
-**<http://www.cubrid.org/manual/93/ko/api/ruby.html/>**
-**<https://docs.mongodb.org/ecosystem/drivers/ruby/>**
-**<http://rubybunny.info/articles/getting_started.html/>**
-**<https://github.com/redis/redis-rb/>**
-**<https://github.com/fog/fog/>**
+- **<http://rubyinstaller.org/>**
+- **<https://docs.pivotal.io/pivotalcf/buildpacks/ruby/index.html/>**
+- **<http://rubykr.github.io/rails_guides/getting_started.html/>**
+- **<https://github.com/brianmario/mysql2/>**
+- **<http://www.cubrid.org/manual/93/ko/api/ruby.html/>**
+- **<https://docs.mongodb.org/ecosystem/drivers/ruby/>**
+- **<http://rubybunny.info/articles/getting_started.html/>**
+- **<https://github.com/redis/redis-rb/>**
+- **<https://github.com/fog/fog/>**
 
 
 <div id='6'></div>
@@ -79,51 +79,54 @@ Ruby 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 ##### 2.2.1.    Ruby & Ruby On Rails설치
 
 1)      Ruby & DevKit 다운로드
-**<http://rubyinstaller.org/downloads/>**
-![./images/ruby/ruby_01.png]
+- **<http://rubyinstaller.org/downloads/>**
+
+![](./images/ruby/ruby_01.png)
+
 - 다운로드
 RubyInstallers : Ruby 1.9.3-p551
 DEVELOPMENT KIT : DevKit-tdm-32-4.5.2-20111229-1559-sfx
 
 2)      Ruby 설치
 - Ruby 1.9.3-p551.exe 더블클릭하여 설치를 실행한다.
-![./images/ruby/ruby_02.png]
+![](./images/ruby/ruby_02.png)
+
 - “OK” 버튼 클릭
+![](./images/ruby/ruby_03.png)
 
-![./images/ruby/ruby_03.png]
 - “I accet the License” 선택 후 “Next” 버튼 클릭
+![](./images/ruby/ruby_04.png)
 
-![./images/ruby/ruby_04.png]
 - “Add Ruby executables to your PATH” 선택 후 “Install” 버튼 클릭
+![](./images/ruby/ruby_05.png)
 
-![./images/ruby/ruby_05.png]
 - “Finish” 버튼을 클릭하여 Ruby 설치를 종료한다.
 
 
 3)      DEVELOPMENT KIT 설치
 - DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe을 더블클릭하여 설치를 실행한다.
-![./images/ruby/ruby_06.png]
-![./images/ruby/ruby_07.png]
+![](./images/ruby/ruby_06.png)
+![](./images/ruby/ruby_07.png)
 - 설치할 폴더를 지정하고 “Extract”버튼을 클릭한다.
 - Windows의 CMD 창을 실행하여 DevKit 설치 폴더로 이동한다.
 
 >ruby dk.rb init
 -       “ruby dk.rb init” 명령을 실행하여 “config.yml” 파일을 생성한다.
-![./images/ruby/ruby_08.png]
+![](./images/ruby/ruby_08.png)
 
 >ruby dk.rb install
 -       “ruby dk.rb install” 명령을 실행하여 DevKit을 설치한다.
-![./images/ruby/ruby_09.png]
+![](./images/ruby/ruby_09.png)
 -       “ruby –v” 명령을 실행하여 루비 버전을 확인한다.
-![./images/ruby/ruby_10.png]
+![](./images/ruby/ruby_10.png)
 
 4)      Ruby On Rails 설치
 -       “gem update rdoc” 명령을 실행하여 rdoc gem을 업데이트한다.(미 실행시 rails install시 에러
-![./images/ruby/ruby_11.png]
+![](./images/ruby/ruby_11.png)
 -       “gem install rails –v 4.1.8” 명령을 실행하여 rails을 설치한다.
-![./images/ruby/ruby_12.png]
+![](./images/ruby/ruby_12.png)
 -       “rails –v” 명령을 사용하여 rails의 버전을 확인한다.
-![./images/ruby/ruby_13.png]
+![](./images/ruby/ruby_13.png)
 
 
 <div id='10'></div>
@@ -143,8 +146,8 @@ Ruby 샘플 애플리케이션을 개발하기 위한 애플리케이션의 생�
 
 1)      Rails 애플리케이션 생성(bundle install 제외)
 >rails new [application name] –B –skip-bundle
-![./images/ruby/ruby_14.png]
-![./images/ruby/ruby_15.png]
+![](./images/ruby/ruby_14.png)
+![](./images/ruby/ruby_15.png)
 
 2)      자동 생성 폴더 및 파일 정의
 
@@ -1124,7 +1127,7 @@ http://sourceforge.net/projects/dos2unix/files/latest/download
 >dos2unix bin/bundle bin/rake bin/rails
 >※      윈도우즈 Power Shell에서는 해당 명령어가 실행되지 않습니다. 명령 프롬프트를 이용하면 명령
 변환이 정상적으로 완료되면 다음과 같은 화면을 확인할 수 있습니다.
->![./images/ruby/ruby_16.png]
+>![](./images/ruby/ruby_16.png)
 
 4.      [4) 개방형 플랫폼 애플리케이션에 서비스 바인딩 및 애플리케이션 시작] 절차를 다시 수행합니
 

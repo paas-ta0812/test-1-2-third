@@ -1,1162 +1,1099 @@
 ## Table of Contents
 
-1.      [개요](#1)
-     * [1.1.    문서 개요](#2)
-          * [1.1.1.     목적](#3)
-          * [1.1.2.     범위](#4)
-          * [1.1.3.     참고 자료](#5)
-2.      [Ruby 애플리케이션 개발가이드](#6)
-     * [2.1.    개요](#7)
-     * [2.2.    개발환경 구성](#8)
-          * [2.2.1.     Ruby & Ruby On Rails설치](#9)
-     * [2.3.    개발](#10)
-          * [2.3.1.     애플리케이션 생성](#11)
-          * [2.3.2.     애플리케이션 환경설정](#12)
-          * [2.3.3.     VCAP_SERVICES 환경설정 정보](#13)
-          * [2.3.4.     Mysql 연동](#14)
-          * [2.3.5.     Cubrid 연동](#15)
-          * [2.3.6.     MongoDB 연동](#16)
-          * [2.3.7.     Redis 연동](#17)
-          * [2.3.8.     RabbitMQ연동](#18)
-          * [2.3.9.     GlusterFS 연동](#19)
-     * [2.4.    배포](#21)
-          * [2.4.1.     개방형 플랫폼 애플리케이션 배포](#22)
-     * [2.5.    테스트](#23)
-
-<div id='1'></div>
-# 1.    개요
-
-<div id='2'></div>
-### 1.1.        문서 개요
-
-<div id='3'></div>
-##### 1.1.1.    목적
-
-본 문서(Ruby 애플리케이션 개발 가이드)는 개방형 플랫폼 프로젝트의 서비스팩(Mysql, Cubrid, MongoD
-
-<div id='4'></div>
-##### 1.1.2.    범위
-
-본 문서의 범위는 Open PaaS 프로젝트의 Ruby 애플리케이션 개발과 서비스팩 연동, 애플리케이션 배포에
-
-<div id='5'></div>
-##### 1.1.3.    참고 자료
-- **<http://rubyinstaller.org/>**
-- **<https://docs.pivotal.io/pivotalcf/buildpacks/ruby/index.html/>**
-- **<http://rubykr.github.io/rails_guides/getting_started.html/>**
-- **<https://github.com/brianmario/mysql2/>**
-- **<http://www.cubrid.org/manual/93/ko/api/ruby.html/>**
-- **<https://docs.mongodb.org/ecosystem/drivers/ruby/>**
-- **<http://rubybunny.info/articles/getting_started.html/>**
-- **<https://github.com/redis/redis-rb/>**
-- **<https://github.com/fog/fog/>**
+1. [문서 개요](#1)
+     * [1.1. 목적](#2)
+     * [1.2. 범위](#3)
+     * [1.3. 참고 자료](#4)
+2. [개발환경 구성](#5)
+     * [2.1. Node.js 및 npm 설치](#6)
+3. [개발](#7)
+     * [3.1. Node.js Express애플리케이션 생성](#8)
+     * [3.2. Node.js 샘플 애플리케이션](#9)
+     * [3.3. 애플리케이션 환경설정](#10)
+     * [3.4. VCAP_SERVICES 환경설정 정보](#11)
+     * [3.5. Mysql 연동](#12)
+     * [3.6. Cubrid 연동](#13)
+     * [3.7. MongoDB 연동](#14)
+     * [3.8. Redis 연동](#15)
+     * [3.9. RabbitMQ연동](#16)
+     * [3.10. GlusterFS 연동](#17)
+4. [배포](#18)
+     * [4.1. 개방형 플랫폼 로그인](#19)
+     * [4.2. 서비스 생성](#20)
+     * [4.3. 애플리케이션 배포](#21)
+     * [4.4. 애플리케이션, 서비스 연결](#22)
+     * [4.5. 애플리케이션 실행](#23)
+5. [테스트](#24)
 
 
-<div id='6'></div>
-# 2.    Ruby 애플리케이션 개발가이드
 
 
-<div id='7'></div>
-### 2.1.        개요
-
-개방형 플랫폼에 등록된 다양한 서비스팩을 Ruby언어로 작성된 애플리케이션과 바인딩하고 해당 애플리 개방형 플랫폼에 배포할 Ruby 애플리케이션을 작성하는 방법을 설명한다.
-
-<div id='8'></div>
-### 2.2.        개발환경 구성
-
-Ruby 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환경을 구성 한다.
-
--       OS : Windows 7 64bit
--       Ruby : 1.9.3-p551
--       Framwork : Ruby On Rails 4.1.8
--       IDE : RubyMine 7.1.1
-
-※       CubridDB의 Ruby 드라이버 최신 지원 버전이 Ruby 1.9.3 까지 지원하여 해당 버전을 선택하였다
-※       Ruby IDE는 개별 선택하여 사용한다.
+# <div id='1'> 1. 문서 개요
 
 
-<div id='9'></div>
-##### 2.2.1.    Ruby & Ruby On Rails설치
+### <div id='2'> 1.1. 목적
 
-1)      Ruby & DevKit 다운로드
-- **<http://rubyinstaller.org/downloads/>**
-
-![](./images/ruby/ruby_01.png)
-
-- 다운로드
-RubyInstallers : Ruby 1.9.3-p551
-DEVELOPMENT KIT : DevKit-tdm-32-4.5.2-20111229-1559-sfx
-
-2)      Ruby 설치
-- Ruby 1.9.3-p551.exe 더블클릭하여 설치를 실행한다.
-![](./images/ruby/ruby_02.png)
-
-- “OK” 버튼 클릭
-![](./images/ruby/ruby_03.png)
-
-- “I accet the License” 선택 후 “Next” 버튼 클릭
-![](./images/ruby/ruby_04.png)
-
-- “Add Ruby executables to your PATH” 선택 후 “Install” 버튼 클릭
-![](./images/ruby/ruby_05.png)
-
-- “Finish” 버튼을 클릭하여 Ruby 설치를 종료한다.
+본 문서(node.js 애플리케이션 개발 가이드)는 개방형 플랫폼 프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Radis, GlusterFS)을 Node.js 애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
 
 
-3)      DEVELOPMENT KIT 설치
-- DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe을 더블클릭하여 설치를 실행한다.
-![](./images/ruby/ruby_06.png)
-![](./images/ruby/ruby_07.png)
-- 설치할 폴더를 지정하고 “Extract”버튼을 클릭한다.
-- Windows의 CMD 창을 실행하여 DevKit 설치 폴더로 이동한다.
+### <div id='3'> 1.2. 범위
 
->ruby dk.rb init
--       “ruby dk.rb init” 명령을 실행하여 “config.yml” 파일을 생성한다.
-![](./images/ruby/ruby_08.png)
-
->ruby dk.rb install
--       “ruby dk.rb install” 명령을 실행하여 DevKit을 설치한다.
-![](./images/ruby/ruby_09.png)
--       “ruby –v” 명령을 실행하여 루비 버전을 확인한다.
-![](./images/ruby/ruby_10.png)
-
-4)      Ruby On Rails 설치
--       “gem update rdoc” 명령을 실행하여 rdoc gem을 업데이트한다.(미 실행시 rails install시 에러
-![](./images/ruby/ruby_11.png)
--       “gem install rails –v 4.1.8” 명령을 실행하여 rails을 설치한다.
-![](./images/ruby/ruby_12.png)
--       “rails –v” 명령을 사용하여 rails의 버전을 확인한다.
-![](./images/ruby/ruby_13.png)
+본 문서의 범위는 개방형 플랫폼 프로젝트의 Node.js 애플리케이션 개발과 서비스팩 연동에 대한 내용으로 한정되어 있다.
 
 
-<div id='10'></div>
-### 2.3.        개발
+### <div id='4'> 1.3. 참고자료
+- **<https://docs.cloudfoundry.org/devguide/>**
+- **<https://docs.cloudfoundry.org/buildpacks/node/node-tips.html>**
+- **<https://nodejs.org/>**
+- **<http://expressjs.com/ko/>**
+- **<https://github.com/felixge/node-mysql>**
+- **<https://github.com/CUBRID/node-cubrid>**
+- **<https://github.com/mongodb/node-mongodb-native>**
+- **<https://github.com/NodeRedis/node_redis>**
+- **<https://github.com/postwait/node-amqp>**
+- **<https://github.com/pkgcloud/pkgcloud>**
+- **<https://mochajs.org/>**
 
-Ruby 샘플 애플리케이션을 개발하기 위한 애플리케이션의 생성과 환경설정, VCAP_SERVICES 정보의 획득
+
+# <div id='5'> 2. 개발환경 구성
+
+Open PaaS에 등록된 다양한 서비스팩을 Node.js언어로 작성된 애플리케이션과 바인딩하고해당 애플리케이션에 바인딩된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 Node.js 애플리케이션을 작성 할 수 있도록한다.
+
+Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환경을 구성 한다.
+
+- BuildPack: v1.3.4
+- OS : Windows 7 64bit
+- Node.js : v0.12.4
+- npm : v2.10.1
 
 
-- 샘플 애플리케이션 다운로드
+### <div id='6'> 2.1. Node.js 및 npm 설치
 
- 완성된 샘플 애플리케이션은 아래 링크의 /OpenPaaSSample/ruby-sample-app 에서 받을 수 있다.
+##### 1. Node.js 다운로드
+
+- 아래의 주소로 접속한 후 node-v0.12.4-x64.msi를 다운받는다.
+
+https://nodejs.org/dist/v0.12.4/x64/node-v0.12.4-x64.msi
+
+![](./image/nodejs/2-2-1-0.png)
+
+##### 2. Node.js 설치
+
+- 다운받은 폴더에서 node-v0.12.4-x64.msi를 더블클릭하여 설치를 시작한다.
+
+![](./image/nodejs/2-2-1-1.png)
+
+- "실행"버튼을 클릭하여 계속 진행한다.
+
+![](./image/nodejs/2-2-1-2.png)
+
+- "Next"버튼을 클릭하여 계속 진행한다.
+
+![](./image/nodejs/2-2-1-3.png)
+
+- "I accept the terms in the License Agreement"를 체크하여 라이센스에 동의한 후 "Next"버튼을 클릭하여 계속 진행한다.
+
+![](./image/nodejs/2-2-1-4.png)
+
+- 설치경로를 입력 혹은 선택한 후 "Next"버튼을 클릭하여 계속 진행한다.
+여기서는 C:\Program Files\nodejs\ 를 설치경로로 설정하였다.
+
+![](./image/nodejs/2-2-1-5.png)
+
+- 설치할 항목을 선택한 후 "Next"버튼을 클릭하여 계속 진행한다.
+여기서는 선택하여 Node.js, npm, doc을 설치하고 환경변수 PATH까지 추가하였다.
+
+![](./image/nodejs/2-2-1-6.png)
+
+- "Install"버튼을 클릭하여 설치한다.
+
+![](./image/nodejs/2-2-1-7.png)
+
+- "Finish"버튼을 클릭하여 설치를 완료한다.
+
+![](./image/nodejs/2-2-1-8.png)
+
+- '윈도우키+R' 또는 '시작->실행'아이콘을 클릭하여 실행창을 띄운 후 'cmd'를 입력하고 "확인"버튼을 눌러 커맨드창을 연다.
+
+![](./image/nodejs/2-2-1-9.png)
+
+- 커맨드창에 아래의 명령어를 입력하여 node.js와 npm의 버젼과 제대로 설치되었는지 여부를 확인한다.
+
+><div>>node -v
+><div>>npm -v
+![](./image/nodejs/2-2-1-10.png)
+
+개발도구
+Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문서편집기를 개발도구로 사용할 수 있다. 또한 Eclipse의 플러그인 Nodeclipse를 설치하여 사용할 수도있다.
+
+
+# <div id='7'> 3. 개발
+
+샘플 애플리케이션에의 데이터 관리는 MySQL, CubridDB, MongoDB 중에 하나를 이용하기 때문에 API 요청시 요청 본문에 DBType 값을 가지고 결정한다.
+
+
+### <div id='8'> 3.1. Node.js Express애플리케이션 생성
+##### 1. 'express-generator'를 이용하여 Express 애플리케이션을 생성
+
+- 커맨드 창에서 개발을 진행할 경로로 이동후 아래의 명령어를 입력하여 'express-generator' npm을 설치한다.
+
+><div>>npm install express-generator
+![](./image/nodejs/./images/nodejs/2-3-1-0.png)
+
+- Express 애플리케이션을 생성한다. '-e'옵션은 view enjine을 ejs를 사용한다는 것이고 default view enjin은 jade이다.
+
+><div>>.\node_modules\.bin\express -e
+![](./image/nodejs/./images/nodejs/2-3-1-1.png)
+
+##### 2. npm 설치
+
+- Express 애플리케이션에 기본적으로 포함되어있는 npm을 설치한다. 설치할 npm에 대한 정의는 package.json에 정의되어있다.
+
+><div>>npm install
+![](./image/nodejs/./images/nodejs/2-3-1-2.png)
+
+##### 3. Node.js Express 어플리캐이션 실행
+
+- 아래의 두 명령어중 하나를 이용해 애플리케이션 실행한다.
+
+><div>>npm start
+><div>>node bin/www
+![](./image/nodejs/./images/nodejs/2-3-1-3.png)
+
+- 브라우저로 아래의 주소로 접속하여 애플리케이션이 제대로 동작하는지 확인한다.
+
+><div>http://localhost:3000/
+![](./image/nodejs/./images/nodejs/2-3-1-4.png)
+
+
+### <div id='9'> 3.2. Node.js 샘플 애플리케이션
+
+##### 1. Node.js 샘플 애플리케이션 다운로드
+
+- 완성된 샘플 애플리케이션은 아래 링크의 /OpenPaaSSample/node-sample-app 에서 받을 수 있다.
 
 > http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW#0icB5ZW
 
-<div id='11'></div>
-##### 2.3.1.    애플리케이션 생성
+##### 2. Node.js 샘플 애플리케이션 경로로 이동
 
-1)      Rails 애플리케이션 생성(bundle install 제외)
->rails new [application name] –B –skip-bundle
-![](./images/ruby/ruby_14.png)
-![](./images/ruby/ruby_15.png)
+- 다운받은 경로아래에 Node.js 샘플 애플리케이션 경로로 이동한다.
 
-2)      자동 생성 폴더 및 파일 정의
+><div>>cd node-sample-app
+![](./image/nodejs/2-3-2-0.png)
 
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> Gemfile </td>
-    <td> 이 파일은 여러분의 레일즈 어플리케이션에게 필요한 젬의 의존성 정보를 기술하는데 사용됩니
-</tr>
-<tr>
-    <td> README </td>
-    <td> 이 파일은 어플리케이션을 위한 짧막한 설명입니다. 설치, 사용 방법 기술에 쓰입니다. </td>
-</tr>
-<tr>
-    <td> Rakefile </td>
-    <td> 이 파일은 터미널에서 실행할 수 있는 배치잡들을 포함합니다. </td>
-</tr>
-<tr>
-    <td> app/ </td>
-    <td> 어플리케이션을 위한 컨트롤러, 모델, 뷰를 포함합니다. 이 가이드에서는 이 폴더에 집중할 것
-</tr>
-<tr>
-    <td> config/ </td>
-    <td> 어플리케이션의 실행 시간의 규칙, 라우팅, 데이터베이스 등 설정을 저장합니다. </td>
-</tr>
-<tr>
-    <td> config.ru </td>
-    <td> 랙(Rack) 기반의 서버들이 시작할때 필요한 설정 입니다. </td>
-</tr>
-<tr>
-    <td> db/ </td>
-    <td> 현재 데이터베이스의 스키마를 볼 수 있습니다.(데이터베이스 마이그레이션으로 잘 알려져 있
-</tr>
-<tr>
-    <td> doc/ </td>
-    <td> 어플리케이션에 대한 자세한 설명 문서입니다. </td>
-</tr>
-<tr>
-    <td> lib/ </td>
-    <td> 어플리케이션을 위한 확장 모듈입니다. (이 문서에서 다루지 않습니다.) </td>
-</tr>
-<tr>
-    <td> public/ </td>
-    <td> 외부에서 볼수 있는 유일한 폴더 입니다.이미지, 자바스크립트, 스타일시트나 그외 정적인 파
-</tr>
-<tr>
-    <td> script/ </td>
-    <td> 레일즈 스크립트를 포함합니다. 여러분의 어플리케이션을 실행시키거나, 배포, 실행 관련한 스
-</tr>
-<tr>
-    <td> test/ </td>
-    <td> 유닛 테스트, 픽스쳐, 그와 다른 테스트 도구들 입니다. 이 부분은 레일즈 어플리케이션 테스
-</tr>
-<tr>
-    <td> tmp/ </td>
-    <td> 임시 파일 </td>
-</tr>
-<tr>
-    <td> vendor/ </td>
-    <td> 서드 파티 코드들을 위한 공간입니다. 일반적인 레일즈 어플리케이션은 루비 젬과 레일즈 소스
-</tr>
-</table>
+##### 3. Node.js 샘플 애플리케이션 디렉토리구조
 
-<div id='12'></div>
-##### 2.3.2.    애플리케이션 환경설정
-
-해당 예제는 Ruby 1.9.3을 기준으로 각 드라이버의 버전을 명시적으로 선택하여 설치하였습니다.
-./Gemfile 수정(설정)시 설치된 Ruby의 버전에 맞는 젬을 설치하도록 권장합니다.
+![](./image/nodejs/2-3-2-1.png)
 
 <table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./Gemfile </td>
-    <td> 이 파일은 여러분의 레일즈 어플리케이션에게 필요한 젬의 의존성 정보를 기술 </td>
-</tr>
-<tr>
-    <td> ./config/application.rb </td>
-    <td> 애플리케이션의 환경설정 </td>
-</tr>
-<tr>
-    <td> ./config/routes.rb </td>
-    <td> Request URL과 컨트롤러의 매핑 설정 </td>
-</tr>
-<tr>
-    <td> ./config/environments/development.rb  </td>
-    <td> 개발환경 설정(Localhost 서버 실행시 기본 환경설정) </td>
-</tr>
-<tr>
-    <td> ./config/environments/production.rb  </td>
-    <td> 상용환경 설정(개방형 플랫폼 배포시 사용되는 기본 환경설정) </td>
-</tr>
+  <tr>
+    <td>파일/폴더</td>
+    <td>목적</td>
+  </tr>
+  <tr>
+    <td>package.json</td>
+    <td>node.js 어플리케이션에 필요한 npm의 의존성 정보를 기술하는데 사용 한다.<br>
+    npm install 명령을 실행시 install 뒤에 아무런 정보를 입력하지 않으면 이 파일의 정보를 이용하여 npm을 설치한다.</td>
+  </tr>
+  <tr>
+    <td>app.js</td>
+    <td>Express에 대한 설정을 한다. http요청에 대한 라우팅 정보 또한 이곳에서 정의한다.</td>
+  </tr>
+  <tr>
+    <td>bin/www</td>
+    <td>실질적으로 node.js 샘플 애플리케이션의 시작점이며, http서버를 설정한다. 서버가 구동될 때 사용할 Port를 여기서 설정할 수 있다.</td>
+  </tr>
+  <tr>
+    <td>routes/</td>
+    <td>app.js에서 라우팅 후 실제 수행할 내용이 작성되어있다. 서비스 연결에 대한 내용도 이곳에 있다.</td>
+  </tr>
+  <tr>
+    <td>public/</td>
+    <td>외부에서 접근가능한 디렉토리이다. css, js등 웹서비스에 필요한 정적파일들이 있다.<br>
+    외부에서 접근가능한 디렉토리에 대한 설정은 app.js파일에서 설정한다.</td>
+  </tr>
+  <tr>
+    <td>views/</td>
+    <td>ejs파일들이 위치하는 곳이다.<br>
+    ejs파일은 html을 좀더 쉽게 작성할 수 있게 도와주는 template enjin 이며 express의 view enjin을 ejs로 설정했을시 사용하는 파일이다.<br>
+    render() 메소드를 이용하여 ejs파일을 html로 변환하여 보여준다.</td>
+  </tr>
+  <tr>
+    <td>test/</td>
+    <td>mocha test를 작성한 디렉토리이다.</td>
+  </tr>
+  <tr>
+    <td>(node_modules)</td>
+    <td>위의 그림에서는 보이지 않지만 npm install로 모듈설치시 이 디렉토리아래에 설치가 된다. 여기에 설치되어있는 npm모듈들을 애플리케이션에서 require로 불러와서 사용할 수 있다.</td>
+  </tr>
+  <tr>
+    <td>Makefile</td>
+    <td>linux에서 좀더 쉽게 mocha 테스트를 실행하기위한 파일이다.</td>
+  </tr>
+  <tr>
+    <td>manifest.yml</td>
+    <td>개방형 플랫폼에 배포시 애플리케이션에 대한 설정이다. 애플리케이션의 이름, 배보될 경로, 인스턴스 수 등을 정의할 수 있다.</td>
+  </tr>
+  <tr>
+    <td>.cfignore</td>
+    <td>개방형 플랫폼에 배포시 포함되지않을 디렉토리, 혹은 파일을 기술한다.</td>
+  </tr>
+  <tr>
+    <td>.gitignore</td>
+    <td>git에 배포시 포함되지않을 디렉토리, 혹은 파일을 기술한다.</td>
+  </tr>
+  <tr>
+    <td>README.md</td>
+    <td>Node.js 샘플 애플리케이션에 대한 간략한 설명이 기술되어 있다.</td>
+  </tr>
 </table>
 
-1)      ./Gemfile 수정
--       각 서비스에서 사용할 드라이버 및 필요한 젬을 정의한다.
 
-```
-# https => http 변경
-source 'http://rubygems.org'
+### <div id='10'> 3.3. 애플리케이션 환경설정
 
-# Ruby 버전 명시
-ruby '1.9.3'
+이 샘플은 Node.js version 0.12.4, npm version 2.10.1.을 기준으로 각 모듈의 버전을 명시적으로 선택하여 설치하였다.
+package.json 수정(설정)시 설치된 Node.js의 버전에 맞는 모듈을 설치하는 것을 권장한다.
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
-...(중략)...
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
+1)  ./package.json
+- 애플리케이션에서 필요한 모듈을 정의한다.
 
-# Cloud Foundry 유틸
-gem 'cf-app-utils'
-
-# MySQL 드라이버
-gem 'mysql2', '~> 0.3.20'
-
-# Cubrid 드라이버
-gem 'cubrid'
-
-# MongoDB 드라이버
-gem 'mongo'#, '~> 2.1'
-
-# RabbitMP 드라이버
-gem 'amq-protocol', '1.9.2'
-gem 'bunny', '1.7.0'
-
-# Openstack for swift(glusterfs)' 드라이버
-gem 'net-ssh', '2.9.2'
-gem 'fog-google', '0.1.0'
-gem 'fog', '1.34.0'
-
-# Redis 드라이버
-gem 'redis'
-
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
-end
-```
-
-※       Windows 환경에서 Cubrid 드라이버는 Cubrid의 라이브러리를 사용하므로 해당 Ruby 버전에 맞는
-※       해당 샘플은 Ruby 1.9.3(64bit 미지원) 이므로 CUBRID-Windows-x86(32bit)버전을 설치하였다.
-
-2)      젬 설치
--       Gemfile에 정의된 젬을 설치한다.
-```
-bundle install
+```json
+{
+  "name": "node-sample-app",
+  "version": "0.8.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "1.13.2",
+    "cookie-parser": "1.3.5",
+    "debug": "2.2.0",
+    "morgan": "1.6.1",
+    "serve-favicon": "2.3.0",
+    "express": "4.13.1",
+    "ejs": "2.3.4",
+    "generic-pool": "2.2.1",
+    "mysql": "2.9.0",
+    "node-cubrid":"2.2.5",
+    "mongodb":"2.0.48",
+    "redis":"2.4.2",
+    "uuid":"2.0.1",
+    "amqp":"0.2.4",
+    "pkgcloud":"1.2.0-alpha.0",
+    "formidable":"1.0.17",
+    "mocha":"2.3.4",
+    "should":"7.1.1",
+    "supertest":"1.1.0"
+  },
+  "engines": {
+    "node": "0.12.4",
+    "npm": "2.10.1"
+  }
+}
 ```
 
-3)      ./config/application.rb 수정
--       애플리케이션의 환경설정
+<table>
+  <tr>
+    <td>name</td>
+    <td>애플리케이션 이름</td>
+  </tr>
+  <tr>
+    <td>version</td>
+    <td>애플리케이션 버젼</td>
+  </tr>
+  <tr>
+    <td>private</td>
+    <td>npm에 게시할것인지 여부를 설정한다. (true: 게시하지않음)</td>
+  </tr>
+  <tr>
+    <td>scripts.start</td>
+    <td>npm start 명령어로 실행될 명령어(애플리케이션 구동 명령어)</td>
+  </tr>
+</table>
+
+- dependencies
+
+<table>
+  <tr>
+    <td>body-parser</td>
+    <td rowspan=7>Express프레임워크에서 기본적으로 사용하는 모듈들.</td>
+  </tr>
+  <tr>
+    <td>cookie-parser</td>
+  </tr>
+  <tr>
+    <td>debug</td>
+  </tr>
+  <tr>
+    <td>morgan</td>
+  </tr>
+  <tr>
+    <td>serve-favicon</td>
+  </tr>
+  <tr>
+    <td>express</td>
+  </tr>
+  <tr>
+    <td>ejs</td>
+  </tr>
+  <tr>
+    <td>generic-pool</td>
+    <td>connection pool생성 및 관리 모듈</td>
+  </tr>
+  <tr>
+    <td>mysql</td>
+    <td>mysql 모듈</td>
+  </tr>
+  <tr>
+    <td>node-cubrid</td>
+    <td>cubrid 모듈</td>
+  </tr>
+  <tr>
+    <td>mongodb</td>
+    <td>mongodb 모듈</td>
+  </tr>
+  <tr>
+    <td>redis</td>
+    <td>redis 모듈</td>
+  </tr>
+  <tr>
+    <td>uuid</td>
+    <td>고유식별자를 생성해주는 모듈</td>
+  </tr>
+  <tr>
+    <td>amqp</td>
+    <td>rabbitMQ 사용 모듈</td>
+  </tr>
+  <tr>
+    <td>pkgcloud</td>
+    <td>swift, glusterfs 사용 모듈</td>
+  </tr>
+  <tr>
+    <td>formidable</td>
+    <td>form data를 파싱해주는 모듈</td>
+  </tr>
+  <tr>
+    <td>mocha</td>
+    <td>node.js test 모듈</td>
+  </tr>
+  <tr>
+    <td>should</td>
+    <td>mocha test에 사용되는 모듈</td>
+  </tr>
+  <tr>
+    <td>supertes</td>
+    <td>rest test에 사용되는 모듈</td>
+  </tr>
+</table>
+
+- engines
+
+<table>
+  <tr>
+    <td>node</td>
+    <td>애플리케이션에서 사용할 node.js 모듈 버젼.<br>
+    개방형 플랫폼에 배포하여 사용시 Node Buildpack에서 지원하는 Node.js 버젼에 따라 사용할 수 있는 버젼에 제약이 있다.<br>
+    - https://github.com/cloudfoundry/nodejs-buildpack/blob/master/CHANGELOG</td>
+  </tr>
+  <tr>
+    <td>npm</td>
+    <td>애플리케이션에서 사용할 npm 버젼<br>
+    Node.js와 마찬가지로 Node Buildpack에서 지원하는 버젼에 따라 사용할 수 있는 버젼에 제약이 있다.</td>
+  </tr>
+</table>
+
+2) 모듈 설치
+- pakage.json에 정의된 모듈을 설치한다. 모듈이름을 지정하지 않으면 package.json의 depencencies의 모든 모듈을 설치한다.
+```
+>npm install
+```
+
+3) ./bin/www
+- HTTP서버가 사용할 PORT를 개방형 플랫폼이 제공하는 PORT를 사용하게 설정한다. 개방형 플랫폼은 이 값을 이용하여 애플리케이션이 제대로 동작하고 있는지 감지하는데 사용한다. 이 값 외의 다른 PORT를 사용하면 애플리케이션이 제대로 동작하지 않는다.
 
 ```
-require File.expand_path('../boot', __FILE__)
+#!/usr/bin/env node
 
-require 'rails/all'
+/**
+ * Module dependencies.
+ */
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+var app = require('../app');
+var debug = require('debug')('node-sample-app:server');
+var http = require('http');
 
-module RubySampleApp
-  class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+/**
+ * Get port from environment and store in Express.
+ * port 환경변수를 얻어와서 변수에 담는다.
+ * 'process.env.PORT'는 Cloud에서 사용하는 환경변수.
+ */
 
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zo
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loade
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+/**
+ * Create HTTP server.
+ * HTTP 서버 생성.
+ */
 
-    # Rails 애플리케이션 구동시 라이브러리 Loading path 추가
-    config.autoload_paths += %W(#{config.root}/lib)
+var server = http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
 
-    # 예외처리(routes.rb참조 하도록 설정)
-    config.exceptions_app = self.routes
+/**
+ * Listen on provided port, on all network interfaces.
+ * 서버가 사용할 port를 설정한다.
+ */
 
-  end
-end
-```
-
-4)      ./config/routes.rb 수정
--       Request URL과 컨트롤러의 매핑 설정
-```
-Rails.application.routes.draw do
-
-  # 인덱스(root) 페이지 설정
-root 'static#login'
-
-# 정적페이지설정(.html)
-  get '/login' => 'static#login'
-  get '/main/:org_id' => 'static#main'
-  get '/manage' => 'static#manage'
-...(중략)...
-  # 기능별 API Path 설정
-#[HTTP메서드] ‘[Uri]’   =>   ‘[Controller#메서드]’
-  get   'org-chart/:org_id/mysql'               => 'org_chart_mysql#index'
-  get   'org-chart/:org_id/cubrid'              => 'org_chart_cubrid#index'
-get     'org-chart/:org_id/mongo'       => 'org_chart_mongo#index'
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
 ...(생략)
 ```
 
-5)      ./config/environments/development.rb
--       개발환경 설정( Localhost 서버 실행시 기본 환경설정)
+4) ./app.js
+- Request URL 매핑 설정
 
+```javascript
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+
+var app = express();
+
+// URL 매핑 후 수행할 js 파일들
+var org_chart_mysql = require('./routes/rest/org_chart/mysql')
+  , org_chart_mongo = require('./routes/rest/org_chart/mongo')
+  , org_chart_cubrid = require('./routes/rest/org_chart/cubrid')
+  , orgs_mysql = require('./routes/rest/orgs/mysql')
+  , orgs_mongo = require('./routes/rest/orgs/mongo')
+  , orgs_cubrid = require('./routes/rest/orgs/cubrid')
+  , groups_mysql = require('./routes/rest/groups/mysql')
+  , groups_mongo = require('./routes/rest/groups/mongo')
+  , groups_cubrid = require('./routes/rest/groups/cubrid')
+  , login = require('./routes/rest/login/login')
+  , image = require('./routes/rest/image/image')
+  , page = require('./routes/page/page_processing');
+
+// view engine setup
+// 뷰 엔진 설정
+app.set('views', path.join(__dirname, 'views/'));
+app.set('view engine', 'ejs');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+// 정적파일 위치 설정
+app.use(express.static(path.join(__dirname, 'public')));
+
+/*
+* URL 매핑 설정
+*/
+app.use(   '/', routes);
+app.use(   '/users', users);
+
+// page
+app.get(   '/login', page.login);
+app.get(   '/manage', page.manage);
+app.get(   '/main/:id', page.main);
+
+// org-chart
+app.get(   '/org-chart/:org_id/mysql', org_chart_mysql.index);
+app.get(   '/org-chart/:org_id/cubrid', org_chart_cubrid.index);
+app.get(   '/org-chart/:org_id/mongo', org_chart_mongo.index);
+app.get(   '/org-chart/:org_id/status/mysql', org_chart_mysql.status);
+app.get(   '/org-chart/:org_id/status/cubrid', org_chart_cubrid.status);
+app.get(   '/org-chart/:org_id/status/mongo', org_chart_mongo.status);
+
+//orgs
+//  mysql
+app.get(   '/orgs/mysql', orgs_mysql.index);
+app.post(  '/orgs/mysql', orgs_mysql.create);
+app.get(   '/orgs/:org_id/mysql', orgs_mysql.show);
+app.put(   '/orgs/:org_id/mysql', orgs_mysql.update);
+app.delete('/orgs/:org_id/mysql', orgs_mysql.destroy);
+…..(생략)
 ```
-Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-...(중략)...
 
-# Show full error reports and disable caching.
-# 예외 발생처리 기능 설정(Json형으로 반환 받기위함)
-  config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = false
 
-...(중략)...
+### <div id='11'> 3.4. VCAP_SERVICES 환경설정 정보
+개방형 플랫폼에 배포되는 애플리케이션이 바인딩된서비스별 접속 정보를 얻기 위해서는 애플리케이션별로 등록되어있는 VCAP_SERVICES 환경설정 정보를 읽어들여정보를 획득 할 수 있다.
 
-# public static html page view
-# ./public 폴더 접근 허용 여부 설정(js, css, image 정적 리소스)
-  config.serve_static_assets = true
+1)  개방형 플랫폼의 애플리케이션 환경정보
+- 서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
 
-  # Disable request forgery protection in test environment
-# authenticity_token ignore
-# Post, Put 메서드 호출시 인증 절차 설정
-  config.action_controller.allow_forgery_protection    = false
-end
-```
-6)      ./config/environments/production.rb
--       상용환경 설정(개방형 플랫폼 배포시 사용되는 기본 환경설정)
-
-```
-Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-
-...(중략)...
-
-  # Disable request forgery protection in test environment
-  # authenticity_token ignore
-# Post, Put 메서드 호출시 인증 절차 설정
-config.action_controller.allow_forgery_protection    = false
-```
-
-<div id='13'></div>
-##### 2.3.3.    VCAP_SERVICES 환경설정 정보
-
-개방형 플랫폼에 배포되는 애플리케이션이 바인딩된 서비스별 접속 정보를 얻기 위해서는 애플리케이션
-
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./lib/vcap.rb </td>
-    <td> 개방형 플랫폼의 애플리케이션별 VCAP_SERVICES 환경정보에서 서비스별 접속정보를 읽어오는
-</tr>
-</table>
-
-1)      개방형 플랫폼의 애플리케이션 환경정보
--       서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
-
-```
+```json
 {
  "VCAP_SERVICES": {
- "p-mysql": [
+  "CubridDB": [
    {
     "credentials": {
-     "hostname": "10.30.40.63",
-     "jdbcUrl": "jdbc:mysql://10.30.40.63:3306/cf_ea68784e_3de6_439d_afc1_d51b4e95627b?user=ZwCF
-     "name": "cf_ea68784e_3de6_439d_afc1_d51b4e95627b",
-     "password": "qs7oqi4nSvWq6UQa",
-     "port": 3306,
-     "uri": "mysql://ZwCFnQRiT3KANqHZ:qs7oqi4nSvWq6UQa@10.30.40.63:3306/cf_ea68784e_3de6_439d_af
-     "username": "ZwCFnQRiT3KANqHZ"
+     "host": "10.30.60.23::",
+     "hostname": "10.30.60.23",
+     "jdbcurl": "jdbc:cubrid:10.30.60.23::fccf1d7869ff72ce:b2f6b4af1e7bd7d8:45f179c648ee60a5:",
+     "name": "fccf1d7869ff72ce",
+     "password": "45f179c648ee60a5",
+     "port": "",
+     "uri": "cubrid:10.30.60.23::fccf1d7869ff72ce:b2f6b4af1e7bd7d8:45f179c648ee60a5:",
+     "username": "b2f6b4af1e7bd7d8"
     },
-    "label": "p-mysql",
-    "name": "sample-mysql-instance",
-    "plan": "100mb",
+    "label": "CubridDB",
+    "name": "sample-cubrid-instance",
+    "plan": "utf8",
     "tags": [
-     "mysql"
+     "cubrid",
+     "document"
     ]
    }
   ],
-...(이하 생략)...
+…..(이하 생략)…..
 ```
 
-2)      ./lib/vcap.rb 파일 생성
--       개방형 플랫폼의 애플리케이션별 VCAP_SERVICES 환경정보에서 서비스별 접속정보를 읽어오는 클
+2)  Node.js에서 개방형 플랫폼의 애플리케이션 환경정보에 접근하는 방법
+- 시스템환경변수의 VCAP_SERVICES값을 읽어서 접근 할 수 있다.
 ```
-# cf-app-utils 라이브러리 사용
-require 'cf-app-utils'
-
-module VcapService
-  class Vcap
-
-# 클래스 초기화 메서드
-    def initialize
-    end
-
-    def serviceInfo(service) #VCAP_SERVICES 정보 조회 메서드
-      #VCAP_SERVICES에 등록된 서비스의 label 정보를 기준으로 조회하여 정보를 반환
-      CF::App::Credentials.find_by_service_label(service)
-    end
-  end
-end
-```
-
--       cf-app-utils 를 사용하지 않을경우
-```
-# cf-app-utils을 사용하지 않고 직접 환경 변수에 접근하여 Json형태로 정보를 읽어올수 있다.
-
-vcap_services = JSON.parse(ENV['VCAP_SERVICES'])
+process.env.VCAP_SERVICES
 ```
 
 
-<div id='14'></div>
-##### 2.3.4.    Mysql 연동
+### <div id='12'> 3.5. Mysql 연동
+1)  ./route/db/mysql/db_pooling.js
+- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 mysql Connection Pool을 생성
+```javascript
+/**
+ * generic-pool 연동
+ * mysql 풀 모듈 구현
+ */
 
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./lib/mysql_service.rb </td>
-    <td> Vcap 클래스를 상속하여 Connection을 생성하는 클래스 </td>
-</tr>
-<tr>
-    <td> ./app/controllers/orgs_chart_mysql_controller.rb </td>
-    <td> 서비스 Connection 클래스 호출하여 사용하는 컨트롤러 클래스 </td>
-</tr>
-</table>
+var generic_pool  = require("generic-pool");
+var mysql   = require("mysql");
 
-1)      ./lib/mysql_service.rb
--       Vcap 클래스를 상속하여 Mysql Connection을 생성하는 클래스
+config = {};
+if (process.env.VCAP_SERVICES) {
+  // cloud env 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
+  var cloud_env   = JSON.parse(process.env.VCAP_SERVICES);
+  var mysql_env   = cloud_env["Mysql-DB"][0]["credentials"];
 
-```
-require 'vcap'
-module Connector
-  class MysqlService < VcapService::Vcap
+  config = {
+    host:mysql_env.hostname,
+    user:mysql_env.username,
+    password:mysql_env.password,
+    database:mysql_env.name
+  };
+} else {
+  // local env
+  config = {
+    host:'10.30.40.63',
+    user:'cESTBl9QpxGVF5Xa',
+    password:'aVu1ynInBnaEeFY0',
+    database:'cf_ea68784e_3de6_439d_afc1_d51b4e95627b'
+  };
+}
 
-    def initialize
-      super()
-    end
-    def connector
-      credentials = serviceInfo('p-mysql') # “p-mysql” 서비스 credentials 조회
-      Mysql2::Client.new(:host =>  credentials['hostname'],
-                         :username => credentials['username'],
-                         :password => credentials['password'],
-                         :database => credentials['name'])
-    end
-end
-end
-```
+var pooling   = generic_pool.Pool({
+  name:"mysql",
+  create:function(cb){
+    // create Connection
+    var conn = mysql.createConnection(config);
+    conn.connect(function(err){
+      if( err) console.log("mysql 연결오류");
+      else {
+      //  console.log("mysql 연결성공");
+      } cb(err, conn);
+      // 콜백함수를 통해 풀링에 커넥션 객체를 던짐
+    });
+  },
+  destroy:function(myConn){
+    myConn.end(function(err){
+      if( err)  console.log("mysql 연결해제오류");
+  //    else    console.log("mysql 연결해제성공");
+    });
+  },
+  min:3,
+  max:5,
+  idleTimeoutMillis:1000*500,
+  log:false
 
-2)      ./app/controllers/orgs_chart_mysql_controller.rb 서비스 Connection 클래서 호출
+});
 
-```
-# encoding: UTF-8      # Encoding 지정(한글지원)
-require 'mysql_service'   # mysql_service 클래스 추가 (각 서비스별 클래스 추가부분)
-class OrgChartMysqlController < ApplicationController
-  before_action :db_connection    # 전처리 메소드 호출(DB 접속)
-  before_action :set_param, only: [:index]
-  before_action :set_org, only: [:index]
-  after_action :db_close  # 후처리 메소드 호출 (DB 닫음)
+process.on("exit", function(){
+  pooling.drain(function(){
+    pooling.destroyAllNow();
+  });
+});
 
-  # Org 그룹 목록 조회 메서드
-  def index
-    if @org == nil
-      render json: {error: 'request value wrong'}, status: 400
-    else
-      render json: {org: @org, groups: @client.query(@query.group_index(@param[:org_id]))}
-    end
-  end
-
-# 메소드가 호출되기전 서비스 접속
-  def db_connection
-    @client = Connector::MysqlService.new.connector #서비스 연동 클래스를 호출하여 접속정보를 획
-    @query = Connector::MysqlQuery.new
-  end
-
-# 메소드 호출이 끝난후 서비스 닫음
-  def db_close
-    @client.close
-  end
-
-  # Param 처리 메소드
-def set_param
-    @param = {:org_id => params[:org_id]}
-  end
-
-  # Org 정보 조회 메서드
-  def set_org
-    begin
-      @org = @client.query(@query.org_show(@param[:org_id])).first
-    rescue
-      @org = nil
-    end
-  end
-end
-```
-※해당 클래스는 샘플 예제이며 서비스의 접속정보의 획득 및 활용 방법은 애플리케이션의 구조및 특성에
-
-<div id='15'></div>
-##### 2.3.5.    Cubrid 연동
-
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./lib/cubrid_service.rb </td>
-    <td> Vcap 클래스를 상속하여 Connection을 생성하는 클래스 </td>
-</tr>
-<tr>
-    <td> ./app/controllers/orgs_chart_cubrid_controller.rb </td>
-    <td> 서비스 Connection 클래스 호출하여 사용하는 컨트롤러 클래스 </td>
-</tr>
-</table>
-
-1)      ./lib/cubrid_service.rb
--       Vcap 클래스를 상속하여 Cubrid Connection을 생성하는 클래스
-
-```
-require 'vcap'
-module Connector
-  class CubridService < VcapService::Vcap
-
-    def initialize
-      super()
-    end
-    def connector
-      credentials = serviceInfo('CubridDB') # “CubridDB” 서비스 credentials 조회
-      Cubrid.connect(credentials['name'],
-                            credentials['hostname'],
-                            33000,
-                            credentials['username'],
-                            credentials['password'])
-    end
-end
-end
+module.exports = pooling;
 ```
 
-2)      ./app/controllers/orgs_chart_cubrid_controller.rb 서비스 Connection 클래서 호출
 
-```
-# encoding: UTF-8      # Encoding 지정(한글지원)
-require 'cubrid_service'    # cubrid_service 클래스 추가 (각 서비스별 클래스 추가부분)
-class OrgChartMysqlController < ApplicationController
-  before_action :db_connection    # 전처리 메소드 호출(DB 접속)
-  before_action :set_param, only: [:index]
-  before_action :set_org, only: [:index]
-  after_action :db_close  # 후처리 메소드 호출 (DB 닫음)
+### <div id='13'> 3.6. Cubrid 연동
+1)  ./route/db/cubrid/db_pooling.js
+- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 cubrid Connection Pool을 생성
 
-  # Org 그룹 목록 조회 메서드
-  def index
-    if @org == nil
-      render json: {error: 'request value wrong'}, status: 400
-    else
-      result = @client.query(@query.group_index(@param[:org_id]))
-      groups = []
-      while rs = result.fetch_hash
-        rs['label'] = rs['label'].to_s.force_encoding('UTF-8')
-        rs['desc'] = rs['desc'].to_s.force_encoding('UTF-8')
-        rs['thumb_img_name'] = rs['url'].to_s.force_encoding('UTF-8')
-        rs['thumb_img_path'] = rs['url'].to_s.force_encoding('UTF-8')
-        rs['url'] = rs['url'].to_s.force_encoding('UTF-8')
-        groups.push(rs)
-      end
-      render json: {org: @org, groups: groups}
-    end  end
+```javascript
+/**
+ * generic-pool 연동
+ * cubrid 풀 모듈 구현
+ */
 
-# 메소드가 호출되기전 서비스 접속
-  def db_connection
-    @client = Connector::CubridService.new.connector #서비스 연동 클래스를 호출하여 접속정보를 획
-    @query = Connector::MysqlQuery.new
-  end
+var generic_pool  = require("generic-pool");
+var cubrid    = require("node-cubrid");
 
-# 메소드 호출이 끝난후 서비스 닫음
-  def db_close
-    @client.close
-  end
+var   database
+  , port
+  , hostname
+  , username
+  , password;
+if (process.env.VCAP_SERVICES) {
+  // cloud env 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
+  var cloud_env   = JSON.parse(process.env.VCAP_SERVICES);
+  var cubrid_env    = cloud_env["CubridDB"][0]["credentials"];
 
-  # Param 처리 메소드
-def set_param
-    @param = {:org_id => params[:org_id]}
-  end
+  database  = cubrid_env.name
+  port    = cubrid_env.port
+  hostname  = cubrid_env.hostname
+  username  = cubrid_env.username
+  password  = cubrid_env.password;
+} else {
+  // local env
+  database  = 'fccf1d7869ff72ce'
+  port    = ''
+  hostname  = '10.30.60.23'
+  username  = 'b2f6b4af1e7bd7d8'
+  password  = '45f179c648ee60a5';
+}
+var pooling   = generic_pool.Pool({
+  name:"cubrid",
+  create:function(cb){
+//    console.log("cubrid_env.uri:" + cubrid_env.uri);
+    var conn = cubrid.createCUBRIDConnection(hostname, port, username, password, database);
+    // create Connection
+    conn.connect(function(err){
+      if( err) console.log("cubrid 연결오류");
+      else{
+//        console.log("cubrid 연결성공");
+        cb(err, conn);
+      }
+      // 콜백함수를 통해 풀링에 커넥션 객체를 던짐
+    });
+  },
+  destroy:function(myConn){
+    myConn.end(function(err){
+      if( err)  console.log("cubrid 연결해제오류");
+//      else    console.log("cubrid 연결해제성공");
+    });
+  },
+  min:3,
+  max:5,
+  idleTimeoutMillis:1000*50,
+  log:false,
 
-  # Org 정보 조회 메서드
-  def set_org
-    begin
-      @org = @client.query(@query.org_show(@param[:org_id])).first
-    rescue
-      @org = nil
-    end
-  end
-end
+});
 
-```
-※해당 클래스는 샘플 예제이며 서비스의 접속정보의 획득 및 활용 방법은 애플리케이션의 구조및 특성에
+process.on("exit", function(){
+  pooling.drain(function(){
+    pooling.destroyAllNow();
+  });
+});
 
-<div id='16'></div>
-##### 2.3.6.    MongoDB 연동
-
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./lib/mongo_service.rb </td>
-    <td> Vcap 클래스를 상속하여 Connection을 생성하는 클래스 </td>
-</tr>
-<tr>
-    <td> ./app/controllers/orgs_chart_mongo_controller.rb </td>
-    <td> 서비스 Connection 클래스 호출하여 사용하는 컨트롤러 클래스 </td>
-</tr>
-</table>
-
-1)      ./lib/mongo_service.rb
--       Vcap 클래스를 상속하여 MongoDB Connection을 생성하는 클래스
-
-```
-require 'vcap'
-module Connector
-  class MongoService < VcapService::Vcap
-
-    def initialize
-      super()
-    end
-    def connector
-      credentials = serviceInfo('Mongo-DB') # “Mongo-DB” 서비스 credentials 조회
-      Mongo::Client.new(credentials['hosts'],
-                        :database => credentials['name'],
-                        :user =>  credentials['username'],
-                        :password => credentials['password'],
-                        :connect => :sharded)
-
-    end
-  end
-end
+module.exports = pooling;
 ```
 
-2)      ./app/controllers/orgs_chart_mongo_controller.rb 서비스 Connection 클래서 호출
-```
-# encoding: UTF-8      # Encoding 지정(한글지원)
-require ‘mongo_service’    # mongo_service 클래스 추가 (각 서비스별 클래스 추가부분)
-class OrgChartMysqlController < ApplicationController
-  before_action :db_connection    # 전처리 메소드 호출(DB 접속)
-  before_action :set_param, only: [:index]
-  before_action :set_org, only: [:index]
+### <div id='14'> 3.7. MongoDB 연동
+1)  ./route/db/mongo/db_pooling.js
+- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 mongodb Connection Pool을 생성
 
-  # Org 그룹 목록 조회 메서드
-  def index
-    if @org == nil
-      render json: {error: 'request value wrong'}, status: 400
-    else
-      result = @client[:Groups].find(:orgId => BSON::ObjectId(@param[:orgId])).sort({ _id: -1 }
-      groups=[]
-      result.each do |rs|
-        rs['created'] = Date.strptime(rs['created'].as_json['t'].to_s,'%s').strftime('%F')
-        rs['modified'] = Date.strptime(rs['modified'].as_json['t'].to_s,'%s').strftime('%F')
-        rs_new = {'id' => rs.delete('_id').to_s,
-                  'org_id' => rs.delete('orgId').to_s,
-                  'parent_id' => rs.delete('parentId').to_s,
-                  'label' => rs.delete('label').to_s,
-                  'desc' => rs.delete('desc').to_s,
-                  'thumb_img_name' => rs.delete('thumbImgName').to_s,
-                  'thumb_img_path' => rs.delete('thumbImgPath').to_s,
-                  'url' => rs.delete('url').to_s,
-                  'created' => rs.delete('created').to_s,
-                  'modified' => rs.delete('modified').to_s
-        }.merge(rs)
-        groups.push(rs_new)
-      end
-      render json: {org: @org, groups: groups}
-    end
-  end
+```javascript
+/**
+ * generic-pool 연동
+ * mongo 풀 모듈 구현
+ */
 
-# 메소드가 호출되기전 서비스 접속
-  def db_connection
-    @client = Connector:: MongoService.new.connector #서비스 연동 클래스를 호출하여 접속정보를 획
-  end
+var generic_pool = require("generic-pool");
+var mongoClient  = require("mongodb").MongoClient;
 
-# Param 처리 메소드
-def set_param
-    @param = {:orgId => params[:org_id]}
-  end
+var url = '';
+if (process.env.VCAP_SERVICES) {
+  // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
+  var cloud_env = JSON.parse(process.env.VCAP_SERVICES);
+  var mongo_env = cloud_env["Mongo-DB"][0]["credentials"];
 
-  # Org 정보 조회 메서드
-  def set_org
-    begin
-      #@org = @client[:Orgs].find(:_id => BSON::ObjectId(@param[:orgId])).first
-      org_tmp = @client[:Orgs].find(:_id => BSON::ObjectId(@param[:orgId])).first
-      org_tmp['created'] = Date.strptime(org_tmp['created'].as_json['t'].to_s,'%s').strftime('%F
-      org_tmp['modified'] = Date.strptime(org_tmp['modified'].as_json['t'].to_s,'%s').strftime('
-      @org = {'id' => org_tmp.delete('_id').to_s}.merge(org_tmp)
-    rescue
-      @org = nil
-    End
-  end
-end
-```
-※해당 클래스는 샘플 예제이며 서비스의 접속정보의 획득 및 활용 방법은 애플리케이션의 구조및 특성에
+  url = mongo_env.uri;
+
+} else {
+  // local env.
+  url = 'mongodb://d3e35ad5-9f49-43ae-bc85-08e39ec1d8eb:fc23791e-b2d8-402d-b070-90bfbdb5dcfa@10.30.60.53:27017/e37e541c-75de-4f01-8196-63e2d902e768';
+}
+
+var pooling = generic_pool.Pool({
+        name:"mongo",
+        create:function(cb){
+    // create Connection
+    mongoClient.connect(url, function(err, db){
+      if (err) console.log("mongo 연결오류");
+      else {
+        cb(err, db);
+      }
+    });
+        },
+        destroy:function(myDb){
+                myDb.close(function(err){
+                        if( err)        console.log("mysql 연결해제오류");
+        //              else            console.log("mysql 연결해제성공");
+                });
+        },
+        min:3,
+        max:5,
+        idleTimeoutMillis:1000*500,
+        log:false
+
+});
 
 
-<div id='17'></div>
-##### 2.3.7.    Redis 연동
-
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./lib/redis_service.rb </td>
-    <td> Vcap 클래스를 상속하여 Connection을 생성하는 클래스 </td>
-</tr>
-<tr>
-    <td> ./app/controllers/login_controller.rb </td>
-    <td> 서비스 Connection 클래스 호출하여 사용하는 컨트롤러 클래스 </td>
-</tr>
-</table>
-
-1)      ./lib/rddis_service.rb
--       Vcap 클래스를 상속하여 Redis Connection을 생성하는 클래스
-
-```
-require 'vcap'
-module Connector
-  class RedisService < VcapService::Vcap
-
-    def initialize
-      super()
-    end
-    def connector
-      credentials = serviceInfo('redis-sb') # “redis-sb” 서비스 credentials 조회
-      Redis.new(:host => credentials['host'],
-                :port => credentials['port'],
-                :password => credentials['password'])
-    end
-  end
-end
+module.exports = pooling;
 ```
 
-2)      ./app/controllers/login_controller.rb 서비스 Connection 클래서 호출
+
+### <div id='15'> 3.8. Redis 연동
+1)  ./route/redis/redis.js
+- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 redis Connection을 생성
+
+```javascript
+var redis = require("redis");
+
+var options = {};
+if (process.env.VCAP_SERVICES) {
+  // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
+  var services = JSON.parse(process.env.VCAP_SERVICES);
+  var redisConfig = services["redis-sb"];
+
+  if (redisConfig) {
+      var node = redisConfig[0];
+      options = {
+      host: node.credentials.host,
+      port: node.credentials.port,
+      pass: node.credentials.password,
+    };
+  }
+
+} else {
+  // local env.
+    options = {
+    host: '10.30.40.71',
+    port: '34838',
+    pass: 'c239b721-d986-4ee3-8816-b5f5fa9f3ffb',
+  };
+}
+
+var client = null;
+exports.open = function(cb) {
+//  console.log(JSON.stringify(options));
+  //create Client
+  client = redis.createClient(options);
+  // get auth.
+  client.auth(options.pass);
+
+  cb(client);
+}
+exports.close = function(){
+  client.end();
+}
 ```
-# encoding: UTF-8      # Encoding 지정(한글지원)
-require ‘redis_service’    # redis_service 클래스 추가 (각 서비스별 클래스 추가부분)
-class LoginController < ApplicationController
-  #선처리 메소드
-  before_action :redis_connection # Redis 서버 접속
 
-  def login
-    id = params[:id]
-    pwd = params[:password]
 
-    if id == nil || id =='' || pwd == nil || pwd == ''
-      render json: {error: 'request value wrong'}, status: 400
-    elsif (id.eql? 'admin') && (pwd.eql? 'admin')
-      key = SecureRandom.uuid.to_s
-      @redis.set(key, "admin")
-      cookies['login_cookie'] = key
-      render json: {}
-    else
-      render json: {error: 'not authz'}, status: 401
-    end
-  end
+### <div id='16'> 3.9. RabbitMQ연동
+1)  ./route/rabbitMQ/rabbitMQ.js
+- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 rabbirMQ Connection을 생성
 
-  def logout
-    key = cookies['login_cookie'].to_s
-    p key
-    @redis.del(key)
-    render json: {}
-  end
+```javascript
+var amqp = require('amqp');
 
-  def redis_connection
-    @redis = Connector::RedisService.new.connector  #서비스 연동 클래스를 호출하여 접속정보를 획
-  end
-end
+var url = '';
+if (process.env.VCAP_SERVICES) {
+  // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
+        var services = JSON.parse(process.env.VCAP_SERVICES);
+        var rabbitMQConfig = services["p-rabbitmq"];
+
+        if (rabbitMQConfig) {
+                var node = rabbitMQConfig[0];
+    url = node.credentials.uri;
+        }
+} else {
+  // local env.
+  url = 'amqps://14b1ab93-4cdb-46af-8cdd-8d8073bbe282:cl71e9ihgu6gvhj1eiqj9uh4um@10.30.40.82:5671/6ffb4d8a-8748-4f00-a338-80e6eadee822';
+}
+
+exports.open = function(cb){
+  // create connection.
+  var conn = amqp.createConnection({url: url});
+
+  // it must be cb(callback) after the 'ready' event.
+  conn.on('ready', function(){
+    cb(conn);
+  });
+}
+
+// not used.
+/*
+exports.close = function(){
+  conn.disconnect();
+}
+*/
 ```
-※해당 클래스는 샘플 예제이며 서비스의 접속정보의 획득 및 활용 방법은 애플리케이션의 구조및 특성에
 
-<div id='18'></div>
-##### 2.3.8.    RabbitMQ연동
+### <div id='17'> 3.10. GlusterFS 연동
+1)  ./route/glusterfs/glusterfs.js
+- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 glusterfs Connection을 생성
 
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./lib/rabbitmq_service.rb </td>
-    <td> Vcap 클래스를 상속하여 Connection을 생성하는 클래스 </td>
-</tr>
-<tr>
-    <td> ./app/controllers/status_controller.rb </td>
-    <td> 서비스 Connection 클래스 호출하여 사용하는 컨트롤러 클래스 </td>
-</tr>
-</table>
+```javascript
+var pkgcloud = require('pkgcloud');
+var http = require('http');
+var url = require('url');
 
-1)      ./lib/rabbitmq_service.rb
--       Vcap 클래스를 상속하여 RabbitMQ Connection을 생성하는 클래스
+var credentials = {};
+var container_name = 'node_container';
+if (process.env.VCAP_SERVICES) {
+  // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
+  var services = JSON.parse(process.env.VCAP_SERVICES);
+  var glusterfsConfig = services["glusterfs"];
 
+  if (glusterfsConfig) {
+    var config = glusterfsConfig[0];
+    credentials = {
+      provider: 'openstack', //
+            username: config.credentials.username,
+            password: config.credentials.password,
+      authUrl:  config.credentials.auth_url.substring(0, config.credentials.auth_url.lastIndexOf('/')),
+      region: 'RegionOne' //
+    };
+  }
+} else {
+  // local env.
+    credentials = {
+      provider: 'openstack',
+            username: 'cf13d551d997458e',
+            password: 'b45cc01d53a4f0e0',
+      authUrl:  'http://54.199.136.22:5000/',
+      region: 'RegionOne'
+    };
+}
+
+// create Client
+var client = pkgcloud.storage.createClient(credentials);
+
+// delete container for test
+/*
+client.destroyContainer(container_name, function(err, result){
+  if (err) console.log(err);
+  else console.log(result);
+});
+*/
+
+// check container
+client.getContainer(container_name, function(err, container){
+        if (err)
+        {
+    // if container not exist
+                if (err.statusCode === 404)
+                {
+      // create container
+                        client.createContainer({name:container_name}, function(create_err, create_container){
+                                if (create_err) console.log(err);
+        else
+        {
+          // if container created successfully, setting a readable member(X-Contaner-Read: .r:*)
+          // 컨테이너가 성공적으로 생성되었다면 컨테이너를 누구나 읽을 수 있게 설정한다.(X-Contaner-Read: .r:*)
+          // There is a bug in the code(pkgcloud). so i used api call.
+          // pkgcloud 모듈에서 metadata를 넣을 경우 prefix가 붙는 로직때문에 제대로 위의 값이 입력이 안되므로 api를 통해서 설정.
+          var serviceUrl = url.parse(create_container.client._serviceUrl);
+          var option = {
+            host: serviceUrl.hostname,
+            port: serviceUrl.port,
+            path: serviceUrl.path+'/'+container_name,
+            method: 'POST',
+            headers: {
+              'X-Auth-Token': create_container.client._identity.token.id,
+              'X-Container-Read': '.r:*' // ACL form
+            }
+          };
+          var req = http.request(option, function(res){
+          });
+          req.end();
+        }
+
+                        });
+                }
+                else    console.log(err);
+        }
+});
+
+module.exports = client;
 ```
-require 'vcap'
-module Connector
-  class RabbitmqService < VcapService::Vcap
-
-    def initialize
-      super()
-    end
-    def connector
-
-      credentials = serviceInfo('p-rabbitmq') # “p-rabbitmql” 서비스 credentials 조회
-      protocols = credentials['protocols']
-      amqp_credentials = protocols['amqp+ssl'] || protocols['amqp']
-      Bunny.new(
-          :host      => amqp_credentials['hosts'].sample,
-          :port      => amqp_credentials['port'],
-          :vhost     => amqp_credentials['vhost'],
-          :user      => amqp_credentials['username'],
-          :pass      => amqp_credentials['password'],
-          tls_ca_certificates: %w(./tls/ca_certificate.pem),
-          verify_peer: false)
-    end
-  end
-end
-```
-※Bunny 2.2.x 이후 드라이버 버전에서는 TLS/SSL CA의 경로를 지정하지 않으면 기본으로 설정된 경로를
-
-2)      ./app/controllers/status_controller.rb 서비스 Connection 클래서 호출
-```
-# encoding: UTF-8      # Encoding 지정(한글지원)
-require ‘rabbitmq_service’    # rabbitmq_service 클래스 추가 (각 서비스별 클래스 추가부분)
-class StatusController < ApplicationController
-  before_action :rabbit_ connection # RabbitMQ 서버 접속
-  def status
-
-    if ENV['RAILS_ENV'].to_s != "development" && !ENV['RAILS_ENV'].to_s != "test"
-      @conn.start
-
-      orgId = params[:org_id]
-      dbType = params[:db_type]
-      queue_name = dbType +'_'+ orgId.to_s
-
-      @channel ||= @conn.create_channel
-      @queue ||= @channel.queue(queue_name, :auto_delete => true)
-
-      if @conn.queue_exists?(queue_name)
-        delivery_info, metadata, payload = @queue.pop
-      else
-        delivery_info, metadata, payload = nil
-      end
-
-      @conn.stop
-    end
-
-    if payload == nil || payload.length == 0
-      payload = 'NO_CHANGES'
-    end
-    render json: {:status => payload}
-
-  end
-
-  def rabbit_connection
-    @conn = Connector::RabbitmqService.new.connector   #서비스 연동 클래스를 호출하여 접속정보를
-
-  end
-end
-```
-※해당 클래스는 샘플 예제이며 서비스의 접속정보의 획득 및 활용 방법은 애플리케이션의 구조및 특성에
-
-<div id='19'></div>
-##### 2.3.9.    GlusterFS 연동
-
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./lib/glusterfs_service.rb </td>
-    <td> Vcap 클래스를 상속하여 Connection을 생성하는 클래스 </td>
-</tr>
-<tr>
-    <td> ./app/controllers/upload_controller.rb </td>
-    <td> 서비스 Connection 클래스 호출하여 사용하는 컨트롤러 클래스 </td>
-</tr>
-</table>
-
-1)      ./lib/glusterfs_service.rb
--       Vcap 클래스를 상속하여 GlusterFS Connection을 생성하는 클래스
-
-```
-require 'vcap'
-module Connector
-  class Glusterfs < VcapService::Vcap
-
-    def initialize
-      super()
-    end
-    def connector
-      credentials = serviceInfo('glusterfs') # “glusterfs” 서비스 credentials 조회
-      Fog::Storage.new({
-                           :provider            => 'OpenStack',
-                           :openstack_username  => credentials['username'],
-                           :openstack_api_key   => credentials['password'],
-                           :openstack_auth_url  => credentials['auth_url']+'/tokens'
-                       })
-    end
-  end
-end
-```
-2)      ./app/controllers/upload_controller.rb 서비스 Connection 클래서 호출
-```
-# encoding: UTF-8      # Encoding 지정(한글지원)
-require ‘glusterfs_service’    # glusterfs_service 클래스 추가 (각 서비스별 클래스 추가부분)
-class UploadController < ApplicationController
-  before_filter :authenticate   # 메서드를 호출하기전 인증여부를 확인합니다.
-  before_action :gs_connection  # 파일 업로드를 위한 Swift 인증정보를 획득합니다.
-
-  # 파일을 업로드 합니다.
-  def upload
-    @img = params[:file]
-
-    if @img == nil || @img == ''
-      render json: {error: 'request value wrong'}, status: 400
-    else
-      cont = @service.directories.get "ruby-thumb"
-
-      if cont == nil
-        cont = @service.directories.create :key => 'ruby-thumb', :public => true
-        cont.save
-      end
-
-      file = cont.files.create :key => DateTime.now.strftime('%Q')+"_" + @img.original_filename,
-
-      render json: {thumb_img_path: file.public_url}
-    end
-  end
-
-  def gs_connection
-    @service = Connector::Glusterfs.new.connector   #서비스 연동 클래스를 호출하여 접속정보를 획
-
-  end
-end
-```
-※해당 클래스는 샘플 예제이며 서비스의 접속정보의 획득 및 활용 방법은 애플리케이션의 구조및 특성에
 
 
-<div id='21'></div>
-### 2.4.        배포
+# <div id='18'> 4. 배포
 
-개발 완료된 애플리케이션을 개방형 플랫폼에 배포하는 방법을 설명한다.
+개방형 플랫폼에 애플리케이션을 배포하면 배포한 애플리케이션과 개방형 플랫폼이 제공하는 서비스를 연결하여 사용할 수 있다. 개방형 플랫폼상에서 실행을 해야만 개방형 플랫폼의 애플리케이션 환경변수에 접근하여 서비스에 접속할 수 있다.
 
-<div id='22'></div>
-##### 2.4.1.    개방형 플랫폼 애플리케이션 배포
 
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> ./manifest.yml </td>
-    <td> 개방형 플랫폼 배포 환경 설정 파일 </td>
-</tr>
-</table>
+### <div id='19'> 4.1.  개방형 플랫폼 로그인
 
-1)      ./manifest.yml 생성
--       cf push 명령시 현재 디렉토리의 manifest.yml을 참조하여 배포가 진행된다.
+아래의 과정을 수행하기 위해서 개방형 플랫폼에 로그인
 
-```
+>$ cf api --skip-ssl-validation https://api.cf.open-paas.com # 개방형 플랫폼 TARGET 지정
+># cf api [target url]
+>$ cf login -u testUser -o sample_test -s sample_space # 로그인 요청
+># cf login –u [user name] –o [org name] –s [space name]
+![](./image/nodejs/2-4-1-0.png)
+
+
+### <div id='20'> 4.2.  서비스 생성
+애플리케이션에서 사용할 서비스를 개방형 플랫폼을 통하여 생성한다. 별도의 서비스 설치과정 없이 생성할 수 있으며, 애플리케이션과 바인딩과정을 통해 접속정보를 얻을 수있다.
+- 서비스 생성 (cf marketplace 명령을 통해 서비스 목록과 각 서비스의 플랜을 조회할 수 있다.
+
+><div># cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]
+><div>$ cf create-service p-mysql 100mb node-mysql
+><div>$ cf create-service CubridDB utf8 node-cubrid
+><div>$ cf create-service Mongo-DB default-plan node-mongodb
+><div>$ cf create-service redis-sb shared-vm node-redis
+><div>$ cf create-service glusterfs glusterfs-5Mb node-glusterfs
+><div>$ cf create-service p-rabbitmq standard node-rabbitmq
+![](./image/nodejs/2-4-2-0.png)
+
+
+### <div id='21'> 4.3. 애플리케이션 배포
+
+애플리케이션을 개방형 플랫폼에 배포한다. 배포된 애플리케이션은 생성된 서비스와 바인드하여 서비스를 사용할 수 있다.
+
+- cf push 명령시 현재 디렉토리의 manifest.yml을 참조하여 배포가 진행된다.
+
+##### 1. manifest.yml 생성
+
+```yaml
 ---
 applications:
-- name: ruby-sample-app # 애플리케이션 이름
-  memory: 512M        # 애플리케이션 메모리 사이즈
-  instances: 1           # 애플리케이션 인스턴스 개수
-  path: .                # 애플리케이션 위치
-  command: bundle exec rails server -p $PORT # 애플리케이션 배포 후 실행 명령어
-```
-※애플리케이션 스테이징시 할달 받은 포트가 환경변수로 등록되어있다. 이 $PORT는 애플리케이션의 상태
-
-2)      개방형 플랫폼 로그인
-```
-$ cf api https://api.cf.open-paas.com   # 개방형 플랫폼 TARGET 지정
- #cf api [개방형 플랫폼 API 주소] : 개방형 플랫폼 API 주소를 지정한다.
-
-$ cf login -u testUser -o sample_test -s sample_space   # 로그인 요청
- #cf login –u [사용자 이름] –o [조직명] –s [스페이스명] : 조직, 스페이스가 없을경우 생성필요
-
-API endpoint: https://api.cf.open-paas.com
-
-Password>
-Authenticating...
-OK
-
-Targeted org sample_test
-
-Targeted space sample_space
-
-API endpoint:   https://api.cf.open-paas.com (API version: 2.29.0)
-User:           testUser
-Org:            sample_test
-Space:          sample_space
-
-$
+- name: node-sample-app # 애플리케이션 이름
+  memory: 512M # 애플리케이션 메모리 사이즈
+  instances: 1 # 애플리케이션 인스턴스 개수
+  command: npm start # 애플리케이션 실행 명령어
+  path: ./ # 배포될 애플리케이션의 위치
 ```
 
-3)      개방형 플랫폼 서비스 생성
-```
-$ cf marketplace     # 마켓플레이스 목록 요청
-
-service         plans                    description
-p-mysql        100mb, 1gb               MySQL databases on demand
-p-rabbitmq     standard                 RabbitMQ is a robust …..
-redis-sb               shared-vm, dedicated-vm  Redis service to provide a ……
-
-$ cf create-service p-mysql 100mb sample-mysql-instance    # 서비스 생성
- #cf create-service [서비스명] [플랜명] [생성할 서비스명]
-
-$ cf services    # 서비스 목록 조회
-
-name                       service       plan              bound apps           last…
-sample-mysql-instance       p-mysql      100mb            node-sample, p....    …
-sample-rabbitmq-instance    p-rabbitmq   standard           python-sample-....  …
-sample-redis-instance        redis-sb      shared-vm         python-sample-.... …
-```
-
-4)      개방형 플랫폼 애플리케이션에 서비스 바인딩 및 애플리케이션 시작
+##### 2. Mysql, Cubrid 테이블 생성
+- Sample App의 조직관리 기능을 위해 DB에 테이블을 생성해 주어야 한다.
+- Mysql과 Cubrid에 테이블을 추가하는 방법은 OpenPaaS Mysql, Cubrid 서비스팩 설치 가이드의 'Client 툴 접속'을 참고한다.
+- Client 툴을 이용하여 아래의 테이블 생성 sql를 각각 실행한다. (Mysql과 Cubrid 양쪽다 동일한 sql로 생성가능하다.)
 
 ```
-$ cf push -b https://github.com/cloudfoundry/ruby-buildpack.git#v1.3.1 --no-start
-# 애플리케이션 업로드만 실행하고 시작하지는 않는다.
-# 최근 Ruby 빌드팩(1.3.1이후)은 Ruby 1.9.3을 기본적으로 지원하지 않는다. Ruby 1.9.3을 지원하는 빌팩을 사용할경우 –b 옵션을 제외 하여도 무방하다.
-# cf push –b [사용자 빌드팩 URL] –no-start
+DROP TABLE IF EXISTS ORG_TBL;
+DROP TABLE IF EXISTS GROUP_TBL;
 
-$ cf services   # 서비스 목록 조회
 
-name                       service       plan              bound apps           last…
-sample-mysql-instance       p-mysql      100mb            node-sample, p....    …
-sample-cubrid-instance      CubridDB      utf8              node-sample, p....  …
-sample-mongo-instance      Mongo-DB   default-plan        node-sample, p....    …
-sample-rabbitmq-instance    p-rabbitmq   standard           python-sample-....  …
-sample-redis-instance        redis-sb      shared-vm         python-sample-.... …
-sample-glusterfs-instance    glusterfs      glusterfs-1000Mb   glusterfs-samp....       …
+CREATE TABLE ORG_TBL (
+  id INT AUTO_INCREMENT PRIMARY KEY
+  , label VARCHAR(40) NOT NULL
+  , `desc` VARCHAR(150)
+  , url VARCHAR(500) DEFAULT '#'
+  , created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+  , modified TIMESTAMP
+);
 
-$ cf bind-service ruby-sample-app sample-mysql-instance   # 애플리케이션 서비스 바인딩
-# cf bind-service [애플리케이션 명] [서비스 명]
+CREATE TABLE GROUP_TBL (
+  id INT AUTO_INCREMENT PRIMARY KEY
+  , org_id INTEGER NOT NULL
+  , parent_id INTEGER
+  , label VARCHAR(40) NOT NULL
+  , `desc` VARCHAR(150)
+  , thumb_img_name VARCHAR(256)
+  , thumb_img_path VARCHAR(512)
+  , url VARCHAR(500) DEFAULT '#'
+  , created TIMESTAMP  DEFAULT CURRENT_TIMESTAMP  NOT NULL
+  , modified TIMESTAMP
+);
 
-$ cf start ruby-sample-app    # 애플리케이션 시작
-# cf start [애플리케이션 명]
+ALTER TABLE GROUP_TBL
+ADD FOREIGN KEY(org_id)
+REFERENCES ORG_TBL(id)
+ON DELETE CASCADE;
+
+ALTER TABLE GROUP_TBL
+ADD FOREIGN KEY(parent_id)
+REFERENCES GROUP_TBL(id)
+ON DELETE CASCADE;
 ```
-※최신 빌드팩은 Ruby 1.9.3을 지원하지 않기 때문에 ruby-buildpack 1.3.1 버전을 사용하여 배포를 진행
 
-※애플리케이션 배포절차를 윈도우 머신에서 수행하는 경우(cf cli를 윈도우 머신에 설치하여 사용하는로 변환하여 'cf push' 부터 다시 진행합니다. 파일 변환 절차는 다음을 따릅니다.
+##### 3. 애플리케이션 배포
 
+- cf push 명령으로 배포한다. 별도의 값을 넣지않으면 manifest.yml의 설정을 사용한다. 아직 서비스를 연결하지 않았기 때문에 --no-start 옵션으로 배포후 실행은 하지않는다.
 
-1.      윈도우 커맨드 창을 열어 애플리케이션 폴더로 이동합니다.
-2.      (방법1.) 다음의 url에서 dos2unix를 다운로드 하고 압축을 해제하여 dos2unix.exe파일을 샘플
-http://sourceforge.net/projects/dos2unix/files/latest/download
-
-        (방법2.) 샘플 어플리케이션을 'git clone'한 사용자는 다음의 명령어를 이용하여 애플리케이션2unix.exe'로 변경하여도 무방합니다.
->rename dos2unix dos2unix.exe
-
-3.      다음 명령어를 이용하여 bin 폴더 내의 3개의 파일을 유닉스 파일로 변환합니다.
->dos2unix bin/bundle bin/rake bin/rails
->※      윈도우즈 Power Shell에서는 해당 명령어가 실행되지 않습니다. 명령 프롬프트를 이용하면 명령
-변환이 정상적으로 완료되면 다음과 같은 화면을 확인할 수 있습니다.
->![](./images/ruby/ruby_16.png)
-
-4.      [4) 개방형 플랫폼 애플리케이션에 서비스 바인딩 및 애플리케이션 시작] 절차를 다시 수행합니
+><div>$ cf push --no-start
+![](./image/nodejs/2-4-3-0.png)
 
 
+### <div id='22'> 4.4. 애플리케이션, 서비스 연결
+
+애플리케이션과 서비스를 연결하는 과정을 '바인드(bind)라고 하며, 이 과정을 통해 서비스에 접근할 수 있는 접속정보를 생성한다.
+
+- 애플리케이션과 서비스 연결
+
+><div>cf bind-service APP_NAME SERVICE_INSTANCE [-c PARAMETERS_AS_JSON]
+><div>$ cf bind-service node-sample-app node-mysql
+><div>$ cf bind-service node-sample-app node-cubrid
+><div>$ cf bind-service node-sample-app node-mongodb
+><div>$ cf bind-service node-sample-app node-redis
+><div>$ cf bind-service node-sample-app node-glusterfs
+><div>$ cf bind-service node-sample-app node-rabbitmq
+![](./image/nodejs/2-4-4-0.png)
+
+연결확인
+
+><div>$ cf services
+![](./image/nodejs/2-4-4-1.png)
 
 
+### <div id='23'> 4.5. 애플리케이션 실행
 
-<div id='23'></div>
-### 2.5.        테스트
+서비스 바인드 과정을 통해 생성된 접속정보 환경변수를 가지고 어플리케이션이 실행된다.
 
-Rspec을 이용한 Ruby 애플리케이션 테스트
+><div>$ cf start node-sample-app
+![](./image/nodejs/2-4-5-0.png)
 
-1)      폴더 및 파일 정의
-<table>
-<tr align=center>
-    <td> 파일/폴더 </td>
-    <td> 목적 </td>
-</tr>
-<tr>
-    <td> Spec </td>
-    <td> rspec 테스트 케이스 루비 파일이 존재 폴더 </td>
-</tr>
-<tr>
-    <td> *_spec </td>
-    <td> rspec 테스트 케이스 루비 파일 </td>
-</tr>
-</table>
 
-2)      테스트 실행
->bundle exec rspec
-      ※정상적인 테스트 진행을 위해서는 해당 서비스와 접속이 가능하여야 한다.(프록시, 터널링 등..
+# <div id='24'> 5. 테스트
+
+샘플 어플리케이션은 REST 서비스로 구현되어있으며 REST 테스트를 위해서 mocha 모듈을 사용하였다. 테스트를 진행하기 위해서는 mocha 모듈을 포함한 package.json 안의 모듈들이 설치 되어 있어야한다. (npm install)
+
+##### 1. Makefile
+- 매번 bin파일에 접근하여 실행하는 불편함을 해결하기 위해 작성. 리눅스 운영체제에서 사용할 수 있다.
+
+```
+test:
+  @./node_modules/.bin/mocha -u tdd
+
+.PHONY: test
+```
+
+##### 2. 테스트 실행
+
+- test디렉토리 아래에 있는 테스트를 실행한다.
+
+2.1.  윈도우
+
+><div>> .\node_modules\.bin\mocha -u tdd test
+
+2.2.  리눅스
+
+><div>$ make test
+![](./image/nodejs/2-5-0-0.png)
+
 

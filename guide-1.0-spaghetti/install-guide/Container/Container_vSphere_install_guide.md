@@ -45,7 +45,7 @@
 
 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
 
->![../images/openpaas-container/container_vsphere_install_guide_01.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_01.png)
 
 # <a name="7"/>3. Open Paas Container 설치
 ### <a name="8"/>3.1. Release Upload
@@ -57,7 +57,7 @@ bosh upload release $INSTALL_PACKAGE/OpenPaaS-Container/openpaas-container-1.0.t
 ````
 Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 
->![../images/openpaas-container/container_vsphere_install_guide_02.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_02.png)
 
 [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
@@ -66,7 +66,7 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 bosh releases
 ````
 
->![../images/openpaas-container/container_vsphere_install_guide_03.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_03.png)
 
 ### <a name="9"/>3.2. Deployment Manifest 파일 수정하기
 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-container-vsphere-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
@@ -760,14 +760,14 @@ bosh deployment openpaas-container-vsphere-1.0.yml
 
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다
 
->![../images/openpaas-container/container_vsphere_install_guide_04.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_04.png)
 
 ### <a name="18"/>3.4. Bosh Deploy
 Diego module에 대한 bosh upload 과정이 끝났으면, deploy 과정을 통해 Diego 관련 VM을 생성한다.
 ````
 $ bosh deploy
 ````
->![../images/openpaas-container/container_vsphere_install_guide_05.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_05.png)
 
 ### <a name="19"/>3.5. 설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Platform의 형상을 확인한다.
@@ -776,24 +776,24 @@ $ bosh vms
 ````
 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
 
->![../images/openpaas-container/container_vsphere_install_guide_06.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_06.png)
 
 ### <a name="20"/>3.6. Trobleshooting
 Container 파일을 Deploy를 한 후 다음 사진과 같이 “database_z1 > database_z1/0 (canary). Failed: Volume”이라는 에러가 발생하는 경우 사용하고 있는 OpenStack에 접속하여 리소스가 부족하지 않은지 확인해 보고 필요하지 않은 것들은 Delete를 해 준다.
 
->![../images/openpaas-container/container_vsphere_install_guide_07.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_07.png)
 
 Container 파일을 Deploy를 한 후 다음 사진과 같이 “database_z1 > database_z1/0 (canary). Failed: ‘database_z1/0’ is not running after update”라는 에러가 발생하는 경우가 있다.
 
->![../images/openpaas-container/container_vsphere_install_guide_08.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_08.png)
 
 다음과 같이 bosh ssh를 통해 database_z1/0에 접근한다. “Choose an instance”에서 database_z1/0을 선택하면 된다.
 
->![../images/openpaas-container/container_vsphere_install_guide_09.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_09.png)
 
 다음 그림과 같이 sudo su를 통해 접속하면 ‘etcd’가 ‘not monitored’ 상태인 것을 확인할 수 있다.
 
->![../images/openpaas-container/container_vsphere_install_guide_10.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_10.png)
 
 monit summary를 통해 먼저 프로세스의 상태를 확인한다. 프로세스를 없애고 다시 상태를 확인한다. 다음의 명령어들을 하나씩 실행하면서 프로세스의 상태를 확인한다.
 ````
@@ -807,11 +807,11 @@ monit summary
 
 monit quit etcd까지 다 실행하고 monit summary를 실행하면 ‘etcd’가 running으로 바뀐 것을 볼 수 있다.
 
->![../images/openpaas-container/container_vsphere_install_guide_11.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_11.png)
 
 ‘etcd’를 확인한 후 종료하고 OpenStack 서버에서 다음과 같은 명령어를 실행하면 database_z1/0가 running 상태인 것을 확인할 수 있다.
 
->![../images/openpaas-container/container_vsphere_install_guide_12.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_12.png)
 
 
 
@@ -846,13 +846,14 @@ cf push “application-name” –i “instance_count” –m “memory_size”
 
 ※ Application 배포시 Disk 관련 옵션 (-k)을 지정하지 않은 경우에는 기본적으로 6G 크기의 디스크 사용량이 지정된다.
 
->![../images/openpaas-container/container_vsphere_install_guide_13.png]
->![../images/openpaas-container/container_vsphere_install_guide_14.png]
->![../images/openpaas-container/container_vsphere_install_guide_15.png]
+![](./../images/openpaas-container/container_vsphere_install_guide_13.png)
+![](./../images/openpaas-container/container_vsphere_install_guide_14.png)
+![](./../images/openpaas-container/container_vsphere_install_guide_15.png)
 
 ### <a name="24"/>4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
 
 사용법) 배포된 App URL이 hello-spring-test.controller.open-paas.com 일 경우
 curl –L http:// hello-spring-test.controller.open-paas.com
+
 
