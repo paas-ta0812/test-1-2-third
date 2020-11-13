@@ -46,17 +46,14 @@
 대한 내용으로 한정하며, 기타 오픈소스 도입의 경우 예외를 둔다.
 
 ### <a name="13"/>1.3. 참고자료
--   [***https://github.com/cloudfoundry/java-buildpack/blob/master/docs/extending.md***](https://github.com/cloudfoundry/java-buildpack/blob/master/docs/extending.md)
+- [***https://github.com/cloudfoundry/java-buildpack/blob/master/docs/extending.md***](https://github.com/cloudfoundry/java-buildpack/blob/master/docs/extending.md)
+- [***http://blog.cloudfoundry.org/2013/09/06/introducing-the-cloud-foundry-java-buildpack/***](http://blog.cloudfoundry.org/2013/09/06/introducing-the-cloud-foundry-java-buildpack/)
+- [***https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Buildpacks***](https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Buildpacks)
+- [***http://java.dzone.com/articles/understanding-cloud-foundry***](http://java.dzone.com/articles/understanding-cloud-foundry)
 
--   [***http://blog.cloudfoundry.org/2013/09/06/introducing-the-cloud-foundry-java-buildpack/***](http://blog.cloudfoundry.org/2013/09/06/introducing-the-cloud-foundry-java-buildpack/)
+- [***https://github.com/cloudfoundry/ruby-buildpack***](https://github.com/cloudfoundry/ruby-buildpack)
 
--   [***https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Buildpacks***](https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Buildpacks)
-
--   [***http://java.dzone.com/articles/understanding-cloud-foundry***](http://java.dzone.com/articles/understanding-cloud-foundry)
-
--   ***https://github.com/cloudfoundry/ruby-buildpack***
-
--   [***https://github.com/cloudfoundry-incubator/buildpack-packager***](https://github.com/cloudfoundry-incubator/buildpack-packager)
+- [***https://github.com/cloudfoundry-incubator/buildpack-packager***](https://github.com/cloudfoundry-incubator/buildpack-packager)
 
 # <a name="2"/>2. 빌드팩 개요
 어플리케이션은 다양한 언어, 프레임워크를 사용하여 개발된다. 빌드팩은
@@ -67,7 +64,7 @@
 
 ### <a name="21"/>2.1. 어플리케이션 배포 프로세스
 
-![그림 2-1 개방형 클라우드 플랫폼에서의 어플리케이션 배포 프로세스][buildpack_develope_guide_01]
+![그림 2-1 개방형 클라우드 플랫폼에서의 어플리케이션 배포 프로세스](./images/openpaas-buildpack-devolpe-guide/buildpack_develope_guide_01.png)
 
 **그림 2-1 개방형 클라우드 플랫폼에서의 어플리케이션 배포 프로세스**
 
@@ -158,7 +155,7 @@
 
 ### <a name="23"/>2.3. 빌드팩 아키텍처
 
-![그림2-2 빌드팩 런타임 아키텍처][buildpack_develope_guide_02]
+![그림2-2 빌드팩 런타임 아키텍처](./images/openpaas-buildpack-devolpe-guide/buildpack_develope_guide_02.png)
 
 **그림2-2 빌드팩 런타임 아키텍처**
 

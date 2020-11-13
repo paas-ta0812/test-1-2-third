@@ -44,8 +44,8 @@
 
 
 ### 1.3. 참고자료
-http://docs.cloudfoundry.org/deploying/aws/
-https://github.com/cloudfoundry/cf-release
+- http://docs.cloudfoundry.org/deploying/aws/
+- https://github.com/cloudfoundry/cf-release
 
 
 # 2. Prerequisites
@@ -57,7 +57,7 @@ Open PaaS Controller를 설치하기 전에 IaaS(AWS) 환경이 정상적으로 
 
 #### 2.2.1. Dashboard(Console)
 
-![../images/openpaas-controller/controller_aws_image001.jpeg]
+![](./../images/openpaas-controller/controller_aws_image001.png)
 
 **[그림출처]: Open PaaS 사업단 개발환경**
 
@@ -66,11 +66,11 @@ AWS Dashboard(Console)으로 정상 접속되어야 하고, Open PaaS Controller
 #### 2.2.2. Security Group
 SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 엑세스 할 수 있도록 Security Group을 설정한다.(주의: 내부 네트워크 구간에서는 모든 Procotol이 사용 가능하도록 구성해야 한다.)
 
-![../images/openpaas-controller/controller_aws_image002.jpeg]
+![](./../images/openpaas-controller/controller_aws_image002.png)
 
-![../images/openpaas-controller/controller_aws_image003.jpeg]
+![](./../images/openpaas-controller/controller_aws_image003.png)
 
-![../images/openpaas-controller/controller_aws_image004.jpeg]
+![](./../images/openpaas-controller/controller_aws_image004.png)
 
 ***PaaS-TA v2.0 이상의 버전에서는 다음을 참조하여 시큐리티 그룹을 설정한다.***
 [https://docs.cloudfoundry.org/deploying/openstack/security_group.html](https://docs.cloudfoundry.org/deploying/openstack/security_group.html)
@@ -78,7 +78,7 @@ SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 �
 
 #### 2.3. Bosh Server 및 Bosh CLI
 
-![../images/openpaas-controller/controller_aws_image005.png]
+![](./../images/openpaas-controller/controller_aws_image005.png)
 
 [그림출처]: Open PaaS 사업단 개발환경
 
@@ -121,7 +121,7 @@ $TTL    604800
 
 NSLOOKUP 등으로 DNS Server에 Platform Domain이 정상 등록 되었는지 확인한다.
 
-![../images/openpaas-controller/controller_aws_image006.png]
+![](./../images/openpaas-controller/controller_aws_image006.png)
 
 ### 2.5. OP CLI
 
@@ -133,7 +133,7 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 
 “cf” 명령어를 입력하면 아래와 같은 Help 화면이 출력됨을 확인한다.
 
-![../images/openpaas-controller/controller_aws_image007.png]
+![](./../images/openpaas-controller/controller_aws_image007.png)
 
 
 # 3. Open PaaS Controller 설치
@@ -149,7 +149,7 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 
 Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 
-![../images/openpaas-controller/controller_aws_image008.png]
+![](./../images/openpaas-controller/controller_aws_image008.png)
 
 [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
@@ -157,7 +157,7 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 
 `bosh releases`
 
-![../images/openpaas-controller/controller_aws_image009.png]
+![](./../images/openpaas-controller/controller_aws_image009.png)
 
 ### 3.2 Stemcell Upload
 
@@ -171,7 +171,7 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 
 Stemcell Upload는 상황에 따라 다소 차이는 있으나 보통 5-10분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 
-![../images/openpaas-controller/controller_aws_image010.png]
+![](./../images/openpaas-controller/controller_aws_image010.png)
 
 [주의] Stemcell Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
@@ -179,7 +179,7 @@ Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcel
 
 `bosh stemcells`
 
-![../images/openpaas-controller/controller_aws_image011.png]
+![](./../images/openpaas-controller/controller_aws_image011.png)
 
 
 ### 3.3. Deployment Manifest
@@ -1483,7 +1483,7 @@ properties:
 
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
 
-![../images/openpaas-controller/controller_aws_image012.png]
+![](./../images/openpaas-controller/controller_aws_image012.png)
 
 
 #### 3.4.2. Open PaaS Controller Deploy
@@ -1493,7 +1493,7 @@ properties:
 
 보통 설치 과정은 1-2시간 정도가 소요되며 정상적으로 설치가 완료되면 아래 그림과 같은 메세지를 출력하게 된다.
 
-![../images/openpaas-controller/controller_aws_image013.png]
+![](./../images/openpaas-controller/controller_aws_image013.png)
 
 
 ### 3.5. 설치형상 확인
@@ -1503,7 +1503,7 @@ properties:
 
 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
 
-![../images/openpaas-controller/controller_aws_image014.png]
+![](./../images/openpaas-controller/controller_aws_image014.png)
 
 # 4. 설치 검증
 ### 4.1. CF Login
@@ -1532,10 +1532,11 @@ Application을 Deploy할 ORG(Default: OCP)와 Space를 생성하고, 해당하�
 
 Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된다.
 
-![../images/openpaas-controller/controller_aws_image015.png]
+![](./../images/openpaas-controller/controller_aws_image015.png)
 
 ### 4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
 
-![../images/openpaas-controller/controller_aws_image016.png]
+![](./../images/openpaas-controller/controller_aws_image016]
+
 

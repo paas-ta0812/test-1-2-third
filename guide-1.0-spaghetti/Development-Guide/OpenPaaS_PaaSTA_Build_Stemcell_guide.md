@@ -41,7 +41,7 @@ BOSH Light 스템셀을 생성하는 내용을 기술하였다.
 
 본 문서는 Cloud Foundry의 BOSH Document를 참고로 작성하였다.
 
-Bosh 스템셀 생성:
+- Bosh 스템셀 생성:
 [https://github.com/cloudfoundry/bosh-linux-stemcell-builder/blob/master/README.md](https://github.com/cloudfoundry/bosh-linux-stemcell-builder/blob/master/README.md)
 
 

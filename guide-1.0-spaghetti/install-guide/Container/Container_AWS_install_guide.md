@@ -53,7 +53,7 @@
 >
 > 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
 >
-> ![][../images/openpaas-container/container_aws_guide_01.png]
+> ![](./../images/openpaas-container/container_aws_guide_01.png)
 
 # <a name="3"/>3. Open Paas Container 설치
 
@@ -74,7 +74,7 @@
 > Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도
 > 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 >
-> ![][../images/openpaas-container/container_aws_guide_02.png]
+> ![](./../images/openpaas-container/container_aws_guide_02.png)
 >
 > [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가
 > 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB
@@ -86,7 +86,7 @@
   bosh releases
 ````
 
-> ![][../images/openpaas-container/container_aws_guide_03.png]
+> ![](./../images/openpaas-container/container_aws_guide_03.png)
 
 ### <a name="32"/>3.2. Deployment Manifest 파일 수정하기
 
@@ -1336,7 +1336,7 @@ Default 값들을 수정 없이 사용한다.
 > “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고,
 > 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다
 >
-> ![][../images/openpaas-container/container_aws_guide_04.png]
+> ![](./../images/openpaas-container/container_aws_guide_04.png)
 
 ### <a name="34"/>3.4. Bosh Deploy
 
@@ -1347,9 +1347,9 @@ Diego 관련 VM을 생성한다.
   $ bosh deploy
   ````
 
-> ![][../images/openpaas-container/container_aws_guide_05.png]
+> ![](./../images/openpaas-container/container_aws_guide_05.png)
 >
-> ![][../images/openpaas-container/container_aws_guide_06.png]
+> ![](./../images/openpaas-container/container_aws_guide_06.png)
 >
 > **[그림 : bosh deploy 실행 결과]**
 
@@ -1365,7 +1365,7 @@ Diego 관련 VM을 생성한다.
 > 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를
 > 확인할 수 있다.
 >
-> ![][../images/openpaas-container/container_aws_guide_07.png]
+> ![](./../images/openpaas-container/container_aws_guide_07.png)
 
 ### <a name="36"/>3.6. Trobleshooting
 
@@ -1374,23 +1374,23 @@ Diego 관련 VM을 생성한다.
 > 사용하고 있는 OpenStack에 접속하여 리소스가 부족하지 않은지 확인해
 > 보고 필요하지 않은 것들은 Delete를 해 준다.
 >
-> ![][../images/openpaas-container/container_aws_guide_08.png]
+> ![](./../images/openpaas-container/container_aws_guide_08.png)
 >
 > Container 파일을 Deploy를 한 후 다음 사진과 같이 “database\_z1 &gt;
 > database\_z1/0 (canary). Failed: ‘database\_z1/0’ is not running after
 > update”라는 에러가 발생하는 경우가 있다.
 >
-> ![][../images/openpaas-container/container_aws_guide_09.png]
+> ![](./../images/openpaas-container/container_aws_guide_09.png)
 >
 > 다음과 같이 bosh ssh를 통해 database\_z1/0에 접근한다. “Choose an
 > instance”에서 database\_z1/0을 선택하면 된다.
 >
-> ![][../images/openpaas-container/container_aws_guide_10.png]
+> ![](./../images/openpaas-container/container_aws_guide_10.png)
 >
 > 다음 그림과 같이 sudo su를 통해 접속하면 ‘etcd’가 ‘not monitored’
 > 상태인 것을 확인할 수 있다.
 >
-> ![][../images/openpaas-container/container_aws_guide_11.png]
+> ![](./../images/openpaas-container/container_aws_guide_11.png)
 >
 > monit summary를 통해 먼저 프로세스의 상태를 확인한다. 프로세스를
 > 없애고 다시 상태를 확인한다. 다음의 명령어들을 하나씩 실행하면서
@@ -1413,12 +1413,12 @@ Diego 관련 VM을 생성한다.
 > monit quit etcd까지 다 실행하고 monit summary를 실행하면 ‘etcd’가
 > running으로 바뀐 것을 볼 수 있다.
 >
-> ![][../images/openpaas-container/container_aws_guide_12.png]
+> ![](./../images/openpaas-container/container_aws_guide_12.png)
 >
 > ‘etcd’를 확인한 후 종료하고 OpenStack 서버에서 다음과 같은 명령어를
 > 실행하면 database\_z1/0가 running 상태인 것을 확인할 수 있다.
 >
-> ![][../images/openpaas-container/container_aws_guide_13.png]
+> ![](./../images/openpaas-container/container_aws_guide_13.png)
 
 # <a name="4"/>4. 설치 검증
 
@@ -1473,9 +1473,9 @@ manifest 설정 파일에서 변경하야 한다.**
 -   Application 배포시 Disk 관련 옵션 (-k)을 지정하지 않은 경우에는
     기본적으로 6G 크기의 디스크 사용량이 지정된다.
 
-![][../images/openpaas-container/container_aws_guide_14.png]
-![][../images/openpaas-container/container_aws_guide_15.png]
-![][../images/openpaas-container/container_aws_guide_16.png]
+![](./../images/openpaas-container/container_aws_guide_14.png)
+![](./../images/openpaas-container/container_aws_guide_15.png)
+![](./../images/openpaas-container/container_aws_guide_16.png)
 
 ### <a name="43"/>4.3. Application Access
 

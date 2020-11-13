@@ -41,8 +41,8 @@
 본 문서의 범위는 개방형클라우드플랫폼을 vSphere에 설치하기 데 대한 내용으로 한정되어 있다. OpenStack/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Inception/Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
 ### 1.3. 참고 자료
-[**http://docs.cloudfoundry.org/deploying/vsphere/**](http://docs.cloudfoundry.org/deploying/vsphere/)
-[**https://github.com/cloudfoundry/cf-release**](https://github.com/cloudfoundry/cf-release)
+-[**http://docs.cloudfoundry.org/deploying/vsphere/**](http://docs.cloudfoundry.org/deploying/vsphere/)
+- [**https://github.com/cloudfoundry/cf-release**](https://github.com/cloudfoundry/cf-release)
 
 # 2. Prerequisites
 ### 2.1. 개요
@@ -51,7 +51,7 @@
 ### 2.2. vSphere
 #### 2.2.1. 데이터센터/클러스터/리소스풀
 
-![../images/openpaas-controller/controller_vsphere_image002.png]
+![](../images/openpaas-controller/controller_vsphere_image002.png)
 
 **[그림출처]: Open PaaS 사업단 개발환경**
 
@@ -59,7 +59,7 @@
 
 ### 2.3. Bosh Server 및 Bosh CLI
 
-![../images/openpaas-controller/controller_vsphere_image003.png]
+![](../images/openpaas-controller/controller_vsphere_image003.png)
 
 **[그림출처]: Open PaaS 사업단 개발환경**
 
@@ -96,7 +96,7 @@ $TTL    604800
 
 NSLOOKUP 등으로 DNS Server에 Platform Domain이 정상 등록 되었는지 확인한다.
 
-![../images/openpaas-controller/controller_vsphere_image004.png]
+![](../images/openpaas-controller/controller_vsphere_image004.png)
 
 ### 2.5. OP CLI
 Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 풀고 명령어 Path Folder에 실행 파일을 복사한다.
@@ -107,7 +107,7 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 
 “cf” 명령어를 입력하면 아래와 같은 Help 화면이 출력됨을 확인한다.
 
-![../images/openpaas-controller/controller_vsphere_image005.png]
+![](../images/openpaas-controller/controller_vsphere_image005.png)
 
 # 3. Open PaaS Controller 설치
 
@@ -123,14 +123,14 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 
 Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 
-![../images/openpaas-controller/controller_vsphere_image006.png]
+![](../images/openpaas-controller/controller_vsphere_image006.png)
 
 [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.<br>
 `$ bosh releases`
 
-![../images/openpaas-controller/controller_vsphere_image007.png]
+![](../images/openpaas-controller/controller_vsphere_image007.png)
 
 ### 3.2. Stemcell Upload
 
@@ -144,14 +144,14 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 
 Stemcell Upload는 상황에 따라 다소 차이는 있으나 보통 5-10분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 
-![../images/openpaas-controller/controller_vsphere_image008.png]
+![](../images/openpaas-controller/controller_vsphere_image008.png)
 
 [주의] Stemcell Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcells” 명령으로 확인한다.
 `$ bosh stemcells`
 
-![../images/openpaas-controller/controller_vsphere_image009.png]
+![](../images/openpaas-controller/controller_vsphere_image009.png)
 
 ### 3.3. Deployment Manifest
 
@@ -1474,7 +1474,7 @@ properties:
 
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
 
-![../images/openpaas-controller/controller_vsphere_image010.png]
+![](../images/openpaas-controller/controller_vsphere_image010.png)
 
 #### 3.4.2. Open PaaS Controller Deploy
 “bosh deploy” 명령으로 Open PaaS Controller 설치를 수행한다.
@@ -1483,7 +1483,7 @@ properties:
 
 보통 설치 과정은 1-2시간 정도가 소요되며 정상적으로 설치가 완료되면 아래 그림과 같은 메세지를 출력하게 된다.
 
-![../images/openpaas-controller/controller_vsphere_image011.png]
+![](../images/openpaas-controller/controller_vsphere_image011.png)
 
 ### 3.5. 설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Open PaaS Controller의 형상을 확인한다.
@@ -1492,7 +1492,7 @@ properties:
 
 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
 
-![../images/openpaas-controller/controller_vsphere_image012.png]
+![](../images/openpaas-controller/controller_vsphere_image012.png)
 
 # 4. 설치 검증
 ### 4.1. CF Login
@@ -1521,10 +1521,11 @@ Application을 Deploy할 ORG(Default: OCP)와 Space를 생성하고, 해당하�
 
 Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된다.
 
-![../images/openpaas-controller/controller_vsphere_image013.png]
+![](../images/openpaas-controller/controller_vsphere_image013.png)
 
 ### 4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
 
-![../images/openpaas-controller/controller_vsphere_image014.png]
+![](../images/openpaas-controller/controller_vsphere_image014.png)
+
 

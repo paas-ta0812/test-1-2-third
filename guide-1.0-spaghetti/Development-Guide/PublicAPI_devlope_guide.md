@@ -98,38 +98,38 @@
 
 공공데이터 포털의 API를 사용하기 위해서는 반드시 회원가입이 되어 있어야 한다. 공공데이터포털(https://www.data.go.kr)에 접속하여 상단 [회원가입] 버튼을 눌러 회원가입을 진행한다.
 
-![../images/openpaas-service/publicapi/2-1-0-0.png]
+![](./images/openpaas-service/publicapi/2-1-0-0.png)
 
 이동한 회원가입 화면에서 일반회원 또는 기관회원을 선택하여 [가입하기] 버튼을 누른다.
 
-![../images/openpaas-service/publicapi/2-1-0-1.png]
+![](./images/openpaas-service/publicapi/2-1-0-1.png)
 
 이름과 이메일 주소를 입력하고 [가입확인] 버튼을 누른다.
 
-![../images/openpaas-service/publicapi/2-1-0-2.png]
+![](./images/openpaas-service/publicapi/2-1-0-2.png)
 
 가입여부를 확인하는 절차를 거치고 입력된 정보로 가입된 회원이 없으면 하단에 다음과 같은 화면이 생긴다.
 
-![../images/openpaas-service/publicapi/2-1-0-3.png]
-![../images/openpaas-service/publicapi/2-1-0-4.png]
+![](./images/openpaas-service/publicapi/2-1-0-3.png)
+![](./images/openpaas-service/publicapi/2-1-0-4.png)
 
 '공공데이터포털 이용약관'과 '개인정보 수집 및 이용에 대한 안내'가 소개된다. 내용에 동의한다면 각각의 약관에 동의함을 표시하고 [동의] 버튼을 누른다.
 
-![../images/openpaas-service/publicapi/2-1-0-5.png]
-![../images/openpaas-service/publicapi/2-1-0-6.png]
+![](./images/openpaas-service/publicapi/2-1-0-5.png)
+![](./images/openpaas-service/publicapi/2-1-0-6.png)
 
 가입자 기본정보와 가입자 연락정보를 입력한다.
 (1) 가입자 연락정보에서 이메일 인증을 시도한다. [이메일 인증]버튼을 누르면 인증메일이 발송되고 (2)인증번호 입력 필드가 생긴다. 입력한 이메일로 도착한 인증메일의 인증번호를 입력하고 [확인]버튼을 눌러 인증                           을 마친다. (3) [완료] 버튼을 눌러 가입완료 화면으로 이동한다.
 
-![../images/openpaas-service/publicapi/2-1-0-7.png]
+![](./images/openpaas-service/publicapi/2-1-0-7.png)
 
 회원 가입이 완료되었다.
 
-![../images/openpaas-service/publicapi/2-1-0-8.png]
+![](./images/openpaas-service/publicapi/2-1-0-8.png)
 
 공공데이터 포털 메인 화면에서 상단의 [로그인]버튼을 눌러 로그인 한다.
 
-![../images/openpaas-service/publicapi/2-1-0-9.png]
+![](./images/openpaas-service/publicapi/2-1-0-9.png)
 
 아이디와 비밀번호를 입력하고 로그인 한다.
 
@@ -137,24 +137,24 @@
 ### 2.2. API 검색
 API 서비스를 검색하기 위해 데이터 포털에 접속한다. 데이터 포털의 Open API 서비스를 확인한다.
 
-![../images/openpaas-service/publicapi/2-2-0-0.png]
+![](./images/openpaas-service/publicapi/2-2-0-0.png)
 
 Open API 카테고리로 이동한다.
 
-![../images/openpaas-service/publicapi/2-2-0-1.png]
+![](./images/openpaas-service/publicapi/2-2-0-1.png)
 
 Oepn API 카테고리로 이동하면, ①API 서비스 명으로 검색하거나 ②각종 필터로 분류된 목록을 확인할 수 있다.
 
-![../images/openpaas-service/publicapi/2-2-0-2.png]
+![](./images/openpaas-service/publicapi/2-2-0-2.png)
 
 ① 전국 단위의 문화행사 관련 정보를 얻기 위해 공연전시정보조회서비스를 검색한다
 ② 검색 결과에서 API 서비스의 상세정보를 확인하기 위해 API 서비스 목록에서 해당 API를 클릭한다.
 
-![../images/openpaas-service/publicapi/2-2-0-3.png]
+![](./images/openpaas-service/publicapi/2-2-0-3.png)
 
 이동한 화면에서 상세정보버튼을 클릭한다.
 
-![../images/openpaas-service/publicapi/2-2-0-4.png]
+![](./images/openpaas-service/publicapi/2-2-0-4.png)
 
 창이 확장되면서 API 서비스에 대한 정보를 확인할 수 있다.
 ① 해당 API 서비스에 대한 가이드 문서를 다운로드 받을 수 있다.
@@ -194,7 +194,7 @@ Oepn API 카테고리로 이동하면, ①API 서비스 명으로 검색하거�
 
 <div id='11'></div>
 ### 3.3. API 서비스 브로커 동작구조
-![../images/openpaas-service/publicapi/3-3-0-0.png]
+![](./images/openpaas-service/publicapi/3-3-0-0.png)
 
 API 서비스 브로커는 API 포털에 소개된 API 서비스 중, 사용하고자 하는 서비스에 대한 정보를 설정파일에 담고 있는다. 플랫폼 운영자 또는 플랫폼 사용자가 개방형 클라우드 플랫폼에 명령어를 입력하여 API 요청을                            서비스 브로커로 보내면, API 서비스 브로커는 설정 파일에 정의된 정보를 이용하여 플랫폼이 요구하는 형태로 응답을 보낸다. 이를 바탕으로 플랫폼은 각각의 명령어에 대한 동작을 실행하게 된다. 서비스 브로커의 구                           현 플랫폼과 통신하는 6개의 API를 구현함으로써 이루어진다.
 
@@ -514,7 +514,7 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
   $ cf service-brokers
 ```
 
-![../images/openpaas-service/publicapi/5-2-2-0.png]
+![](./images/openpaas-service/publicapi/5-2-2-0.png)
 
 <div id='40'></div>
 ##### 5.2.3 카탈로그(Catalog) 확인
@@ -523,7 +523,7 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
   $ cf service-access
 ```
 
-![../images/openpaas-service/publicapi/5-2-3-0.png]
+![](./images/openpaas-service/publicapi/5-2-3-0.png)
 
 <div id='41'></div>
 ### 5.3. 서비스 접근 허용
@@ -544,7 +544,7 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
   $ cf service-access
 ```
 
-![../images/openpaas-service/publicapi/5-3-0-0.png]
+![](./images/openpaas-service/publicapi/5-3-0-0.png)
 
 <div id='42'></div>
 ### 5.4. 마켓 플레이스 확인
@@ -554,7 +554,7 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
   $ cf marketplace
 ```
 
-![../images/openpaas-service/publicapi/5-4-0-0.png]
+![](./images/openpaas-service/publicapi/5-4-0-0.png)
 
 <div id='43'></div>
 #   6. API 서비스 추가/제거
@@ -864,73 +864,73 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
   ※ 공공 데이터 포털 회원가입과 로그인은 본 문서 2장의 [2.1. 데이터 포털 회원가입 및 로그인]을 참고한다.
 
   2. 서비스키 신청<br>
-  ![../images/openpaas-service/publicapi/7-3-1-0.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-0.png)<br>
   로그인을 완료하고 메인 화면의 상단 중앙의 검색 필드에 서비스키를 발급받고자 하는 API를 검색한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-1.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-1.png)<br>
   검색결과에서 사용하고자 하는 API를 찾아 클릭한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-2.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-2.png)<br>
   (1) [활용신청] 버튼을 누르면 서비스키 신청화면으로 넘어가며 신청절차를 진행하게 되고<br>
   (2) [상세정보] 버튼을 누르면 해당 API서비스에 관한 상세정보 및 각각의 서비스에 대한 기술문서를 확인할 수 있다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-3.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-3.png)<br>
   시스템 유형을 선택한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-4.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-4.png)<br>
   활용정보를 선택한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-5.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-5.png)<br>
   API서비스의 상세 기능 중 어떤 기능을 사용할지 선택한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-6.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-6.png)<br>
   (1) 라이센스 표시에 동의하고 (2) [신청] 버튼을 클릭한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-7.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-7.png)<br>
   서비스키 신청절차가 완료되었음을 알리는 안내메시지를 확인한다.
 
 ##### 7.3.1.2 인천 문화예술 정보 공공 Open API 센터 서비스키 획득 절차
   1. 회원가입 및 로그인<br>
   인천문화예술정보 공공 Open API 센터의 API서비스를 사용하기 위해서는 인천 문화재단 (http://www.ifac.or.kr)패밀리 사이트 통합 회원가입이 되어 있어야 한다. 먼저 인천문화예술정보 공공 Open API 센터(http://                           iq.ifac.or.kr/openAPI)로 접속한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-8.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-8.png)<br>
   접속 후, 메인화면 우측 상단의 [회원가입]을 클릭한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-9.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-9.png)<br>
   [회원가입] 버튼을 클릭하면, 인천문화재단 패밀리 사이트 통합 회원가입 화면으로 이동한다. (1) 회원가입 여부를 확인하기 위해 아이핀 또는 휴대폰 인증 중 한가지를 선택하고 (2) 인증을 진행한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-10.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-10.png)<br>
   [회원가입] 버튼을 눌러 회원가입을 진행한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-11.png]<br>
-  ![../images/openpaas-service/publicapi/7-3-1-12.png]<br>
-  ![../images/openpaas-service/publicapi/7-3-1-13.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-11.png)<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-12.png)<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-13.png)<br>
   약관 동의화면에서 (1)회원가입약관과 (2)개인정보 수집 및 이용에 관한 안내에 동의를 체크하고 (3)동의함 버튼을 누른다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-14.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-14.png)<br>
   기본정보와 정보수신여부를 선택하고 [회원가입] 버튼을 누른다. 기본정보는 우편수령지까지 빠짐없이 입력해야 한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-15.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-15.png)<br>
   회원 가입 완료를 확인한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-16.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-16.png)<br>
   인천문화예술정보 공공 Open API 센터(http://iq.ifac.or.kr/openAPI)메인 화면에 다시 접속하여 [로그인]을 클릭하여 로그인 한다.
 
   2. 서비스키 신청<br>
-  ![../images/openpaas-service/publicapi/7-3-1-17.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-17.png)<br>
   API둘러보기 화면에서는 사용할 수 있는 API의 목록을 확인할 수 있다. 사용할 API의 우측 [신청하기] 버튼을 눌러 서비스키 신청절차를 진행한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-18.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-18.png)<br>
   신청서 작성 화면에서 (1) 필수입력필드를 모두 채우고 (2) 약관에 동의한 뒤, (3) [확인] 버튼을 눌러 서비스키 신청절차를 완료한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-19.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-19.png)<br>
   서비스키 신청 등록이 완료되었다.
 
   3. 서비스키 발급 확인<br>
-  ![../images/openpaas-service/publicapi/7-3-1-20.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-20.png)<br>
   인천문화예술정보 공공 Open API 센터(http://iq.ifac.or.kr/openAPI)에 로그인 한 상태로 메인 화면에서 우측 중간 [키 발급/관리] 버튼을 클릭한다.
 
-  ![../images/openpaas-service/publicapi/7-3-1-21.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-1-21.png)<br>
   인증키 관리 화면으로 이동하면 (1) 서비스키, (2) 트래픽, (3) 승인 상태를 확인할 수 있고 (4) 서비스키 삭제도 가능하다.<br>
   ※ [7.2.1.2. 인천광역시 문화행사]의 경우 API서비스 제공자에게 직접 서비스키 신청을 하게 되기 때문에 공공 데이터 포털에서 서비스키 신청을 하는 경우와 달리 대기기간이 없고 승인 역시 자동승인 되므로 신청                            절차만 완료하면 바로 사용할 수 있다.
 
@@ -939,33 +939,33 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
 [2.2.1. 네이버 지도], [2.2.2. 네이버 주소-좌표 변환], [2.2.3. 네이버 검색] API 서비스키를 발급받기 위해서는 네이버 ID로 로그인이 되어 있어야 한다. 네이버 개발자센터의 Open API 페이지(http://developer.nav                           er.com/wiki/pages/OpenAPI)에 접속하여 네이버 ID로 로그인하거나 회원가입을 진행한다.<br>
 
   1. 회원가입 및 로그인<br>
-  ![../images/openpaas-service/publicapi/7-3-2-0.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-0.png)<br>
   네이버 개발자센터의 Open API 페이지(http://developer.naver.com/wiki/pages/OpenAPI)에 접속하여 우측 중간 [회원가입] 버튼을 클릭한다.
 
-  ![../images/openpaas-service/publicapi/7-3-2-1.png]<br>
-  ![../images/openpaas-service/publicapi/7-3-2-2.png]<br>
-  ![../images/openpaas-service/publicapi/7-3-2-3.png]<br>
-  ![../images/openpaas-service/publicapi/7-3-2-4.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-1.png)<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-2.png)<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-3.png)<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-4.png)<br>
   약관 동의 화면에서 필수 동의 항목인 네이버 이용약관과 개인정보 수집 및 이용에 대한 안내에 동의를 체크하고 하단의 [동의] 버튼을 클릭한다.
 
-  ![../images/openpaas-service/publicapi/7-3-2-5.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-5.png)<br>
   가입화면에서 휴대전화번호를 포함한 입력항목들을 입력하고 (1) [인증] 버튼을 눌러 휴대전화 인증을 실시한다. 휴대전화를 통해 전달된 인증번호를 입력하고 (2) [확인] 버튼을 눌러 인증을 마치고 (3) [가입하기]                            버튼을 눌러 회원가입을 완료한다.
 
-  ![../images/openpaas-service/publicapi/7-3-2-6.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-6.png)<br>
   네이버 개발자센터의 Open API 페이지(http://developer.naver.com/wiki/pages/OpenAPI)에 접속하여 우측 상단 [로그인] 버튼을 클릭하여 로그인 한다.
 
   2. 서비스키 신청<br>
-  ![../images/openpaas-service/publicapi/7-3-2-7.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-7.png)<br>
   로그인이 완료되고 다시 네이버 개발자센터의 Open API 페이지로 이동하면 우측 중간에 [키 발급/관리] 버튼을 확인할 수 있다.
 
-  ![../images/openpaas-service/publicapi/7-3-2-8.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-8.png)<br>
   키 발급/관리 화면에서 네이버에서 제공하는 API 서비스에 대한 키 관리를 할 수 있다.<br>
   (1) [키 추가]버튼을 눌러 [7.2.2.3. 네이버 검색] API의 서비스 키를 발급받을 수 있고 (2) [키 추가] 버튼을 눌러 [7.2.2.1. 네이버 지도], [7.2.2.2. 네이버 주소-좌표 변환] API의 서비스키를 발급받을 수 있다.                            하나의 서비스키로 [7.2.2.1. 네이버 지도]와 [7.2.2.2. 네이버 주소-좌표 변환] API 서비스를 공통으로 사용할 수 있다.<br>
 
   (1) 네이버 검색 API 키 발급<br>
   네이버 검색 API의 [키 추가] 버튼을 클릭한다<br>
 
-  ![../images/openpaas-service/publicapi/7-3-2-9.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-9.png)<br>
   ① 서비스를 사용할 도메인 정보를 입력해야 한다. 정확히 입력하지 않으면, API 서비스를 사용할 수 없다. 이때, Identifier 필드에 입력한 값과 개방형 클라우드 플랫폼에서 어플리케이션이 사용하는 도메인이 일치                           해야 한다. 어플리케이션의 도메인은 개방형 클라우드 플랫폼에 어플리케이션을 배포하는 시점에 결정한다.<br>
   참고: [7.3. 샘플 어플리케이션 배포]<br>
   ② 네이버 검색 API는 키 발급 과정에서도 휴대폰 인증을 실시해야 한다.<br>
@@ -976,7 +976,7 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
   (2) 네이버 지도 API 키 발급<br>
   네이버 지도 API의 [키 추가] 버튼을 클릭한다<br>
 
-  ![../images/openpaas-service/publicapi/7-3-2-10.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-10.png)<br>
   ① 사용환경을 선택한다.<br>
   ② 사용환경에서 '웹'을 선택했기 때문에 URL 정보를 입력해야 한다. 정확히 입력하지 않으면, API 서비스를 사용할 수 없다. 이때, URL 필드에 입력한 값과 개방형 클라우드 플랫폼에서 어플리케이션이 사용하는 도메                           인이 일치해야 한다. 어플리케이션의 도메인은 개방형 클라우드 플랫폼에 어플리케이션을 배포하는 시점에 결정한다.<br>
   참고: [7.4.2. 어플리케이션 배포]<br>
@@ -985,10 +985,10 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
   ⑤ [키 발급] 버튼을 눌러 키 발급을 완료한다.<br>
 
   3. 서비스키 확인<br>
-  ![../images/openpaas-service/publicapi/7-3-2-11.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-11.png)<br>
   네이버 개발자센터의 Open API 페이지(http://developer.naver.com/wiki/pages/OpenAPI)에 접속하고 로그인한 상태에서 우측 중간의 [키 발급/관리] 버튼을 클릭한다.
 
-  ![../images/openpaas-service/publicapi/7-3-2-12.png]<br>
+  ![](./images/openpaas-service/publicapi/7-3-2-12.png)<br>
   네이버에서 제공하는 API 서비스의 서비스키 전체를 관리할 수 있는 화면으로 이동한다. 각각의 API별로 ①발급된 사용자의 서비스 키와 등록 URL과 ②API 호출 수를 확인 할 수 있다. ③키 추가 및 ④수정/삭제 또한 이                            화면에서 이루어 진다. [7.2.2.3. 네이버 검색] API 서비스는 상단의 검색 API의 발급 키로 사용이 가능하고 [7.2.2.1. 네이버 지도]와 [7.2.2.2. 네이버 주소-좌표 변환] API 서비스는 지도 API의 발급 키로 사용이 가                           능하다.
 
 <div id='54'></div>
@@ -1064,7 +1064,7 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
 ```
 
 생성된 서비스의 인스턴스명과 서비스명, 플랜, 바인드 된 어플리케이션을 확인할 수 있다. bound apps의 값이 바인드 된 어플리케이션을 의미한다.<br>
-![../images/openpaas-service/publicapi/7-5-2-0.png]
+![](./images/openpaas-service/publicapi/7-5-2-0.png)
 
 <div id='60'></div>
 ### 7.6. 서비스 바인드
@@ -1096,7 +1096,7 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
 ```
   $ cf env public-naver
 ```
-![../images/openpaas-service/publicapi/7-6-2-0.png]<br>
+![](./images/openpaas-service/publicapi/7-6-2-0.png)<br>
 VCAP_SERVICES 정보를 확인하면 그림과 같이 각각의 서비스 별로 플랜, 엔드포인트, 바인드에서 -c 옵션을 통해 입력한 서비스키 등의 서비스 정보를 확인 할 수 있다. 샘플 어플리케이션은 이 VCAP_SERVICES 정보에서                            엔드포인트와 서비스키를 가져와 필요한 API 서비스를 사용한다.
 
 <div id='62'></div>
@@ -1107,16 +1107,16 @@ VCAP_SERVICES 정보를 확인하면 그림과 같이 각각의 서비스 별로
   $ cf apps
 ```
 
-![../images/openpaas-service/publicapi/7-7-0-0.png]<br>
+![](./images/openpaas-service/publicapi/7-7-0-0.png)<br>
 어플리케이션이 구동 중임을 확인하고 웹 브라우저에서 URL로 접속한다. 샘플 어플리케이션은 메인화면에서 'Hello World'를 출력하도록 구현되어있다.
 
-![../images/openpaas-service/publicapi/7-7-0-1.png]<br>
+![](./images/openpaas-service/publicapi/7-7-0-1.png)<br>
 [URL]/main으로 이동하여 지도가 화면에 출력되는 것을 확인한다.
 
-![../images/openpaas-service/publicapi/7-7-0-2.png]<br>
+![](./images/openpaas-service/publicapi/7-7-0-2.png)<br>
 ※ 지도가 화면에 보이지 않는 경우는 네이버 지도 서비스키 신청 시 입력한 URL이 어플리케이션 URL과 동일하지 않아서 생기는 경우가 대부분이다. 샘플 어플리케이션을 예로 들면, 네이버 지도 API 서비스키 발급 시 U                           RL 입력 창에 상단 화면에서 확인되는 URL인 'http://public-naver.10.244.0.34.xip.io'를 입력하여야 한다. 자세한 내용은 [7.3.2 네이버 Open API 서비스 키 획득]의 [2. 서비스키 획득]에서 [(2) 네이버 지도 API 키                            발급]과 [7.3. 샘플 어플리케이션 배포]을 참고한다.<br>
 
 화면의 좌측 하단 셀렉트 박스에서 지역을 선택해보면서 각각의 API들이 정상적으로 작동하는 것을 확인한다.
 
-![../images/openpaas-service/publicapi/7-7-0-3.png]
+![](./images/openpaas-service/publicapi/7-7-0-3.png)
 
