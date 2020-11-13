@@ -56,9 +56,11 @@
 * PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. \(PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip\)
 * 다운로드 위치
 
-  > PaaSTA-Services : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
-  > PaaSTA-Deployment : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
-  > PaaSTA-Sample-Apps : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
+  > PaaSTA-Services : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
+
+  > PaaSTA-Deployment : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
+
+  > PaaSTA-Sample-Apps : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
 
 ### 2.2. Cubrid 서비스 릴리즈 업로드
 

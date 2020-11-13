@@ -44,11 +44,9 @@
 
 ### 1.4. 참고자료
 
-> [_**http://bosh.io/docs**_](http://bosh.io/docs)
->
-> [_**http://docs.cloudfoundry.org/**_](http://docs.cloudfoundry.org/)
->
-> [_**https://www.eclipse.org/che/technology/**_](https://www.eclipse.org/che/technology/)
+- [**http://bosh.io/docs**](http://bosh.io/docs)
+- [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
+- [**https://www.eclipse.org/che/technology/**](https://www.eclipse.org/che/technology/)
 
 ## 2. WEB IDE 설치
 
@@ -59,9 +57,11 @@
 * PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. \(PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip\)
 * 다운로드 위치
 
-  > PaaSTA-Services : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
-  > PaaSTA-Deployment : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
-  > PaaSTA-Sample-Apps : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
+  > PaaSTA-Services : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
+
+  > PaaSTA-Deployment : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
+
+  > PaaSTA-Sample-Apps : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
 
 ### 2.2. WEB-IDE 릴리즈 업로드
 

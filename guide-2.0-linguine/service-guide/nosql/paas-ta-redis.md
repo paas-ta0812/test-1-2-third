@@ -32,6 +32,7 @@ aS-TA Redis 서비스팩 설치 가이드
 #### 1.3. 시스템 구성도
 
 본 문서의 설치된 시스템 구성도입니다. Redis dedicated-node\(2대\), Redis 서비스 브로커로 최소사항을 구성하였다. 
+
 ![](../images/redis/redis_image_01.png)
 
 | 구분 | 스펙 |
@@ -52,9 +53,11 @@ aS-TA Redis 서비스팩 설치 가이드
 * PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. \(PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip\)
 * 다운로드 위치
 
-  > PaaSTA-Services : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
-  > PaaSTA-Deployment : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
-  > PaaSTA-Sample-Apps : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
+  > PaaSTA-Services : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
+
+  > PaaSTA-Deployment : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
+
+  > PaaSTA-Sample-Apps : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
 
 #### 2.2. Redis 서비스 릴리즈 업로드
 
@@ -501,50 +504,41 @@ Task 2415 done
 
 VMs total: 4
 
-```text
 ### <div id='10'> 2.4. Redis 서비스 브로커 등록
 Redis 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Redis 서비스 브로커를 등록해 주어야 한다.
 서비스 브로커 등록시에는 PaaS-TA에서 서비스 브로커를 등록할 수 있는 사용자로 로그인하여야 한다
 
 
 - 서비스 브로커 목록을 확인한다.
-```
-
-$ cf service-brokers
 
 ```text
-
+$ cf service-brokers
 ```
 
+```text
 Getting service brokers as admin...
 
 name url paasta-pinpoint-broker [http://10.30.70.82:8080](http://10.30.70.82:8080)
-
-```text
-- Redis 서비스 브로커를 등록한다.
 ```
+- Redis 서비스 브로커를 등록한다.
+```text
 
 cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} [http://{서비스브로커](http://{서비스브로커) 호스트}:{서비스브로커 포트}
+```
 
 * 서비스브로커 이름 : 서비스 브로커 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
 * 서비스브로커 사용자ID / 비밀번호 : 서비스 브로커에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
 * 서비스브로커 URL : 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
-  ```text
-
-  ```
-
+```text
   $ cf create-service-broker redis-service-broker admin admin [http://10.30.40.171:12350](http://10.30.40.171:12350)
+```
 
-  ```text
-
-  ```
-
+```text
   Creating service broker paasta-redis-brokeras admin...
 
   OK
-
-  \`\`\`
+```
 
 * 등록된 Redis 서비스 브로커를 확인한다.
 

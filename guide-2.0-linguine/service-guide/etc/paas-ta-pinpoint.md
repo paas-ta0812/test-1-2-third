@@ -49,9 +49,8 @@
 
 #### 1.4. 참고자료
 
-[**http://bosh.io/docs**](http://bosh.io/docs)
-
-[**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
+- [**http://bosh.io/docs**](http://bosh.io/docs)
+- [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
 ## 2.Pinpoint 서비스팩 설치
 
@@ -867,7 +866,6 @@ TABLE AgentEvent AgentInfo AgentLifeCycle AgentStat ApiMetaData ApplicationIndex
 
 Errand 'h\_master\_register' completed successfully \(exit code 0\)
 
-```text
 <br>
 <div id='pinpoint-서비스-브로커-등록'></div>
 ### 2.5. Pinpoint 서비스 브로커 등록
@@ -880,29 +878,21 @@ Pinpoint 서비스팩 배포가 완료 되었으면 Application에서 서비스 
 
 <br>
 -   서비스 브로커 목록을 확인한다.
-```
-
+```text
 $ cf service-brokers
+```
 
 ```text
-
-```
-
 Getting service brokers as admin...
 
 name url No service brokers found
 
-```text
-<br>
+```
+
 -   Pinpoint 서비스 브로커를 등록한다.
-```
-
-$ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} [http://{서비스브로커](http://{서비스브로커) URL\(IP\)}
-
 ```text
-
+$ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} [http://{서비스브로커](http://{서비스브로커) URL\(IP\)}
 ```
-
 서비스브로커 이름 : 서비스브로커 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스브로커 명칭이다.
 
 서비스브로커 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스브로커도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
@@ -910,72 +900,49 @@ $ cf create-service-broker {서비스브로커 이름} {서비스브로커 사�
 서비스브로커 URL : 서비스브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
 ```text
-
-```
-
 $ cf create-service-broker pinpoint-service-broker admin cloudfoundry http:// 10.30.70.82:8080
-
-```text
-
 ```
 
+```text
 Creating service broker pinpoint-service-broker as admin... OK
+```
 
-```text
-<br>
 -   등록된 Pinpoint 서비스 브로커를 확인한다.
-```
-
+```text
 $ cf service-brokers
-
-```text
-
 ```
-
+```text
 Getting service brokers as admin... name url pinpoint-service-broker http:// 10.30.70.82:8080
+```
 
-```text
-<br>
 -   접근 가능한 서비스 목록을 확인한다.
-```
-
+```text
 $ cf service-access
-
-```text
-
 ```
 
-Getting service access as admin... broker: Pinpoint-service-broker service plan access orgs Pinpoint Pinpoint\_standard none
-
 ```text
+Getting service access as admin... broker: Pinpoint-service-broker service plan access orgs Pinpoint Pinpoint\_standard none
+```
+
 서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
 <br>
 -   특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
-```
-
+```text
 $ cf enable-service-access Pinpoint
-
-```text
-
 ```
-
-Enabling access to all plans of service Pinpoint for all orgs as admin... OK
-
 ```text
+Enabling access to all plans of service Pinpoint for all orgs as admin... OK
+```
 <br>
 서비스 접근 허용을 확인한다.
-```
-
+```text
 $ cf service-access
-
-```text
-
 ```
 
-Getting service access as admin... broker: Pinpoint-service-broker service plan access orgs Pinpoint Pinpoint\_standard all
-
 ```text
+Getting service access as admin... broker: Pinpoint-service-broker service plan access orgs Pinpoint Pinpoint\_standard all
+```
 <br>
 <div id='sample-web-app-연동-pinpoint-연동'></div>
 #   3. Sample Web App 연동 Pinpoint 연동
@@ -992,14 +959,10 @@ App에 Pinpoint 서비스 Bind 를 통하여 초기 데이터를 생성하게 �
 
 -   Spring-music App을 이용하여 Pinpoint 모니터링을 테스트 하였다.
 -   앱을 다운로드 후 –b 옵션을 주어 buildpack을 지정하여 push 해 놓는다.
-```
-
-$ cf push -b java\_buildpack\_pinpoint --no-start
-
 ```text
-
+$ cf push -b java\_buildpack\_pinpoint --no-start
 ```
-
+```text
 Using manifest file /home/ubuntu/workspace/bd\_test/spring-music/manifest.yml
 
 Creating app spring-music-pinpoint in org org / space space as admin... OK
@@ -1010,22 +973,15 @@ Binding spring-music-pinpoint.monitoring.open-paas.com to spring-music-pinpoint.
 
 Uploading spring-music-pinpoint... Uploading app files from: /tmp/unzipped-app175965484 Uploading 21.2M, 126 files Done uploading
 OK
-
-```text
-
 ```
-
+```text
 $ cf apps
-
-```text
-
 ```
-
+```text
 Getting apps in org org / space space as admin... OK
 
 name requested state instances memory disk urls php-demo started 1/1 256M 1G php-demo.monitoring.open-paas.com spring-music stopped 0/1 512M 1G spring-music.monitoring.open-paas.com spring-music-pinpoint stopped 0/1 512M 1G spring-music-pinpoint.monitoring.open-paas.com
-
-```text
+```
 <br>
 <div id='PaaS-TA에서-서비스-신청'></div>
 ### 3.2. PaaS-TA에서 서비스 신청
@@ -1038,60 +994,40 @@ Sample Web App에서 Pinpoint 서비스를 사용하기 위해서는 서비스
 
 -   먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을
     한다.
-```
-
-$ cf marketplace
-
 ```text
-
+$ cf marketplace
 ```
-
+```text
 Getting services from marketplace in org org / space space as admin... OK
 
 service plans description Pinpoint Pinpoint\_standard A simple pinpoint implementation
-
-```text
+```
 <br>
 -   Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 하여
     서비스 인스턴스를 생성한다.
-```
-
+```text
 $ cf create-service {서비스명} {서비스플랜} {내서비스명}
-
-```text
-
 ```
-
+```text
 서비스명 : p-Pinpoint로 Marketplace에서 보여지는 서비스 명칭이다. 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Pinpoint 서비스는 10 connection, 100 connection 를 지원한다. 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
-
-```text
-
 ```
-
+```text
 $ cf create-service Pinpoint Pinpoint\_standard PS1
-
 ```text
-
 ```
-
-Creating service instance PS1 in org org / space space as admin... OK
-
 ```text
+Creating service instance PS1 in org org / space space as admin... OK
+```
 <br>
 -   생성된 Pinpoint 서비스 인스턴스를 확인한다.
-```
-
-$ cf services
-
 ```text
-
+$ cf services
 ```
-
+```text
 Getting services in org org / space space as admin... OK
 
 name service plan bound apps last operation app\_log\_drain user-provided PS1 Pinpoint Pinpoint\_standard create succeeded syslog\_service user-provided php-demo, spring-music
-
-```text
+```
 <br>
 <div id='#sample-web-app에-서비스-바인드-신청-및-app-확인'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
@@ -1107,24 +1043,21 @@ name service plan bound apps last operation app\_log\_drain user-provided PS1 Pi
 
 <br>
 - 서비스 인스턴스 확인
-```
-
-$ cf s
-
 ```text
-
+$ cf s
 ```
-
+```text
 Getting services in org org / space space as admin... OK
 
 name service plan bound apps last operation app\_log\_drain user-provided PS1 Pinpoint Pinpoint\_standard create succeeded syslog\_service user-provided spring-music, php-demo
+```
 
 * 서비스 바인드
 
-  ```text
+```text
   $ cf bind-service spring-music-pinpoint PS1 -c '{"application_name":"spring-music"}'
-  ```
-
+```
+```text
   Binding service PS1 to app spring-music-pinpoint in org org / space space as admin...
 
   OK
@@ -1132,6 +1065,7 @@ name service plan bound apps last operation app\_log\_drain user-provided PS1 Pi
   TIP: Use 'cf restage spring-music-pinpoint' to ensure your env variable changes take effect
 
   \`\`\`
+```
 
 cf cli 리눅스 버전 :
 
@@ -1280,6 +1214,6 @@ No staging env variables have been set
 
 * App 정상 구동 확인
 
-  ```text
+```text
   $ curl http://115.68.151.187/#/main/spring-music-pinpoint@TOMCAT
-  ```
+```
