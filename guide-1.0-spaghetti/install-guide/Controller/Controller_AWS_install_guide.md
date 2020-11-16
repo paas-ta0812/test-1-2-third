@@ -1537,5 +1537,5 @@ Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된�
 ### 4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
 
-![](./../images/openpaas-controller/controller_aws_image016.png]
+![](./../images/openpaas-controller/controller_aws_image016.png)
 
