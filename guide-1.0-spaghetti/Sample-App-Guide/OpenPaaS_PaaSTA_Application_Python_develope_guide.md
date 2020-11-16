@@ -187,7 +187,6 @@ pip가 정상적으로 설치 되었을 경우, 명령어를 입력하면 pip �
 ###<div id='2-3-1'> 2.3.1. django 애플리케이션 생성
 
 - django 프로젝트 생성
-
 django 프로젝트를 생성할 디렉토리로 이동하여 하단의 명령어를 입력하여 샘플 애플리케이션프로젝트를 생성한다.
 
 ※ 가상환경을 구성하여 가상환경에 Django를 설치한 사용자는 모든 명령어를 가상환경을 실행한 상태에서 입력한다. 가상환경 구성 및 실행은 본 문서의 2.2.2. python 가상환경 구성 을 참고한다.
@@ -224,7 +223,6 @@ django 프로젝트를 생성할 디렉토리로 이동하여 하단의 명령�
 </table>
 
 - django 애플리케이션 생성
-
 django 프로젝트를 생성했다면, 생성한 프로젝트 디렉토리로 이동하여 애플리케이션을 생성한
 
 프로젝트 디렉토리로 이동
@@ -235,7 +233,7 @@ django 프로젝트를 생성했다면, 생성한 프로젝트 디렉토리로 �
 
  `python manage.py startapp my_sampleapp`
 
-※ django 애플리케이션 생성시 애플리케이션명에 '-'(hyphen)을 포함할 수 없기 때문에 '_'(u
+※ django 애플리케이션 생성시 애플리케이션명에 '-'(hyphen)을 포함할 수 없기 때문에 '_'(underscore)를 사용했다.
 
 프로젝트의 파일 구조를 보면 붉은색 박스 부분이 추가 된 것을 확인할 수 있다.
 
@@ -322,7 +320,7 @@ WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 
  `..\my_sampleproject\my_sampleproject\wsgi.py`
 
-``text
+```text
 -application = get_wsgi_application()
 +from whitenoise.django import DjangoWhiteNoise
 +application = DjangoWhiteNoise(get_wsgi_application())
@@ -332,7 +330,7 @@ WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 
 개방형 플랫폼에 배포되는 애플리케이션이 바인딩 된 각각의 서비스의 접속 정보를 얻기 위해
 
-* 개방형 플랫폼의 애플리케이션 환경정보
+- 개방형 플랫폼의 애플리케이션 환경정보
   서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
 
 ```text
@@ -373,7 +371,7 @@ WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 
 ###<div id='2-3-4'> 2.3.4. Mysql 연동
 
-각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. sett원하기 때문에 settings 모듈의 DATABASES 정보가 정의된 부분을 찾아 다음과 같이 수정함으로
+각서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. MySQL의 경우는 MySQL-python 드라이버가 django 연동을 지원하기 때문에 settings 모듈의 DATABASES 정보가 정의된 부분을 찾아 다음과 같이 수정함으로써 연동이 가능하다. 
 
  `..\my_sampleproject\my_sampleproject\settings.py`
 
@@ -435,7 +433,7 @@ if 'VCAP_SERVICES' in os.environ:
 ```
 
 ※ django의 settings.py 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings.py 모듈에서 영문 대문자로 정의되어 있어야만 한다. 
- <br>
+
 ※ 'CubridDB'라고기입된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다. 
 
  `..\my_sampleproject\my_sampleapp\cubrid_views.py`
@@ -472,7 +470,7 @@ if 'VCAP_SERVICES' in os.environ:
 ```
 
  ※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.  
- <br>
+
  ※ 'Mongo-DB'라고 기입된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다. 
 
  `..\my_sampleproject\my_sampleapp\mongo_views.py`
@@ -594,7 +592,7 @@ if 'VCAP_SERVICES' in os.environ:
 ```
 
  ※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 해당 값이settings 모듈에서 영문 대문자로 정의되어 있어야만 한다 
- <br>
+
  ※ 'glusterfs'라고 기입된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
  `..\my_sampleproject\my_sampleapp\gluster_views.py`
@@ -668,7 +666,7 @@ def make_connection():
  $ cf create-service p-rabbitmq standard python-rabbitmq
 ```
 
- ※cf create-service 명령어는 서비스명, 플랜, 서비스 인스턴스명을 순서대로 입력하게 되어 있다. 서비스명과 플랜은 cf marketplace 명령어를 통해 확인하고, 서비스 인스턴스명은 임의의 명칭을 사용한다. 
+ ※ cf create-service 명령어는 서비스명, 플랜, 서비스 인스턴스명을 순서대로 입력하게 되어 있다. 서비스명과 플랜은 cf marketplace 명령어를 통해 확인하고, 서비스 인스턴스명은 임의의 명칭을 사용한다. 
 
 ###<div id='2-4-4'> 2.4.4. 애플리케이션 배포
 
