@@ -111,7 +111,7 @@ API 플랫폼에서는 도로명 주소 서비스 API에 대한 접근관리와 
 주소 데이터를 저장하기 위해서는 테이블의 구조를 정의해야 합니다. 본문서는 MySQL에 도로명주소 정보를 저장하고 관리하기 때문에 MySQL의 문법에 맞게 정의하였습니다.
 가능한 “[가이드]주소구축(전체주소)활용방법.pdf “에 정의된 한글명칭과 비슷하게 구조를 잡았습니다.
 
-````
+````Text
 CREATE TABLE IF NOT EXISTS `egov_common`.`doro_juso` (
   `code` CHAR(10) NULL COMMENT '',
   `sido` VARCHAR(40) NULL COMMENT '',
@@ -151,7 +151,6 @@ CREATE INDEX `IDX_SIGUNGU` ON `egov_common`.`doro_juso` (`sigungu` ASC)  COMMENT
 CREATE INDEX `IDX_DONG` ON `egov_common`.`doro_juso` (`eupmyundong` ASC)  COMMENT '';
 CREATE INDEX `IDX_DORO` ON `egov_common`.`doro_juso` (`doro` ASC)  COMMENT '';
 ````
-
 
 
 ### <a name="11"/>3.3. 주소 데이터 DB에 넣기
@@ -241,7 +240,9 @@ Spring Framework를 이용하여 개발을 하였으며 사용한 컴포넌트�
     <td>현재 페이지 번호(currentPage), 페이지당 데이터 개수(countPerPage)와 검색할 단어(keyword)를 Paramater로 받아 검색을 수행합니다.</td>
   </tr>
 </table>
-- 상세한 API 정의서는 별첨A.를 참조하여 주세요.
+
+
+* 상세한 API 정의서는 별첨A를 참조하여 주세요.
 
 #### <a name="16"/>4.2.2. 도로명 주소 관리 서비스
 <table>
