@@ -65,7 +65,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 
 -   AWS 계정
 
-	AWS 웹사이트: [https://aws.amazon.com/ko/](https://aws.amazon.com/ko/)
+	AWS 웹사이트: [**https://aws.amazon.com/ko/**](https://aws.amazon.com/ko/)
 
 
 -   Access Key 설정
