@@ -70,7 +70,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 
 -   Access Key 설정
 
-	1.  AWS에 로그인: [https://console.aws.amazon.com/console/home](https://console.aws.amazon.com/console/home)
+	1.  AWS에 로그인: [**https://console.aws.amazon.com/console/home**](https://console.aws.amazon.com/console/home)
 
 
 		![account-dashboard](./images/iaas_setup/aws/account-dashboard.png "account-dashboard")
