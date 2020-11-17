@@ -436,6 +436,7 @@ Description은 API 플랫폼에서는 필수사항은 아니지만 개방형 클
 
 
 Add New Resource버튼을 누르면 각각의 Parameter를 정의할 수 있도록 GET과 OPTIONS가 화면하단에 나타납니다. GET에 Parameter를 입력하기 위해 GET을 클릭하여 화면을 확장시킵니다. currentPage, countPerPage는 Data type을 integer로 넣고 Parameter type은 query를 선택합니다. keyword는 Data type은 String으로 Parameter type은 query로 넣습니다. 모두 Required는 true, 필수로 선택을 합니다.
+
 >![](./images/openpaas-application-apiplatform-dorojuso/api_platform_dorojuso_10.png)
 
 그림. Parameter 넣기
