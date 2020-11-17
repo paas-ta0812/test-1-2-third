@@ -286,10 +286,11 @@ Spring Framework를 이용하여 개발을 하였으며 사용한 컴포넌트�
 #### <a name="18"/>4.3.1. Class Diagram
 주요 Class에 대한 구성은 아래의 Class Diagram과 같습니다. Model과 Exception, Utility는 제외한 프로세스에서 중요한 Controller, Service, DAO를 표시하였습니다.
 
->![ 도로명 주소 서비스의 Class Diagram](./images/openpaas-application-apiplatform-dorojuso/api_platform_dorojuso_07.png)
+>![](./images/openpaas-application-apiplatform-dorojuso/api_platform_dorojuso_07.png)
+[그림. 도로명 주소 서비스의 Class Diagram]
 
 BaseController는 각종 Exception을 정의하고 있습니다. 이를 상속받은 DoroJusoController가 도로명 주소 검색에 대한 Control하게 되면 DoroJusoService에서 비즈니스 로직을 담당합니다.
-DoroJusomanagerController는 DoroJusoConroller와 같이 BaseController를 상속받으며 도로명 주소를 관리하기 위한 등록, 수정, 삭제를 할 수 있는 서비스(API)를 Control하며 DoroJusoManagerService에서 관리를 위한 비즈니스 로직을 담당합니다.
+DoroJusomanager Controller는 DoroJusoConroller와 같이 BaseController를 상속받으며 도로명 주소를 관리하기 위한 등록, 수정, 삭제를 할 수 있는 서비스(API)를 Control하며 DoroJusoManagerService에서 관리를 위한 비즈니스 로직을 담당합니다.
 
 #### <a name="19"/>4.3.2. 소스 리스트 및 설명
 해당 소스의 위치는 “개방형 클라우드 플랫폼”의 Git Hub에 위치하며 일반에게 공개할 위치는 따로 홈페이지를 통해서 공유가 될 예정입니다.
