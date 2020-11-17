@@ -241,10 +241,6 @@ Spring Framework를 이용하여 개발을 하였으며 사용한 컴포넌트�
   </tr>
 </table>
 
->![ 도로명 주소 서비스의 Class Diagram](./images/openpaas-application-apiplatform-dorojuso/api_platform_dorojuso_07.png)
-
-
-
 * 상세한 API 정의서는 별첨A를 참조하여 주세요.
 
 #### <a name="16"/>4.2.2. 도로명 주소 관리 서비스
@@ -281,6 +277,9 @@ Spring Framework를 이용하여 개발을 하였으며 사용한 컴포넌트�
   </tr>
 </table>
 ※ 상세한 API 정의서는 별첨A를 참조하여 주세요.
+
+>![ 도로명 주소 서비스의 Class Diagram](./images/openpaas-application-apiplatform-dorojuso/api_platform_dorojuso_07.png)
+
 
 ### <a name="17"/>4.3. 소스 설명
 
