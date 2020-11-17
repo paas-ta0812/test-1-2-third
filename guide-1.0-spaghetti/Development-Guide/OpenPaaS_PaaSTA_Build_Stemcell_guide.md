@@ -59,8 +59,6 @@ BOSH Light 스템셀을 생성하는 내용을 기술하였다.
 -   Vagrant
 -   스템셀을 생성하기 위해서는 인터넷과 연결이 가능해야 한다.
 
-  ![account-dashboard](./images/iaas_setup/aws/account-dashboard.png "account-dashboard")
-
 
 ## 2.2.  AWS 환경 구성
 
