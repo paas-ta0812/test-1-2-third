@@ -65,9 +65,7 @@ aS-TA Redis 서비스팩 설치 가이드
 
   ```text
   $ ls --all
-  ```
 
-  ```text
   .  cf236      paasta-cubrid-2.0.tgz    paasta-mysql-2.0.tgz    paasta-portal-object-storage-2.0.tgz paasta-redis-2.0.tgz
   .. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
   ```
@@ -76,7 +74,6 @@ aS-TA Redis 서비스팩 설치 가이드
 
   ```text
   $ bosh releases
-  ```
 
   \`\`\`
 
@@ -87,19 +84,14 @@ aS-TA Redis 서비스팩 설치 가이드
 +--------------------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +--------------------------+----------+-------------+ \| cflinuxfs2-rootfs \| 1.40.0 _\| 19fe09f4+ \| \| empty-release \| 1+dev.1_ \| 00000000 \| \| etcd \| 86 _\| 2dfbef00+ \| \| paasta-container \| 2.0_ \| b857e171 \| \| paasta-controller \| 2.0 _\| 0f315314 \| \| paasta-garden-runc \| 2.0_ \| ea5f5d4d+ \| \| paasta-influxdb-grafana \| 2.0 _\| 00000000 \| \| paasta-logsearch \| 2.0_ \| 00000000 \| \| paasta-metrics-collector \| 2.0 _\| 00000000 \| +--------------------------+----------+-------------+ \(_\) Currently deployed \(+\) Uncommitted changes
 
 Releases total: 9
+```
 
-```text
 Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-
--    Redis 서비스 릴리즈 파일을 업로드한다.
-```
-
-$ bosh upload release paasta-redis-2.0.tgz
+* Redis 서비스 릴리즈 파일을 업로드한다.
 
 ```text
-
-```
+$ bosh upload release paasta-redis-2.0.tgz
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'bosh'
 
@@ -158,51 +150,44 @@ Task 2337 done
 Started 2017-01-13 06:03:46 UTC Finished 2017-01-13 06:03:49 UTC Duration :00:03 paasta-redis-: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 104.6MB 10.7MB/s Time: 00:00:09
 
 Release uploaded
-
-```text
--    업로드 된 Redis 릴리즈를 확인한다.
 ```
 
+
+* 업로드 된 Redis 릴리즈를 확인한다.
+
+```text
 $ bosh releases
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'bosh'
 
 +--------------------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +--------------------------+----------+-------------+ \| cflinuxfs2-rootfs \| 1.40.0 _\| 19fe09f4+ \| \| empty-release \| 1+dev.1_ \| 00000000 \| \| etcd \| 86 _\| 2dfbef00+ \| \| paasta-container \| 2.0_ \| b857e171 \| \| paasta-controller \| 2.0 _\| 0f315314 \| \| paasta-garden-runc \| 2.0_ \| ea5f5d4d+ \| \| paasta-influxdb-grafana \| 2.0 _\| 00000000 \| \| paasta-logsearch \| 2.0_ \| 00000000 \| \| paasta-metrics-collector \| 2.0 _\| 00000000 \| \| paasta-redis \| 2.0 \| 2d766084+ \| +--------------------------+----------+-------------+ \(_\) Currently deployed \(+\) Uncommitted changes
 
 Releases total: 10
+```
 
-```text
-### <div id='9'>  2.3. Redis 서비스 Deployment 파일 수정 및 배포
+###<div id='9'>2.3. Redis 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용 할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
--    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Redis Deployment 파일을 복사한다.
+* PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Redis Deployment 파일을 복사한다.
 예) vsphere 일 경우 paasta_redis_vsphere_2.0.yml를 복사
 
--    Director UUID를 확인한다.
+* Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
-```
-
-$ bosh status
 
 ```text
-
-```
+$ bosh status
 
 Config /home/inception/.bosh\_config
 
 Director RSA 1024 bit CA certificates are loaded due to old openssl compatibility Name bosh URL [https://10.30.40.105:25555](https://10.30.40.105:25555) Version .1.0 \(00000000\) User admin UUID d363905f-eaa0-4539-a461-8c1318498a32 CPI vsphere\_cpi dns disabled compiled\_package\_cache disabled snapshots disabled
 
 Deployment Manifest /home/inception/crossent-deploy/paasta-logsearch.yml
-
-```text
--    Deploy시 사용할 Stemcell을 확인한다.
 ```
 
+* Deploy시 사용할 Stemcell을 확인한다.
+
+```text
 $ bosh stemcells
 
 
@@ -213,14 +198,14 @@ RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting 
 \(\*\) Currently in-use
 
 Stemcells total: 2
+```
 
-```text
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
 
--    Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
+* Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
-```yaml
+```text
 # paasta-redis-service 설정 파일 내용
 
 name: paasta-redis-service                             # 서비스 배포이름(필수)
@@ -441,9 +426,7 @@ resource_pools:
 
   ```text
   $ bosh deployment paasta_redis_vsphere_2.0.yml
-  ```
 
-  ```text
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
   Deployment set to '/home/inception/bosh-space/kimdojun/redis/paasta_redis_vsphere_2.0.yml'
   ```
@@ -452,7 +435,6 @@ resource_pools:
 
   ```text
   $ bosh deploy
-  ```
 
   \`\`\` RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on deployment 'paasta-redis-service' on 'bosh' Getting deployment properties from director...
 
@@ -483,16 +465,12 @@ Task 2551 done
 Started 2017-01-13 09:15:17 UTC Finished 2017-01-13 09:24:08 UTC Duration :08:51
 
 Deployed 'paasta-redis-service' to 'bosh'
-
-```text
--    배포된 Redis 서비스팩을 확인한다.
 ```
 
+* 배포된 Redis 서비스팩을 확인한다.
+
+```text
 $ bosh vms
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on deployment 'paasta-redis-service' on 'bosh'
 
@@ -503,8 +481,9 @@ Task 2415 done
 +--------------------------------------------------------------+---------+-----+----------------+-------------+ \| VM \| State \| AZ \| VM Type \| IPs \| +--------------------------------------------------------------+---------+-----+----------------+-------------+ \| dedicated-node/0 \(a1017de7-dbd9-4eeb-9790-996b69a9f06c\) \| running \| n/a \| services-small \| 10.30.60.72 \| \| dedicated-node/1 \(4020a083-6bfa-431e-a047-2f567775cfbb\) \| running \| n/a \| services-small \| 10.30.60.73 \| \| dedicated-node/2 \(904bd212-43dc-45ef-876e-37a9cad54d36\) \| running \| n/a \| services-small \| 10.30.60.74 \| \| paasta-redis-broker/0 \(b1ed5994-741d-4e7c-9bf9-2406621b10ec\) \| running \| n/a \| services-small \| 10.30.60.71 \| +--------------------------------------------------------------+---------+-----+----------------+-------------+
 
 VMs total: 4
+```
 
-### <div id='10'> 2.4. Redis 서비스 브로커 등록
+###<div id='10'> 2.4. Redis 서비스 브로커 등록
 Redis 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Redis 서비스 브로커를 등록해 주어야 한다.
 서비스 브로커 등록시에는 PaaS-TA에서 서비스 브로커를 등록할 수 있는 사용자로 로그인하여야 한다
 
@@ -513,18 +492,14 @@ Redis 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ```text
 $ cf service-brokers
-```
 
-```text
 Getting service brokers as admin...
-
 name url paasta-pinpoint-broker [http://10.30.70.82:8080](http://10.30.70.82:8080)
 ```
-- Redis 서비스 브로커를 등록한다.
-```text
+
+* Redis 서비스 브로커를 등록한다.
 
 cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} [http://{서비스브로커](http://{서비스브로커) 호스트}:{서비스브로커 포트}
-```
 
 * 서비스브로커 이름 : 서비스 브로커 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
 * 서비스브로커 사용자ID / 비밀번호 : 서비스 브로커에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
@@ -532,9 +507,7 @@ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용�
 
 ```text
   $ cf create-service-broker redis-service-broker admin admin [http://10.30.40.171:12350](http://10.30.40.171:12350)
-```
 
-```text
   Creating service broker paasta-redis-brokeras admin...
 
   OK
@@ -544,9 +517,7 @@ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용�
 
 ```text
 $ cf service-brokers
-```
 
-```text
 Getting service brokers as admin...
 
 name                     url
@@ -558,9 +529,7 @@ paasta-redis-broker     http://10.30.60.71:12350
 
 ```text
 $ cf service-access
-```
 
-```text
 Getting service access as admin...
 broker: paasta-redis-broker
   service   plan           access   orgs

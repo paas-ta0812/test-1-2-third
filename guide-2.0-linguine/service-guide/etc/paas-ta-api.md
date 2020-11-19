@@ -65,9 +65,9 @@
 
 * PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 API 플랫폼 서비스 릴리즈 paasta-apiplatform-2.0.tgz 파일을 확인한다.
 
+```text
 `$ ls –all`
 
-```text
 .  cf236      paasta-apiplatform-2.0.tgz paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz              paasta-rabbitmq-2.0.tgz paasta-web-ide-2.0.tgz
 .. cf-release paasta-cubrid-2.0.tgz      paasta-mysql-2.0.tgz     paasta-portal-object-storage-2.0.tgz paasta-redis-2.0.tgz
 ```
@@ -76,7 +76,6 @@
 
   ```text
   $ bosh releases
-  ```
 
   \`\`\`
 
@@ -88,18 +87,15 @@
 
 Releases total: 1
 
-```text
+```
 API 플랫폼 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 <br>
-- API 플랫폼 서비스 릴리즈 파일을 업로드한다.
-```
+* API 플랫폼 서비스 릴리즈 파일을 업로드한다.
 
+```
 $ bosh upload release paasta-apiplatform-2.0.tgz
 
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
 
@@ -155,25 +151,22 @@ Started 2017-01-17 00:29:25 UTC Finished 2017-01-17 00:29:49 UTC Duration :00:24
 
 Release uploaded
 
-```text
+```
 <br>
 
-- 업로드 된 API 플랫폼 릴리즈를 확인한다.
-```
-
-$ bosh releases
+* 업로드 된 API 플랫폼 릴리즈를 확인한다.
 
 ```text
+$ bosh releases
 
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
 
 +--------------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +--------------------+----------+-------------+ \| paasta-apiplatform \| 2.0 \| 00000000 \| +--------------------+----------+-------------+
 
 Releases total: 1
+```
 
-```text
 API 플랫폼 릴리즈가 업로드 되어 있는 것을 확인
 
 
@@ -182,19 +175,16 @@ API 플랫폼 릴리즈가 업로드 되어 있는 것을 확인
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
-- PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 API 플랫폼 Deployment 파일을 복사한다.
+* PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 API 플랫폼 Deployment 파일을 복사한다.
 예) vSphere 일 경우 paasta_apiplatform_vsphere_2.0.yml를 복사
 
 
-- Director UUID를 확인한다.
+* Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
-```
-
-$ bosh status
 
 ```text
+$ bosh status
 
-```
 
 Config /home/inception/.bosh\_config
 
@@ -202,16 +192,13 @@ Director RSA 1024 bit CA certificates are loaded due to old openssl compatibilit
 
 Deployment Manifest /home/inception/crossent-deploy/paasta-logsearch.yml
 
-```text
-<br>
-- Deploy시 사용할 Stemcell을 확인한다.
 ```
+<br>
+* Deploy시 사용할 Stemcell을 확인한다.
 
+```text
 $ bosh stemcells
 
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'bosh'
 
@@ -221,16 +208,16 @@ RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting 
 
 Stemcells total: 2
 
-```text
+```
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
 
 <br>
-- Deployment 파일을 서버 환경에 맞게 수정한다. (vSphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
+* Deployment 파일을 서버 환경에 맞게 수정한다. (vSphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
-```yml
+```text
 # paasta-apiplatform-vsphere 설정 파일 내용
----
+
 name: paasta-apiplatform-service                     # 서비스 배포이름(필수)
 
 director_uuid: 0bc8d3c2-e032-4c7e-a99c-e23eea7091fc  # bosh status 에서 확인한 Director UUID을 입력(필수)
@@ -377,9 +364,7 @@ jobs:
 
 ```text
 $ bosh deployment paasta_apiplatform_vsphere_2.0.yml
-```
 
-```text
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Deployment set to '/mnt/workspace/deployments/test-deployments/paasta_apiplatform_vsphere_2.0.yml'
 ```
@@ -388,9 +373,7 @@ Deployment set to '/mnt/workspace/deployments/test-deployments/paasta_apiplatfor
 
 ```text
 $ bosh deploy
-```
 
-```text
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on deployment 'paasta-apiplatform-service' on 'my-bosh'
 Getting deployment properties from director...
@@ -454,9 +437,7 @@ Deployed 'paasta-apiplatform-service' to 'my-bosh'
 
 ```text
 $ bosh vms
-```
 
-```text
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on deployment 'paasta-apiplatform-service' on 'my-bosh'
 

@@ -64,9 +64,7 @@
 
 ```text
 $ ls –all
-```
 
-```text
 -rw-rw-r-- 1 ubuntu ubuntu 121273779 Jan 16 04:05 paasta-mongodb-shard-2.0.tgz
 ```
 
@@ -74,9 +72,7 @@ $ ls –all
 
   ```text
   $ bosh releases
-  ```
 
-  ```text
   +--------------------+----------------+-------------+
   | Name               | Versions       | Commit Hash |
   +--------------------+----------------+-------------+
@@ -91,7 +87,7 @@ $ ls –all
   +--------------------+----------------+-------------+
   (*) Currently deployed
   (+) Uncommitted changes
-  ```
+ ``` 
 
   Mongodb 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
@@ -99,7 +95,6 @@ $ ls –all
 
   ```text
   $ bosh upload release paasta-mongodb-shard-2.0.tgz
-  ```
 
   \`\`\` Uploading release paasta-mongod: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 111.0MB 22.9MB/s ETA: 00:00:00 Director task 692 Started extracting release &gt; Extracting release. Done \(00:00:01\)
 
@@ -118,73 +113,65 @@ Task 692 done
 Started 2017-01-16 04:16:20 UTC Finished 2017-01-16 04:16:24 UTC Duration 00:00:04 paasta-mongod: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 111.3MB 11.0MB/s Time: 00:00:10
 
 Release uploaded
-
-```text
--   업로드 되어 있는 릴리즈 목록을 확인한다.
 ```
 
+* 업로드 되어 있는 릴리즈 목록을 확인한다.
+
+```text
 $ bosh releases
-
-```text
-
-```
 
 Acting as user 'admin' on 'my-bosh'
 
 +----------------------+----------------+-------------+ \| Name \| Versions \| Commit Hash \| +----------------------+----------------+-------------+ \| cf-monitoring \| 0+dev.1 _\| 00000000 \| \| cflinuxfs2-rootfs \| 1.40.0_ \| 19fe09f4+ \| \| etcd \| 86 _\| 2dfbef00+ \| \| logsearch \| 203.0.0+dev.1_ \| 00000000 \| \| metrics-collector \| 0+dev.1 _\| 00000000 \| \| paasta-container \| 0+dev.1_ \| b857e171 \| \| paasta-controller \| 0+dev.1 _\| 0f315314 \| \| paasta-garden-runc \| 2.0_ \| ea5f5d4d+ \| \| paasta-mongodb-shard \| 2.0 _\| 85e3f01e+ \| +----------------------+----------------+-------------+ \(_\) Currently deployed \(+\) Uncommitted changes
 
 Releases total: 9
+```
 
-```text
 Mongodb 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
-
-
-### <div id='9'> 2.3. Mongodb 서비스 Deployment 파일 수정 및 배포
+###<div id='9'> 2.3. Mongodb 서비스 Deployment 파일 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용 할 것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-- PaaS-TA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vSphere 용 Mongodb Deployment 파일인 paasta-mongodb-shard-vsphere-2.0.yml 를 복사한다.
+* PaaS-TA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vSphere 용 Mongodb Deployment 파일인 paasta-mongodb-shard-vsphere-2.0.yml 를 복사한다.
 다운로드 받은 Deployment Yml 파일을 확인한다. (paasta-mongodb-shard-vsphere-2.0.yml)
-```
-
-$ ls –all
 
 ```text
+$ ls –all
+```
+
 ![mongodb_image_03]
 
 
-- Director UUID를 확인한다.
+* Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director에 target 되어 있는 UUID를 확인할 수 있다.
-```
-
-$ bosh status
 
 ```text
+$ bosh status
+```
+
 ![mongodb_image_04]
 
-
-- Deploy시 사용할 Stemcell을 확인한다.
-```
-
-$ bosh stemcells
+* Deploy시 사용할 Stemcell을 확인한다.
 
 ```text
+$ bosh stemcells
+```
+
 ![mongodb_image_05]
+
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
-
--    paasta-mongodb-shard-vsphere-2.0.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
-```
-
-$ vi paasta-mongodb-shard-vsphere-2.0.yml
+* paasta-mongodb-shard-vsphere-2.0.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 
 ```text
-```yaml
+$ vi paasta-mongodb-shard-vsphere-2.0.yml
+```
+
 # paasta-mongodb-shard-vsphere 설정 파일 내용
 
----
+```text
 name: paasta-mongodb-shard-service  # 서비스 배포이름(필수)
 director_uuid ##################    # bosh status 에서 확인한 Director UUID을 입력(필수)
 
@@ -389,9 +376,7 @@ properties:
 
 ```text
 $ bosh deployment {Deployment manifest 파일 PATH}
-```
 
-```text
 Deployment set to '/home/ubuntu/workspace/bd_test/paasta-mongodb-shard-2.0.yml'
 ```
 
@@ -399,9 +384,7 @@ Deployment set to '/home/ubuntu/workspace/bd_test/paasta-mongodb-shard-2.0.yml'
 
 ```text
 $ bosh deploy
-```
 
-```text
 Acting as user 'admin' on deployment 'paasta-mongodb-shard-service' on 'my-bosh'
 Getting deployment properties from director...
 Unable to get properties list from director, trying without it...
@@ -457,9 +440,7 @@ Deployed 'paasta-mongodb-shard-service' to 'my-bosh'
 
 ```text
 $ bosh vms
-```
 
-```text
 Acting as user 'admin' on deployment 'paasta-mongodb-shard-service' on 'my-bosh'
 
 Director task 764

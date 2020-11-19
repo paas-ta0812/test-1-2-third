@@ -62,9 +62,7 @@
 
   ```text
   $ ls --all
-  ```
 
-  ```text
   .  cf236      paasta-cubrid-2.0.tgz    paasta-mysql-2.0.tgz    paasta-portal-object-storage-2.0.tgz paasta-redis-2.0.tgz
   .. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
   ```
@@ -73,8 +71,6 @@
 
   ```text
   $ bosh releases
-  ```
-
   \`\`\`
 
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
@@ -84,19 +80,14 @@
 +-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| empty-release \| 2.0 \| 870201f29+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
 
 Releases total: 1
+```
 
-```text
 RabbitMQ 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-<br>
--    RabbitMQ 서비스 릴리즈 파일을 업로드한다.
-```
-
-$ bosh upload release paasta-rabbitmq-2.0.tgz
+* RabbitMQ 서비스 릴리즈 파일을 업로드한다.
 
 ```text
-
-```
+$ bosh upload release paasta-rabbitmq-2.0.tgz
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
 
@@ -155,73 +146,51 @@ Task 372 done
 Started 2017-01-16 05:28:49 UTC Finished 2017-01-16 05:28:55 UTC Duration :00:06 paasta-rabbit: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 276.8MB 17.0MB/s Time: 00:00:16
 
 Release uploaded
-
-```text
-<br>
--    업로드 된 RabbitMQ 릴리즈를 확인한다.
 ```
 
+* 업로드된 RabbitMQ 릴리즈를 확인한다.
+
+```text
 $ bosh releases
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
 
 +-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| paasta-rabbitmq \| 2.0 \| 21516d49+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
 
 Releases total: 1
+```
 
-```text
-<br>
-<div id='9'></div>
-###   2.3. RabbitMQ 서비스 Deployment 파일 수정 및 배포
+###<div id='9'>2.3. RabbitMQ 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent)을 사용 할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등;이 정의 되어 있다.
 
-<br>
--    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 rabbitmq Deployment 파일을 복사한다.
+* PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 rabbitmq Deployment 파일을 복사한다.
 예) vsphere 일 경우 paasta_rabbitmq_image_2.0.yml를 복사
 다운로드 받은 Deployment Yml 파일을 확인한다.
-```
-
-ls –all
 
 ```text
-
-```
+$ls –all
 
 . openpaas-mysql-aws-1.0.yml paasta\_mysql\_aws\_2.0.yml paasta\_portal\_object\_storage\_vsphere\_2.0.yml paasta\_web\_ide\_aws\_2.0.yml .. paasta\_cubrid\_vsphere\_2.0.yml paasta\_pinpoint\_cluster\_aws\_2.0.yml paasta\_rabbitmq\_vsphere\_2.0.yml cf236 paasta-glusterfs-vsphere-2.0.yml paasta\_pinpoint\_vsphere\_2.0.yml paasta\_redis\_vsphere\_2.0.yml
+```
 
-```text
-<br>
--    Director UUID를 확인한다.
+* Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
-```
-
-$ bosh status
 
 ```text
-
-```
+$ bosh status
 
 Config /home/inception/.bosh\_config
 
 Director RSA 1024 bit CA certificates are loaded due to old openssl compatibility Name bosh URL [https://10.30.40.105:25555](https://10.30.40.105:25555) Version .1.0 \(00000000\) User admin UUID d363905f-eaa0-4539-a461-8c1318498a32 CPI vsphere\_cpi dns disabled compiled\_package\_cache disabled snapshots disabled
 
 Deployment Manifest /home/inception/crossent-deploy/paasta-logsearch.yml
-
-```text
-<br>
--    Deploy시 사용할 Stemcell을 확인한다.
 ```
 
+* Deploy시 사용할 Stemcell을 확인한다.
+
+```text
 $ bosh stemcells
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'bosh'
 
@@ -230,15 +199,13 @@ RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting 
 \(\*\) Currently in-use
 
 Stemcells total: 2
+```
 
-```text
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
-<br>
--    Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
+* Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
-```yaml
----
+```text
 name: paasta-rabbitmq-service                          # 서비스 배포이름(필수)
 director_uuid: d363905f-eaa0-4539-a461-8c1318498a32    # bosh status 에서 확인한 Director UUID을 입력(필수)
 
@@ -448,9 +415,7 @@ resource_pools:                          # 배포시 사용하는 resource pools
 
   ```text
   $ bosh deployment paasta_rabbitmq_vsphere_2.0.yml
-  ```
 
-  ```text
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
   Deployment set to '/mnt/workspace/deployments/test-deployments/paasta_rabbitmq_vsphere_2.0.yml'
   ```
@@ -458,8 +423,7 @@ resource_pools:                          # 배포시 사용하는 resource pools
 * RabbitMQ 서비스팩을 배포한다.
 
   ```text
-  bosh deploy
-  ```
+ $ bosh deploy
 
   \`\`\`
 
@@ -499,16 +463,12 @@ Started 2017-01-16 05:37:31 UTC Finished 2017-01-16 05:47:18 UTC Duration :09:47
 
 Deployed 'paasta-rabbitmq-service' to 'my-bosh'
 
-```text
-<br>
--    배포된 RabbitMQ 서비스팩을 확인한다.
 ```
 
+* 배포된 RabbitMQ 서비스팩을 확인한다.
+
+```text
 $ bosh vms
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on deployment 'paasta-rabbitmq-service' on 'my-bosh'
 
@@ -519,26 +479,21 @@ Task 375 done
 +------------------------------------------------------------+---------+-----+----------------+-----------+ \| VM \| State \| AZ \| VM Type \| IPs \| +------------------------------------------------------------+---------+-----+----------------+-----------+ \| haproxy/0 \(5de67578-1315-405d-9721-5e655b1a7954\) \| running \| n/a \| resource\_pools \| 10.0.0.82 \| \| paasta-rmq-broker/0 \(18d4ae42-db87-400b-9d18-95c7a146acc9\) \| running \| n/a \| resource\_pools \| 10.0.0.81 \| \| rmq/0 \(48e1fdae-965a-4750-a8bb-1811878a3d98\) \| running \| n/a \| resource\_pools \| 10.0.0.83 \| +------------------------------------------------------------+---------+-----+----------------+-----------+
 
 VMs total: 3
+```
 
-```text
-<br>
-<div id='10'></div>
-### 2.4. RabbitMQ 서비스 브로커 등록
+###<div id='10'>2.4. RabbitMQ 서비스 브로커 등록
 RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 RabbitMQ 서비스 브로커를 등록해 주어야 한다.
 서비스 브로커 등록시에는 PaaS-TA에서 서비스 브로커를 등록할 수 있는 사용자로 로그인 하여야 한다
 
-<br>
-- 서비스 브로커 목록을 확인한다.
-```
-
-$ cf service-brokers
+* 서비스 브로커 목록을 확인한다.
 
 ```text
+$ cf service-brokers
+```
+
 ![rabbitmq_image_02]
 
-<br>
-- rabbitmq 서비스 브로커를 등록한다.
-```
+* rabbitmq 서비스 브로커를 등록한다.
 
 cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} [http://{서비스브로커](http://{서비스브로커) 호스트}:{서비스브로커 포트}
 
@@ -547,10 +502,8 @@ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용�
 * 서비스브로커 URL : 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
   ```text
-
-  ```
-
   $ cf create-service-broker rabbitmq-service-broker admin admin [http://10.30.40.81:4567](http://10.30.40.81:4567)
+```
 
   ![](../images/rabbitmq/rabbitmq_image_03.png)
 

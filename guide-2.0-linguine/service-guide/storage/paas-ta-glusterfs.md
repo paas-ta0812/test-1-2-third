@@ -44,9 +44,7 @@
 
   ```text
   $ ls --all
-  ```
 
-  ```text
   .  cf236      paasta-cubrid-2.0.tgz    paasta-mysql-2.0.tgz    paasta-portal-object-storage-2.0.tgz paasta-redis-2.0.tgz
   .. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
   ```
@@ -55,7 +53,6 @@
 
   ```text
   $ bosh releases
-  ```
 
   \`\`\`
 
@@ -66,25 +63,19 @@
 +-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| empty-release \| 2.0 \| 870201f29+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
 
 Releases total: 1
-
-```text
-GlusterFS 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
-
-<br>
--    GlusterFS 서비스 릴리즈 파일을 업로드한다.
 ```
 
+* GlusterFS 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인하고 GlusterFS 서비스 릴리즈 파일을 업로드한다.
+ 
+```text
 $ bosh upload release paasta-glusterfs-2.0.tgz
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
 
 Verifying manifest... Extract manifest OK Manifest exists OK Release name/version OK
 
 File exists and readable OK Read package 'openjdk' \(1 of 4\) OK Package 'openjdk' checksum OK Read package 'op-gluster-java-broker' \(2 of 4\) OK Package 'op-gluster-java-broker' checksum OK Read package 'cli' \(3 of 4\) OK Package 'cli' checksum OK Read package 'mariadb' \(4 of 4\) OK Package 'mariadb' checksum OK Package dependencies OK Checking jobs format OK Read job 'op-glusterfs-java-broker' \(1 of 4\), version 4b573f84329911cc1f253796d102cf965e9d59c4 OK Job 'op-glusterfs-java-broker' checksum OK Extract job 'op-glusterfs-java-broker' OK Read job 'op-glusterfs-java-broker' manifest OK Check template 'bin/op-glusterfs-java-broker\_ctl.erb' for 'op-glusterfs-java-broker' OK Check template 'bin/monit\_debugger' for 'op-glusterfs-java-broker' OK Check template 'config/datasource.properties.erb' for 'op-glusterfs-java-broker' OK Check template 'config/glusterfs.properties.erb' for 'op-glusterfs-java-broker' OK Check template 'config/logback.xml.erb' for 'op-glusterfs-java-broker' OK Check template 'data/properties.sh.erb' for 'op-glusterfs-java-broker' OK Check template 'helpers/ctl\_setup.sh' for 'op-glusterfs-java-broker' OK Check template 'helpers/ctl\_utils.sh' for 'op-glusterfs-java-broker' OK Job 'op-glusterfs-java-broker' needs 'openjdk' package OK Job 'op-glusterfs-java-broker' needs 'op-gluster-java-broker' package OK Monit file for 'op-glusterfs-java-broker' OK Read job 'broker-deregistrar' \(2 of 4\), version b5f6f776d46eb1ac561ab1e8f58d8ddedb97f86e OK Job 'broker-deregistrar' checksum OK Extract job 'broker-deregistrar' OK Read job 'broker-deregistrar' manifest OK Check template 'errand.sh.erb' for 'broker-deregistrar' OK Job 'broker-deregistrar' needs 'cli' package OK Monit file for 'broker-deregistrar' OK Read job 'mysql' \(3 of 4\), version 8afab204ac5fc544319c81645e506eb32163f01e OK Job 'mysql' checksum OK Extract job 'mysql' OK Read job 'mysql' manifest OK Check template 'bin/mariadb\_ctl.erb' for 'mysql' OK Check template 'bin/monit\_debugger' for 'mysql' OK Check template 'data/properties.sh.erb' for 'mysql' OK Check template 'helpers/ctl\_setup.sh' for 'mysql' OK Check template 'helpers/ctl\_utils.sh' for 'mysql' OK Check template 'config/my.cnf.erb' for 'mysql' OK Check template 'config/mariadb\_init.erb' for 'mysql' OK Job 'mysql' needs 'mariadb' package OK Monit file for 'mysql' OK Read job 'broker-registrar' \(4 of 4\), version e1f5e30b87e70e916ea74ea8eb63a7b6ff6ff643 OK Job 'broker-registrar' checksum OK Extract job 'broker-registrar' OK Read job 'broker-registrar' manifest OK Check template 'errand.sh.erb' for 'broker-registrar' OK Job 'broker-registrar' needs 'cli' package OK Monit file for 'broker-registrar' OK
+```
 
 ### Release info
 
@@ -107,7 +98,7 @@ Jobs
 License
 
 * none
-
+```text
 Checking if can repack release for faster upload... openjdk \(566dfae383c61dff0c9e82bee373bb68bac3e10e\) UPLOAD op-gluster-java-broker \(e281dffd1a22142658f57509183afa9be6be2983\) UPLOAD cli \(24305e50a638ece2cace4ef4803746c0c9fe4bb0\) UPLOAD mariadb \(76d00089f1c7ee1122f6b584d26d21a14254e1f0\) UPLOAD op-glusterfs-java-broker \(4b573f84329911cc1f253796d102cf965e9d59c4\) UPLOAD broker-deregistrar \(b5f6f776d46eb1ac561ab1e8f58d8ddedb97f86e\) UPLOAD mysql \(8afab204ac5fc544319c81645e506eb32163f01e\) UPLOAD broker-registrar \(e1f5e30b87e70e916ea74ea8eb63a7b6ff6ff643\) UPLOAD Uploading the whole release
 
 Uploading release paasta-gluste: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 135.0MB 34.7MB/s ETA: 00:00:00 Director task Started extracting release &gt; Extracting release. Done \(00:00:01\)
@@ -127,75 +118,51 @@ Task 379 done
 Started 2017-01-16 07:24:34 UTC Finished 2017-01-16 07:24:37 UTC Duration :00:03 paasta-gluste: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 135.4MB 16.9MB/s Time: 00:00:08
 
 Release uploaded
-
-```text
-<br>
--    업로드 된 GlusterFS 릴리즈를 확인한다.
 ```
 
+* 업로드 된 GlusterFS 릴리즈를 확인한다.
+
+```text
 $ bosh releases
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
 
 +------------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +------------------+----------+-------------+ \| paasta-glusterfs \| 2.0 \| 85e3f01e+ \| +------------------+----------+-------------+ \(+\) Uncommitted changes
 
 Releases total: 1
+```
 
-```text
-<br>
-<div id='9'></div>
-###   2.3. glusterfs 서비스 Deployment 파일 수정 및 배포
+###<div id='9'>2.3. glusterfs 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용 할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 
-<br>
--    PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 GlusterFS Deployment 파일을 복사한다.
+* PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 GlusterFS Deployment 파일을 복사한다.
 예) vsphere 일 경우 paasta_glusterfs_vsphere_2.0.yml를 복사
 
 다운로드 받은 Deployment Yml 파일을 확인한다.
-```
-
-ls –all
-
 ```text
-
-```
+$ls -all
 
 . openpaas-mysql-aws-1.0.yml paasta\_mysql\_aws\_2.0.yml paasta\_portal\_object\_storage\_vsphere\_2.0.yml paasta\_web\_ide\_aws\_2.0.yml .. paasta\_cubrid\_vsphere\_2.0.yml paasta\_pinpoint\_cluster\_aws\_2.0.yml paasta\_rabbitmq\_vsphere\_2.0.yml cf236 paasta-glusterfs-vsphere-2.0.yml paasta\_pinpoint\_vsphere\_2.0.yml paasta\_redis\_vsphere\_2.0.yml
+```
 
-```text
-<br>
--    Director UUID를 확인한다.
+* Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
-```
-
-$ bosh status
 
 ```text
-
-```
+$ bosh status
 
 Config /home/inception/.bosh\_config
 
 Director RSA 1024 bit CA certificates are loaded due to old openssl compatibility Name bosh URL [https://10.30.40.105:25555](https://10.30.40.105:25555) Version .1.0 \(00000000\) User admin UUID d363905f-eaa0-4539-a461-8c1318498a32 CPI vsphere\_cpi dns disabled compiled\_package\_cache disabled snapshots disabled
 
 Deployment Manifest /home/inception/crossent-deploy/paasta-logsearch.yml
-
-```text
-<br>
--    Deploy시 사용할 Stemcell을 확인한다.
 ```
 
+* Deploy시 사용할 Stemcell을 확인한다.
+
+```text
 $ bosh stemcells
-
-```text
-
-```
-
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'bosh'
 
 +------------------------------------------+---------------+---------+-----------------------------------------+ \| Name \| OS \| Version \| CID \| +------------------------------------------+---------------+---------+-----------------------------------------+ \| bosh-vsphere-esxi-ubuntu-trusty-go\_agent \| ubuntu-trusty \| 3263.8 _\| sc-af443b65-9335-43b1-9b64-6d1791a10428 \| \| bosh-vsphere-esxi-ubuntu-trusty-go\_agent \| ubuntu-trusty \| 3309_ \| sc-e00c788b-ac6b-4089-bc43-f56a3ffdb55a \| +------------------------------------------+---------------+---------+-----------------------------------------+
@@ -204,15 +171,15 @@ RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting 
 
 Stemcells total: 2
 
-```text
+```
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
 <br>
--    Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
+* Deployment 파일을 서버 환경에 맞게 수정한다. (vsphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
 ```yaml
 # paasta-glusterfs-vsphere 설정 파일 내용
---
+```text
 name: paasta-glusterfs-service                       # 서비스 배포이름(필수)
 director_uuid: d363905f-eaa0-4539-a461-8c1318498a32  # bosh status 에서 확인한 Director UUID을 입력(필수)
 
@@ -340,20 +307,17 @@ resource_pools:               # 배포시 사용하는 resource pools를 명시�
 
 * Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
-  ```text
+```text
   $ bosh deployment paasta_glusterfs_vsphere_2.0.yml
-  ```
 
-  ```text
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
   Deployment set to '/mnt/workspace/deployments/test-deployments/paasta_glusterfs_vsphere_2.0.yml'
-  ```
+```
 
 * glusterfs 서비스팩을 배포한다.
 
   ```text
-  bosh deploy
-  ```
+  $ bosh deploy
 
   \`\`\`
 
@@ -364,6 +328,7 @@ resource_pools:               # 배포시 사용하는 resource pools를 명시�
   Getting deployment properties from director...
 
   Unable to get properties list from director, trying without it...
+```
 
 ### Detecting deployment changes
 
@@ -393,16 +358,10 @@ Started 2017-01-16 05:37:31 UTC Finished 2017-01-16 05:47:18 UTC Duration :09:47
 
 Deployed 'paasta-glusterfs-service' to 'my-bosh'
 
-```text
-<br>
--    배포된 glusterfs 서비스팩을 확인한다.
-```
+* 배포된 glusterfs 서비스팩을 확인한다.
 
+```text
 $ bosh vms
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on deployment 'paasta-glusterfs-service' on 'my-bosh'
 
@@ -413,27 +372,22 @@ Task 385 done
 +------------------------------------------------------------------+---------+-----+----------------+------------+ \| VM \| State \| AZ \| VM Type \| IPs \| +------------------------------------------------------------------+---------+-----+----------------+------------+ \| mysql/0 \(9a02e0e1-359b-47f1-ade5-6c149c316e3a\) \| running \| n/a \| resource\_pools \| 10.0.0.196 \| \| paasta-glusterfs-broker/0 \(4586e374-3209-4851-a0af-ef5eb60db261\) \| running \| n/a \| resource\_pools \| 10.0.0.197 \| +------------------------------------------------------------------+---------+-----+----------------+------------+
 
 VMs total: 2
+```
 
-```text
-<br>
-<div id='10'></div>
-### 2.4. GlusterFS 서비스 브로커 등록
+###<div id='10'>2.4. GlusterFS 서비스 브로커 등록
 GlusterFS 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 GlusterFS 서비스 브로커를 등록해 주어야 한다.
 서비스 브로커 등록시에는 PaaS-TA에서 서비스 브로커를 등록할 수 있는 사용자로 로그인 하여야 한다
 
 
-<br>
-- 서비스 브로커 목록을 확인한다.
-```
-
-$ cf service-brokers
+* 서비스 브로커 목록을 확인한다.
 
 ```text
+$ cf service-brokers
+```
 ![../images/glusterfs/glusterfs_image_02]
 
 <br>
-- GlusterFS 서비스 브로커를 등록한다.
-```
+* GlusterFS 서비스 브로커를 등록한다.
 
 cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} [http://{서비스브로커](http://{서비스브로커) 호스트}:{서비스브로커 포트}
 
@@ -442,12 +396,9 @@ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용�
 * 서비스브로커 URL : 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
   ```text
-
-  ```
-
   $ cf create-service-broker glusterfs-service admin cloudfoundry [http://10.30.40.197:8080](http://10.30.40.197:8080)
-
   \`\`\`
+```
 
   ![](../images/glusterfs/glusterfs_image_03.png)
 

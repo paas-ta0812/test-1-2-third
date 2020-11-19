@@ -73,14 +73,13 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. \(P
 * Github에서 다운로드 받은 paasta-pinpoint-release 폴더로 이동하여 Pinpoint 릴리즈 파일을 확인한다.
 
 ```text
-$ls paasta-pinpoint-2.0.tgz
+$ ls paasta-pinpoint-2.0.tgz
 ```
 
 * 릴리즈를 업로드한다.
 
   ```text
   $ bosh upload release paasta-pinpoint-2.0.tgz
-  ```
 
   \`\`\`
 
@@ -149,59 +148,43 @@ Task 441 done
 Started 2016-12-29 07:29:24 UTC Finished 2016-12-29 07:29:40 UTC Duration 00:00:16 paasta-pinpoi: 96% \|ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 513.7MB 14.3MB/s Time: 00:00:35
 
 Release uploaded
-
-```text
-<br>
--   업로드 되어 있는 릴리즈 목록을 확인한다.
 ```
 
+* 업로드 되어 있는 릴리즈 목록을 확인한다.
+
+```text
 $ bosh releases
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded ue to old openssl compatibility Acting as user 'admin' on 'bosh'
 
 +-------------------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-------------------------+----------+-------------+ \| cf \| 247 _\| af4efe9f+ \| \| cflinuxfs2-rootfs \| 1.40.0_ \| 19fe09f4+ \| \| diego \| 1.1.0 _\| 2298c8d4 \| \| empty-release \| 1+dev.1_ \| 00000000 \| \| etcd \| 86 _\| 2dfbef00+ \| \| garden-runc \| 1.0.3_ \| c6c4c73c \| \| monitoring-api-server \| 0+dev.3 _\| 00000000 \| \| \| 0+dev.4_ \| 00000000 \| \| \| 0+dev.5 \| 00000000 \| \| \| 0+dev.6 \| 00000000 \| \| \| 0+dev.7 \| 00000000 \| \| paasta-glusterfs \| 2.0 _\| 85e3f01e+ \| \| paasta-pinpoint-service \| 2.0 \| 85e3f01e+ \| \| swift-keystone-release \| 0+dev.1_ \| 00000000 \| +-------------------------+----------+-------------+ \(\*\) Currently deployed \(+\) Uncommitted changes Releases total: 11
+```
 
-```text
-<br>
-<div id="Pinpoint-서비스-Deployment-파일-수정-및-배포"></div>
-###2.3. Pinpoint 서비스 Deployment 파일 수정 및 배포
+###<div id="2.3">2.3. Pinpoint 서비스 Deployment 파일 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
 등을 정의가 되어 있다.
 
-- PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Pinpoint 서비스팩 Deployment 파일을 복사한다.
+* PaaSTA-Deployment.zip 파일 압축을 풀고 폴더안에 있는 IaaS별 Pinpoint 서비스팩 Deployment 파일을 복사한다.
 
-- Director UUID를 확인한다.
+* Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
-```
-
-$ bosh status
 
 ```text
-
-```
+$ bosh status
 
 Config /home/inception/.bosh\_config
 
 Director RSA 1024 bit CA certificates are loaded due to old openssl compatibility Name bosh URL [https://10.30.40.105:25555](https://10.30.40.105:25555) Version 260.1.0 \(00000000\) User admin UUID d363905f-eaa0-4539-a461-8c1318498a32 CPI vsphere\_cpi dns disabled compiled\_package\_cache disabled snapshots disabled
 
 Deployment Manifest /home/inception/bosh-space/kimdojun/swift-keystone-release/swift-keystone.yml
-
-```text
-<br>
-- Deploy시 사용할 Stemcell을 확인한다.
 ```
 
+* Deploy시 사용할 Stemcell을 확인한다.
+
+```text
 $ bosh stemcells
-
-```text
-
-```
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'bosh'
 
@@ -210,18 +193,15 @@ RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting 
 \(\*\) Currently in-use
 
 Stemcells total: 2
-
-```text
-Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
-
-<br>
-- Deployment 파일을 서버 환경에 맞게 수정한다. (vSphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 ```
 
-$ vi paasta-pinpoint-vsphere-2.0.yml
+Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
+
+* Deployment 파일을 서버 환경에 맞게 수정한다. (vSphere 용으로 설명, 다른 IaaS는 해당 Deployment 파일의 주석내용을 참고)
 
 ```text
-```yaml
+$ vi paasta-pinpoint-vsphere-2.0.yml
+
 # paasta-pinpoint-vsphere 설정 파일 내용
 name: paasta-pinpoint-service                           # 서비스 배포이름(필수)
 director_uuid: d363905f-eaa0-4539-a461-8c1318498a32     # bosh status 에서 확인한 Director UUID을 입력(필수)
@@ -420,9 +400,7 @@ releases:
 
   ```text
   $ bosh deployment paasta-pinpoint-vsphere-2.0.yml
-  ```
 
-  ```text
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
   ```
 
@@ -430,7 +408,6 @@ releases:
 
   ```text
   $ bosh deploy
-  ```
 
   \`\`\`
 
@@ -787,12 +764,11 @@ Task 446 done
 Started 2016-12-29 07:54:37 UTC Finished 2016-12-29 08:28:51 UTC Duration 00:34:14
 
 Deployed 'paasta-pinpoint' to 'bosh'
-
-```text
-<br>
--   배포된 Pinpoint 서비스팩을 확인한다.
 ```
 
+* 배포된 Pinpoint 서비스팩을 확인한다.
+
+```text
 Deployment 'paasta-pinpoint'
 
 Director task 503
@@ -800,17 +776,16 @@ Director task 503
 Task 503 done
 
 +----------------------------------------------------------+---------+-----+-----------------+---------------+ \| VM \| State \| AZ \| VM Type \| IPs \| +----------------------------------------------------------+---------+-----+-----------------+---------------+ \| collector/0 \(2af508e8-1751-41be-905a-43f5884c4402\) \| running \| n/a \| pinpoint\_medium \| 10.30.70.40 \| \| collector/1 \(e741680d-b612-4ccf-8495-7855006dfc80\) \| running \| n/a \| pinpoint\_medium \| 10.30.70.41 \| \| h\_master/0 \(50b79e72-c97f-4402-98ed-c08d97723291\) \| running \| n/a \| pinpoint\_medium \| 10.30.70.75 \| \| h\_secondary/0 \(6b29e5c9-0aac-48fb-96d1-c029415451f6\) \| running \| n/a \| pinpoint\_small \| 10.30.70.76 \| \| h\_slave/0 \(ae8f48e2-5273-4b23-b63f-b2a3ab77eb4c\) \| running \| n/a \| pinpoint\_small \| 10.30.70.73 \| \| h\_slave/1 \(c6ed5066-be08-4dfa-b9cf-40c8c9c89778\) \| running \| n/a \| pinpoint\_small \| 10.30.70.74 \| \| haproxy\_webui/0 \(2a977c16-331b-430c-9690-314e31eea9c8\) \| running \| n/a \| pinpoint\_small \| 10.30.70.78 \| \| \| \| \| \| 115.68.46.182 \| \| pinpoint\_broker/0 \(82756b8b-f1a1-4bbe-9408-6875bb2a9976\) \| running \| n/a \| pinpoint\_small \| 10.30.70.82 \| \| webui/0 \(b23ab30f-c0f9-473a-9609-30fc5f2408b2\) \| running \| n/a \| pinpoint\_small \| 10.30.70.79 \| \| webui/1 \(0b3a252a-9657-4efa-98ff-1eeaac368bc9\) \| running \| n/a \| pinpoint\_small \| 10.30.70.80 \| +----------------------------------------------------------+---------+-----+-----------------+---------------+
+```
 
-```text
-<br>
-<div id ='HBase-기본-데이터-실행'></div>
-### 2.4. HBase 기본 데이터 실행
+<div id ="2.4">2.4. HBase 기본 데이터 실행
 
 > Pinpoint 서비스팩 배포가 완료 되었으면 HBase 14개의 기본 Table이
 > 생성되어야 Application에서 서비스 팩을 정상 사용할 수 있다.
-```
 
+```text
 $ bosh run errand h\_master\_register Acting as user 'admin' on deployment 'paasta-pinpoint' on 'my-bosh'
+
 
 Director task 1875 Started preparing deployment &gt; Preparing deployment. Done \(00:00:00\)
 
@@ -865,6 +840,7 @@ TABLE AgentEvent AgentInfo AgentLifeCycle AgentStat ApiMetaData ApplicationIndex
 \[stderr\] Warning: Permanently added 'h-master,10.244.2.21' \(ECDSA\) to the list of known hosts. Unauthorized use is strictly prohibited. All access and activity is subject to logging and monitoring. 2016-12-14 06:44:22,899 WARN \[main\] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 
 Errand 'h\_master\_register' completed successfully \(exit code 0\)
+```
 
 <br>
 <div id='pinpoint-서비스-브로커-등록'></div>
@@ -877,22 +853,22 @@ Pinpoint 서비스팩 배포가 완료 되었으면 Application에서 서비스 
 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 <br>
--   서비스 브로커 목록을 확인한다.
-```text
-$ cf service-brokers
-```
+* 서비스 브로커 목록을 확인한다.
 
 ```text
+$ cf service-brokers
+
+
 Getting service brokers as admin...
 
 name url No service brokers found
-
 ```
 
 -   Pinpoint 서비스 브로커를 등록한다.
-```text
-$ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} [http://{서비스브로커](http://{서비스브로커) URL\(IP\)}
-```
+
+cf create-service-broker {서비스브로커 이름} {서비스브로커 사용자ID} {서비스브로커 사용자비밀번호} [http://{서비스브로커](http://{서비스브로커) URL\(IP\)}
+
+
 서비스브로커 이름 : 서비스브로커 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스브로커 명칭이다.
 
 서비스브로커 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스브로커도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
@@ -901,49 +877,44 @@ $ cf create-service-broker {서비스브로커 이름} {서비스브로커 사�
 
 ```text
 $ cf create-service-broker pinpoint-service-broker admin cloudfoundry http:// 10.30.70.82:8080
-```
 
-```text
 Creating service broker pinpoint-service-broker as admin... OK
 ```
 
 -   등록된 Pinpoint 서비스 브로커를 확인한다.
+
 ```text
 $ cf service-brokers
-```
-```text
+
 Getting service brokers as admin... name url pinpoint-service-broker http:// 10.30.70.82:8080
 ```
 
 -   접근 가능한 서비스 목록을 확인한다.
 ```text
 $ cf service-access
-```
 
-```text
 Getting service access as admin... broker: Pinpoint-service-broker service plan access orgs Pinpoint Pinpoint\_standard none
 ```
 
 서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
-<br>
 -   특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
-```text
-$ cf enable-service-access Pinpoint
-```
-```text
-Enabling access to all plans of service Pinpoint for all orgs as admin... OK
-```
-<br>
-서비스 접근 허용을 확인한다.
-```text
-$ cf service-access
-```
 
 ```text
+$ cf enable-service-access Pinpoint
+
+Enabling access to all plans of service Pinpoint for all orgs as admin... OK
+```
+
+서비스 접근 허용을 확인한다.
+
+```text
+$ cf service-access
+
+
 Getting service access as admin... broker: Pinpoint-service-broker service plan access orgs Pinpoint Pinpoint\_standard all
 ```
-<br>
+
 <div id='sample-web-app-연동-pinpoint-연동'></div>
 #   3. Sample Web App 연동 Pinpoint 연동
 
@@ -959,10 +930,11 @@ App에 Pinpoint 서비스 Bind 를 통하여 초기 데이터를 생성하게 �
 
 -   Spring-music App을 이용하여 Pinpoint 모니터링을 테스트 하였다.
 -   앱을 다운로드 후 –b 옵션을 주어 buildpack을 지정하여 push 해 놓는다.
+
 ```text
 $ cf push -b java\_buildpack\_pinpoint --no-start
-```
-```text
+
+
 Using manifest file /home/ubuntu/workspace/bd\_test/spring-music/manifest.yml
 
 Creating app spring-music-pinpoint in org org / space space as admin... OK
@@ -974,15 +946,15 @@ Binding spring-music-pinpoint.monitoring.open-paas.com to spring-music-pinpoint.
 Uploading spring-music-pinpoint... Uploading app files from: /tmp/unzipped-app175965484 Uploading 21.2M, 126 files Done uploading
 OK
 ```
+
 ```text
 $ cf apps
-```
-```text
+
 Getting apps in org org / space space as admin... OK
 
 name requested state instances memory disk urls php-demo started 1/1 256M 1G php-demo.monitoring.open-paas.com spring-music stopped 0/1 512M 1G spring-music.monitoring.open-paas.com spring-music-pinpoint stopped 0/1 512M 1G spring-music-pinpoint.monitoring.open-paas.com
 ```
-<br>
+
 <div id='PaaS-TA에서-서비스-신청'></div>
 ### 3.2. PaaS-TA에서 서비스 신청
 
@@ -994,41 +966,39 @@ Sample Web App에서 Pinpoint 서비스를 사용하기 위해서는 서비스
 
 -   먼저 PaaS-TA Marketplace에서 서비스가 있는지 확인을
     한다.
+
 ```text
 $ cf marketplace
-```
-```text
+
+
 Getting services from marketplace in org org / space space as admin... OK
 
 service plans description Pinpoint Pinpoint\_standard A simple pinpoint implementation
 ```
-<br>
+
 -   Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 하여
     서비스 인스턴스를 생성한다.
-```text
-$ cf create-service {서비스명} {서비스플랜} {내서비스명}
-```
-```text
+
+cf create-service {서비스명} {서비스플랜} {내서비스명}
+
 서비스명 : p-Pinpoint로 Marketplace에서 보여지는 서비스 명칭이다. 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Pinpoint 서비스는 10 connection, 100 connection 를 지원한다. 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
-```
+
 ```text
 $ cf create-service Pinpoint Pinpoint\_standard PS1
-```text
-```
-```text
+
 Creating service instance PS1 in org org / space space as admin... OK
 ```
-<br>
+
 -   생성된 Pinpoint 서비스 인스턴스를 확인한다.
+
 ```text
 $ cf services
-```
-```text
+
 Getting services in org org / space space as admin... OK
 
 name service plan bound apps last operation app\_log\_drain user-provided PS1 Pinpoint Pinpoint\_standard create succeeded syslog\_service user-provided php-demo, spring-music
 ```
-<br>
+
 <div id='#sample-web-app에-서비스-바인드-신청-및-app-확인'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
 -------------------------------------------------
@@ -1041,12 +1011,12 @@ name service plan bound apps last operation app\_log\_drain user-provided PS1 Pi
 
 -   Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
 
-<br>
 - 서비스 인스턴스 확인
+
 ```text
 $ cf s
-```
-```text
+
+
 Getting services in org org / space space as admin... OK
 
 name service plan bound apps last operation app\_log\_drain user-provided PS1 Pinpoint Pinpoint\_standard create succeeded syslog\_service user-provided spring-music, php-demo
@@ -1056,10 +1026,9 @@ name service plan bound apps last operation app\_log\_drain user-provided PS1 Pi
 
 ```text
   $ cf bind-service spring-music-pinpoint PS1 -c '{"application_name":"spring-music"}'
-```
-```text
-  Binding service PS1 to app spring-music-pinpoint in org org / space space as admin...
 
+
+  Binding service PS1 to app spring-music-pinpoint in org org / space space as admin...
   OK
 
   TIP: Use 'cf restage spring-music-pinpoint' to ensure your env variable changes take effect
