@@ -384,7 +384,7 @@ GlusterFS 서비스팩 배포가 완료 되었으면 Application에서 서비스
 ```text
 $ cf service-brokers
 ```
-![../images/glusterfs/glusterfs_image_02]
+![](../images/glusterfs/glusterfs_image_02.png)
 
 <br>
 * GlusterFS 서비스 브로커를 등록한다.
@@ -397,7 +397,6 @@ cf create-service-broker {서비스브로커 이름} {서비스브로커 사용�
 
   ```text
   $ cf create-service-broker glusterfs-service admin cloudfoundry [http://10.30.40.197:8080](http://10.30.40.197:8080)
-  \`\`\`
 ```
 
   ![](../images/glusterfs/glusterfs_image_03.png)
@@ -505,10 +504,7 @@ $ cd hello-spring-glusterfs
 
 ```text
 $ vi manifest.yml
-```
 
-```yaml
----
 applications:
 - name: hello- spring-glustefs          # 배포할 App 이름
   memory: 512M                          # 배포시 메모리 사이즈
