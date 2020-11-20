@@ -62,7 +62,7 @@
 
   Acting as user 'admin' on 'my-bosh'
 
-+-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| empty-release \| 2.0 \| 870201f29+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
++-----------------+----------+-------------+ | Name | Versions | Commit Hash | +-----------------+----------+-------------+ | empty-release | 2.0 | 870201f29+ | +-----------------+----------+-------------+ (+) Uncommitted changes
 
 Releases total: 1
 ```
@@ -130,7 +130,7 @@ $ bosh releases
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
 
-+------------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +------------------+----------+-------------+ \| paasta-glusterfs \| 2.0 \| 85e3f01e+ \| +------------------+----------+-------------+ \(+\) Uncommitted changes
++------------------+----------+-------------+ | Name | Versions | Commit Hash | +------------------+----------+-------------+ | paasta-glusterfs | 2.0 | 85e3f01e+ | +------------------+----------+-------------+ (+) Uncommitted changes
 
 Releases total: 1
 ```
