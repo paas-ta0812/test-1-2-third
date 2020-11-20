@@ -42,9 +42,9 @@
 
 ### 1.4. 참고자료
 
-[**http://bosh.io/docs**](http://bosh.io/docs)
+- [**http://bosh.io/docs**](http://bosh.io/docs)
 
-[**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
+- [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
 ## 2.  Mongodb 서비스팩 설치
 
@@ -54,9 +54,12 @@
 
 * 다운로드 위치
 
-  > PaaSTA-Services : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
-  > PaaSTA-Deployment : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
-  > PaaSTA-Sample-Apps : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
+  > PaaSTA-Services : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
+
+  > PaaSTA-Deployment : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
+
+  > PaaSTA-Sample-Apps : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
+
 
 ### 2.2. Mongodb 서비스 릴리즈 업로드
 
@@ -89,14 +92,15 @@ $ ls –all
   (+) Uncommitted changes
  ``` 
 
-  Mongodb 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+*  Mongodb 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+
 
 * Mongodb 서비스 릴리즈를 업로드한다.
 
-  ```text
+```text
   $ bosh upload release paasta-mongodb-shard-2.0.tgz
 
-  \`\`\` Uploading release paasta-mongod: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 111.0MB 22.9MB/s ETA: 00:00:00 Director task 692 Started extracting release &gt; Extracting release. Done \(00:00:01\)
+  Uploading release paasta-mongod: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 111.0MB 22.9MB/s ETA: 00:00:00 Director task 692 Started extracting release &gt; Extracting release. Done \(00:00:01\)
 
   Started verifying manifest &gt; Verifying manifest. Done \(00:00:00\)
 
@@ -112,7 +116,7 @@ Task 692 done
 
 Started 2017-01-16 04:16:20 UTC Finished 2017-01-16 04:16:24 UTC Duration 00:00:04 paasta-mongod: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 111.3MB 11.0MB/s Time: 00:00:10
 
-Release uploaded
+Release upload
 ```
 
 * 업로드 되어 있는 릴리즈 목록을 확인한다.
@@ -124,7 +128,7 @@ Acting as user 'admin' on 'my-bosh'
 
 +----------------------+----------------+-------------+ \| Name \| Versions \| Commit Hash \| +----------------------+----------------+-------------+ \| cf-monitoring \| 0+dev.1 _\| 00000000 \| \| cflinuxfs2-rootfs \| 1.40.0_ \| 19fe09f4+ \| \| etcd \| 86 _\| 2dfbef00+ \| \| logsearch \| 203.0.0+dev.1_ \| 00000000 \| \| metrics-collector \| 0+dev.1 _\| 00000000 \| \| paasta-container \| 0+dev.1_ \| b857e171 \| \| paasta-controller \| 0+dev.1 _\| 0f315314 \| \| paasta-garden-runc \| 2.0_ \| ea5f5d4d+ \| \| paasta-mongodb-shard \| 2.0 _\| 85e3f01e+ \| +----------------------+----------------+-------------+ \(_\) Currently deployed \(+\) Uncommitted changes
 
-Releases total: 9
+Releases total : 9
 ```
 
 Mongodb 서비스 릴리즈가 업로드 되어 있는 것을 확인
@@ -141,8 +145,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 $ ls –all
 ```
 
-![mongodb_image_03]
-
+![](../images/mongodb/mongodb_image_03.png)
 
 * Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director에 target 되어 있는 UUID를 확인할 수 있다.
@@ -150,8 +153,8 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 
 ```text
 $ bosh status
 ```
+![](../images/mongodb/mongodb_image_04.png)
 
-![mongodb_image_04]
 
 * Deploy시 사용할 Stemcell을 확인한다.
 
@@ -159,7 +162,7 @@ $ bosh status
 $ bosh stemcells
 ```
 
-![mongodb_image_05]
+![](../images/mongodb/mongodb_image_0r52.png)
 
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 
