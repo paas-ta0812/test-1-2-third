@@ -17,14 +17,18 @@
    * [3.2. PaaS-TA에서 서비스 신청](paas-ta-rabbitmq.md#13)
    * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](paas-ta-rabbitmq.md#14)
 
- \# 1. 문서 개요
+
+# 1. 문서 개요
 
 
 #### 1.1. 목적
 
 본 문서\(RabbitMQ서비스팩 설치 가이드\)는 전자정부표준프레임워크 기반의 PaaS-TA에서 제공되는 서비스팩인 RabbitMQ 서비스팩을 Bosh를 이용하여 설치 하는 방법과 PaaS-TA의 SaaS 형태로 제공하는 Application에서 RabbitMQ 서비스를 사용하는 방법을 기술하였다.
 
- \#\#\# 1.2. 범위 설치 범위는 RabbitMQ 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다.
+
+### 1.2. 범위 설치 범위
+
+RabbitMQ 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다.
 
 
 #### 1.3. 시스템 구성도
@@ -39,10 +43,11 @@
 | haproxy | 1vCPU / 1GB RAM / 8GB Disk |
 | rmq | 1vCPU / 1GB RAM / 8GB Disk |
 
+
 #### 1.4. 참고자료
 
-[**http://bosh.io/docs**](http://bosh.io/docs)
- [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
+- [**http://bosh.io/docs**](http://bosh.io/docs)
+- [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
 ## 2. RabbitMQ 서비스팩 설치
 
@@ -53,8 +58,11 @@
 * 다운로드 위치
 
   > PaaSTA-Services : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
+
   > PaaSTA-Deployment : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
+
   > PaaSTA-Sample-Apps : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
+
 
 #### 2.2. RabbitMQ 서비스 릴리즈 업로드
 
@@ -71,18 +79,16 @@
 
   ```text
   $ bosh releases
-  \`\`\`
 
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-
   Acting as user 'admin' on 'my-bosh'
 
 +-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| empty-release \| 2.0 \| 870201f29+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
 
-Releases total: 1
+Releases Total : 1
 ```
 
-RabbitMQ 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+* RabbitMQ 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 * RabbitMQ 서비스 릴리즈 파일을 업로드한다.
 
@@ -145,7 +151,7 @@ Task 372 done
 
 Started 2017-01-16 05:28:49 UTC Finished 2017-01-16 05:28:55 UTC Duration :00:06 paasta-rabbit: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 276.8MB 17.0MB/s Time: 00:00:16
 
-Release uploaded
+Release upload
 ```
 
 * 업로드된 RabbitMQ 릴리즈를 확인한다.
@@ -157,10 +163,11 @@ RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting 
 
 +-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| paasta-rabbitmq \| 2.0 \| 21516d49+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
 
-Releases total: 1
+Release Total : 1
 ```
 
-###<div id='9'>2.3. RabbitMQ 서비스 Deployment 파일 수정 및 배포
+
+#### 2.3. RabbitMQ 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent)을 사용 할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등;이 정의 되어 있다.
 
@@ -425,15 +432,11 @@ resource_pools:                          # 배포시 사용하는 resource pools
   ```text
  $ bosh deploy
 
-  \`\`\`
-
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-
   Acting as user 'admin' on deployment 'paasta-rabbitmq-service' on 'my-bosh'
-
   Getting deployment properties from director...
-
   Unable to get properties list from director, trying without it...
+```
 
 ### Detecting deployment changes
 
@@ -463,7 +466,6 @@ Started 2017-01-16 05:37:31 UTC Finished 2017-01-16 05:47:18 UTC Duration :09:47
 
 Deployed 'paasta-rabbitmq-service' to 'my-bosh'
 
-```
 
 * 배포된 RabbitMQ 서비스팩을 확인한다.
 
@@ -471,9 +473,7 @@ Deployed 'paasta-rabbitmq-service' to 'my-bosh'
 $ bosh vms
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on deployment 'paasta-rabbitmq-service' on 'my-bosh'
-
 Director task
-
 Task 375 done
 
 +------------------------------------------------------------+---------+-----+----------------+-----------+ \| VM \| State \| AZ \| VM Type \| IPs \| +------------------------------------------------------------+---------+-----+----------------+-----------+ \| haproxy/0 \(5de67578-1315-405d-9721-5e655b1a7954\) \| running \| n/a \| resource\_pools \| 10.0.0.82 \| \| paasta-rmq-broker/0 \(18d4ae42-db87-400b-9d18-95c7a146acc9\) \| running \| n/a \| resource\_pools \| 10.0.0.81 \| \| rmq/0 \(48e1fdae-965a-4750-a8bb-1811878a3d98\) \| running \| n/a \| resource\_pools \| 10.0.0.83 \| +------------------------------------------------------------+---------+-----+----------------+-----------+
@@ -490,8 +490,7 @@ RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 
 ```text
 $ cf service-brokers
 ```
-
-![rabbitmq_image_02]
+![](../images/rabbitmq/rabbitmq_image_02.png)
 
 * rabbitmq 서비스 브로커를 등록한다.
 
