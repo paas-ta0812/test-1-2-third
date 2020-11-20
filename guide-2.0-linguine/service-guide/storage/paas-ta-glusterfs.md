@@ -62,7 +62,7 @@
 
   Acting as user 'admin' on 'my-bosh'
 
-  Name  Versions  Commit Hash    empty-release  2.0  Uncommitted changes
+  Name  Versions  Commit Hash    empty-release  20  Uncommitted changes
 
 Releases total: 1
 ```
