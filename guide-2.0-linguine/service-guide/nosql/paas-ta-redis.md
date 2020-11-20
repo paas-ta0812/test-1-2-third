@@ -66,12 +66,12 @@ aS-TA Redis 서비스팩 설치 가이드
 
 * PaaSTA-Services.zip 파일 압축을 풀고 폴더안에 있는 Redis 서비스 릴리즈 paasta-redis-2.0.tgz 파일을 확인한다.
 
-  ```text
+```text
   $ ls --all
 
   .  cf236      paasta-cubrid-2.0.tgz    paasta-mysql-2.0.tgz    paasta-portal-object-storage-2.0.tgz paasta-redis-2.0.tgz
   .. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
-  ```
+```
 
 * 업로드 되어 있는 릴리즈 목록을 확인한다.
 
@@ -88,6 +88,7 @@ Release total : 9
 ```
 
 - Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+
 
 - Redis 서비스 릴리즈 파일을 업로드한다.
 
@@ -426,7 +427,7 @@ resource_pools:
 
 * Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
-  ```text
+```text
   $ bosh deployment paasta_redis_vsphere_2.0.yml
 
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
@@ -639,9 +640,7 @@ $ cd redis-example-app
 
 ```text
 $ vi manifest.yml
-```
 
-```yaml
 ---
 applications:
 - name: redis-example-app    # 배포할 App 이름
