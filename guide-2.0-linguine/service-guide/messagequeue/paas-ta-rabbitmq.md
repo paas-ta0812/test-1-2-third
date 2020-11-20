@@ -80,10 +80,9 @@ RabbitMQ 서비스팩을 검증하기 위한 기본 설치를 기준으로 작�
   ```text
 
 $ bosh releases
-
+```
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on 'my-bosh'
-```
 +-----------------+----------+-------------+ | Name | Versions | Commit Hash | +-----------------+----------+-------------+ | empty-release | 2.0 | 870201f29+ | +-----------------+----------+-------------+ (+) Uncommitted changes
 
 Ralease total 1
