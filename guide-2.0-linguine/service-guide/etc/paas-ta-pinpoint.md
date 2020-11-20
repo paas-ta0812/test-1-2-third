@@ -64,9 +64,11 @@ PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. \(P
 
 * 다운로드 위치
 
-> PaaSTA-Services : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
-> PaaSTA-Deployment : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
-> PaaSTA-Sample-Apps : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
+> PaaSTA-Services : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
+
+> PaaSTA-Deployment : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
+
+> PaaSTA-Sample-Apps : [**https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip**](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
 
 #### 2.2. Pinpoint 서비스 릴리즈 업로드
 
@@ -78,24 +80,18 @@ $ ls paasta-pinpoint-2.0.tgz
 
 * 릴리즈를 업로드한다.
 
-  ```text
+```text
   $ bosh upload release paasta-pinpoint-2.0.tgz
 
-  \`\`\`
-
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-
   Acting as user 'admin' on 'bosh'
-
   Verifying manifest...
-
   Extract manifest OK
-
   Manifest exists OK
-
   Release name/version OK
 
 File exists and readable OK Read package 'webui' \(1 of 10\) OK Package 'webui' checksum OK Read package 'ssh-keys' \(2 of 10\) OK Package 'ssh-keys' checksum OK Read package 'bosh-helpers' \(3 of 10\) OK Package 'bosh-helpers' checksum OK Read package 'hadoop' \(4 of 10\) OK Package 'hadoop' checksum OK Read package 'broker' \(5 of 10\) OK Package 'broker' checksum OK Read package 'haproxy' \(6 of 10\) OK Package 'haproxy' checksum OK Read package 'hbase' \(7 of 10\) OK Package 'hbase' checksum OK Read package 'tomcat' \(8 of 10\) OK Package 'tomcat' checksum OK Read package 'java' \(9 of 10\) OK Package 'java' checksum OK Read package 'collector' \(10 of 10\) OK Package 'collector' checksum OK Package dependencies OK Checking jobs format OK Read job 'h\_secondary' \(1 of 8\), version 5c00b321b374d2b166908d5bc12a0c6d16cbe49c OK Job 'h\_secondary' checksum OK Extract job 'h\_secondary' OK Read job 'h\_secondary' manifest OK Check template 'bin/h\_secondary\_ctl.erb' for 'h\_secondary' OK Check template 'config/hadoop/core-site.xml.erb' for 'h\_secondary' OK Check template 'config/hadoop/hadoop-env.sh' for 'h\_secondary' OK Check template 'config/hadoop/hdfs-site.xml.erb' for 'h\_secondary' OK Check template 'config/hadoop/mapred-site.xml.erb' for 'h\_secondary' OK Check template 'config/hadoop/slaves.erb' for 'h\_secondary' OK Check template 'config/hadoop/yarn-env.sh' for 'h\_secondary' OK Check template 'config/hadoop/yarn-site.xml.erb' for 'h\_secondary' OK Check template 'data/properties.sh.erb' for 'h\_secondary' OK Check template 'etc/hosts.erb' for 'h\_secondary' OK Check template 'config/hadoop/capacity-scheduler.xml' for 'h\_secondary' OK Check template 'config/hadoop/configuration.xsl' for 'h\_secondary' OK Check template 'config/hadoop/container-executor.cfg' for 'h\_secondary' OK Check template 'config/hadoop/hadoop-env.cmd' for 'h\_secondary' OK Check template 'config/hadoop/hadoop-metrics.properties' for 'h\_secondary' OK Check template 'config/hadoop/hadoop-metrics2.properties' for 'h\_secondary' OK Check template 'config/hadoop/hadoop-policy.xml' for 'h\_secondary' OK Check template 'config/hadoop/httpfs-env.sh' for 'h\_secondary' OK Check template 'config/hadoop/httpfs-log4j.properties' for 'h\_secondary' OK Check template 'config/hadoop/httpfs-signature.secret' for 'h\_secondary' OK Check template 'config/hadoop/httpfs-site.xml' for 'h\_secondary' OK Check template 'config/hadoop/log4j.properties' for 'h\_secondary' OK Check template 'config/hadoop/mapred-env.cmd' for 'h\_secondary' OK Check template 'config/hadoop/mapred-env.sh' for 'h\_secondary' OK Check template 'config/hadoop/mapred-queues.xml.template' for 'h\_secondary' OK Check template 'config/hadoop/mapred-site.xml.template' for 'h\_secondary' OK Check template 'config/hadoop/ssl-client.xml.example' for 'h\_secondary' OK Check template 'config/hadoop/ssl-server.xml.example' for 'h\_secondary' OK Check template 'config/hadoop/yarn-env.cmd' for 'h\_secondary' OK Job 'h\_secondary' needs 'bosh-helpers' package OK Job 'h\_secondary' needs 'ssh-keys' package OK Job 'h\_secondary' needs 'java' package OK Job 'h\_secondary' needs 'hadoop' package OK Monit file for 'h\_secondary' OK Read job 'h\_master' \(2 of 8\), version 4b1213e73d0c35d133c7582d68d1fd1bf4de6969 OK Job 'h\_master' checksum OK Extract job 'h\_master' OK Read job 'h\_master' manifest OK Check template 'bin/h\_master\_ctl.erb' for 'h\_master' OK Check template 'config/hadoop/core-site.xml.erb' for 'h\_master' OK Check template 'config/hadoop/hadoop-env.sh' for 'h\_master' OK Check template 'config/hadoop/hdfs-site.xml.erb' for 'h\_master' OK Check template 'config/hadoop/mapred-site.xml.erb' for 'h\_master' OK Check template 'config/hadoop/slaves.erb' for 'h\_master' OK Check template 'config/hadoop/yarn-env.sh' for 'h\_master' OK Check template 'config/hadoop/yarn-site.xml.erb' for 'h\_master' OK Check template 'config/hbase/hbase-env.sh' for 'h\_master' OK Check template 'config/hbase/hbase-site.xml.erb' for 'h\_master' OK Check template 'config/hbase/regionservers.erb' for 'h\_master' OK Check template 'data/properties.sh.erb' for 'h\_master' OK Check template 'etc/hosts.erb' for 'h\_master' OK Check template 'config/hadoop/capacity-scheduler.xml' for 'h\_master' OK Check template 'config/hadoop/configuration.xsl' for 'h\_master' OK Check template 'config/hadoop/container-executor.cfg' for 'h\_master' OK Check template 'config/hadoop/hadoop-env.cmd' for 'h\_master' OK Check template 'config/hadoop/hadoop-metrics.properties' for 'h\_master' OK Check template 'config/hadoop/hadoop-metrics2.properties' for 'h\_master' OK Check template 'config/hadoop/hadoop-policy.xml' for 'h\_master' OK Check template 'config/hadoop/httpfs-env.sh' for 'h\_master' OK Check template 'config/hadoop/httpfs-log4j.properties' for 'h\_master' OK Check template 'config/hadoop/httpfs-signature.secret' for 'h\_master' OK Check template 'config/hadoop/httpfs-site.xml' for 'h\_master' OK Check template 'config/hadoop/log4j.properties' for 'h\_master' OK Check template 'config/hadoop/mapred-env.cmd' for 'h\_master' OK Check template 'config/hadoop/mapred-env.sh' for 'h\_master' OK Check template 'config/hadoop/mapred-queues.xml.template' for 'h\_master' OK Check template 'config/hadoop/mapred-site.xml.template' for 'h\_master' OK Check template 'config/hadoop/ssl-client.xml.example' for 'h\_master' OK Check template 'config/hadoop/ssl-server.xml.example' for 'h\_master' OK Check template 'config/hadoop/yarn-env.cmd' for 'h\_master' OK Check template 'config/hbase/hadoop-metrics2-hbase.properties' for 'h\_master' OK Check template 'config/hbase/hbase-env.cmd' for 'h\_master' OK Check template 'config/hbase/hbase-policy.xml' for 'h\_master' OK Check template 'config/hbase/log4j.properties' for 'h\_master' OK Job 'h\_master' needs 'bosh-helpers' package OK Job 'h\_master' needs 'ssh-keys' package OK Job 'h\_master' needs 'java' package OK Job 'h\_master' needs 'hadoop' package OK Job 'h\_master' needs 'hbase' package OK Monit file for 'h\_master' OK Read job 'webui' \(3 of 8\), version 9cec7497c1b103f22f3ce39bee82e92e9a50e934 OK Job 'webui' checksum OK Extract job 'webui' OK Read job 'webui' manifest OK Check template 'bin/webui\_ctl.erb' for 'webui' OK Check template 'common/ctl\_common.sh' for 'webui' OK Check template 'data/properties.sh.erb' for 'webui' OK Check template 'etc/hosts.erb' for 'webui' OK Job 'webui' needs 'bosh-helpers' package OK Job 'webui' needs 'java' package OK Job 'webui' needs 'tomcat' package OK Job 'webui' needs 'webui' package OK Monit file for 'webui' OK Read job 'haproxy\_webui' \(4 of 8\), version 481dac37a2d65b6ce4edfa5d91a4cddd5cce9516 OK Job 'haproxy\_webui' checksum OK Extract job 'haproxy\_webui' OK Read job 'haproxy\_webui' manifest OK Check template 'bin/haproxy\_webui\_ctl.erb' for 'haproxy\_webui' OK Check template 'config/haproxy/haproxy.cfg.erb' for 'haproxy\_webui' OK Check template 'data/properties.sh.erb' for 'haproxy\_webui' OK Check template 'etc/hosts.erb' for 'haproxy\_webui' OK Job 'haproxy\_webui' needs 'bosh-helpers' package OK Job 'haproxy\_webui' needs 'java' package OK Job 'haproxy\_webui' needs 'haproxy' package OK Monit file for 'haproxy\_webui' OK Read job 'broker' \(5 of 8\), version f17d59dd28cc876ea3de8959b0bceed8df8c6eea OK Job 'broker' checksum OK Extract job 'broker' OK Read job 'broker' manifest OK Check template 'bin/broker\_ctl' for 'broker' OK Check template 'bin/monit\_debugger' for 'broker' OK Check template 'data/properties.sh.erb' for 'broker' OK Check template 'helpers/ctl\_setup.sh' for 'broker' OK Check template 'helpers/ctl\_utils.sh' for 'broker' OK Check template 'config/broker.yml.erb' for 'broker' OK Check template 'config/application-mvc.properties.erb' for 'broker' OK Check template 'config/collector.json.erb' for 'broker' OK Check template 'config/logback.xml.erb' for 'broker' OK Job 'broker' needs 'broker' package OK Job 'broker' needs 'java' package OK Monit file for 'broker' OK Read job 'h\_master\_register' \(6 of 8\), version 40d0e9f56b63ac5025f523597754a2ee6a799107 OK Job 'h\_master\_register' checksum OK Extract job 'h\_master\_register' OK Read job 'h\_master\_register' manifest OK Check template 'errand.sh.erb' for 'h\_master\_register' OK Job 'h\_master\_register' needs 'ssh-keys' package OK Monit file for 'h\_master\_register' OK Read job 'h\_slave' \(7 of 8\), version ca15d7c5e57fbd7ecfb7a4614dd8bee8d43efe84 OK Job 'h\_slave' checksum OK Extract job 'h\_slave' OK Read job 'h\_slave' manifest OK Check template 'bin/h\_slave\_ctl.erb' for 'h\_slave' OK Check template 'config/hadoop/core-site.xml.erb' for 'h\_slave' OK Check template 'config/hadoop/hadoop-env.sh' for 'h\_slave' OK Check template 'config/hadoop/hdfs-site.xml.erb' for 'h\_slave' OK Check template 'config/hadoop/mapred-site.xml.erb' for 'h\_slave' OK Check template 'config/hadoop/slaves.erb' for 'h\_slave' OK Check template 'config/hadoop/yarn-env.sh' for 'h\_slave' OK Check template 'config/hadoop/yarn-site.xml.erb' for 'h\_slave' OK Check template 'config/hbase/hbase-env.sh' for 'h\_slave' OK Check template 'config/hbase/hbase-site.xml.erb' for 'h\_slave' OK Check template 'config/hbase/regionservers.erb' for 'h\_slave' OK Check template 'data/properties.sh.erb' for 'h\_slave' OK Check template 'etc/hosts.erb' for 'h\_slave' OK Check template 'config/hadoop/capacity-scheduler.xml' for 'h\_slave' OK Check template 'config/hadoop/configuration.xsl' for 'h\_slave' OK Check template 'config/hadoop/container-executor.cfg' for 'h\_slave' OK Check template 'config/hadoop/hadoop-env.cmd' for 'h\_slave' OK Check template 'config/hadoop/hadoop-metrics.properties' for 'h\_slave' OK Check template 'config/hadoop/hadoop-metrics2.properties' for 'h\_slave' OK Check template 'config/hadoop/hadoop-policy.xml' for 'h\_slave' OK Check template 'config/hadoop/httpfs-env.sh' for 'h\_slave' OK Check template 'config/hadoop/httpfs-log4j.properties' for 'h\_slave' OK Check template 'config/hadoop/httpfs-signature.secret' for 'h\_slave' OK Check template 'config/hadoop/httpfs-site.xml' for 'h\_slave' OK Check template 'config/hadoop/log4j.properties' for 'h\_slave' OK Check template 'config/hadoop/mapred-env.cmd' for 'h\_slave' OK Check template 'config/hadoop/mapred-env.sh' for 'h\_slave' OK Check template 'config/hadoop/mapred-queues.xml.template' for 'h\_slave' OK Check template 'config/hadoop/mapred-site.xml.template' for 'h\_slave' OK Check template 'config/hadoop/ssl-client.xml.example' for 'h\_slave' OK Check template 'config/hadoop/ssl-server.xml.example' for 'h\_slave' OK Check template 'config/hadoop/yarn-env.cmd' for 'h\_slave' OK Check template 'config/hbase/hadoop-metrics2-hbase.properties' for 'h\_slave' OK Check template 'config/hbase/hbase-env.cmd' for 'h\_slave' OK Check template 'config/hbase/hbase-policy.xml' for 'h\_slave' OK Check template 'config/hbase/log4j.properties' for 'h\_slave' OK Job 'h\_slave' needs 'bosh-helpers' package OK Job 'h\_slave' needs 'ssh-keys' package OK Job 'h\_slave' needs 'java' package OK Job 'h\_slave' needs 'hadoop' package OK Job 'h\_slave' needs 'hbase' package OK Monit file for 'h\_slave' OK Read job 'collector' \(8 of 8\), version 062974e137db2e4262036a38198c2c167fbc6f0c OK Job 'collector' checksum OK Extract job 'collector' OK Read job 'collector' manifest OK Check template 'bin/collector\_ctl.erb' for 'collector' OK Check template 'common/ctl\_common.sh' for 'collector' OK Check template 'data/properties.sh.erb' for 'collector' OK Check template 'etc/hosts.erb' for 'collector' OK Job 'collector' needs 'bosh-helpers' package OK Job 'collector' needs 'java' package OK Job 'collector' needs 'tomcat' package OK Job 'collector' needs 'collector' package OK Monit file for 'collector' OK
+```
 
 ### Release info
 
@@ -129,6 +125,7 @@ License
 
 * none
 
+```text
 Checking if can repack release for faster upload... webui \(655536239b03532d40b99159865520d8ee9e870d\) UPLOAD ssh-keys \(a92619994e7c69a7c52d30f4bc87c949ca2e5b77\) UPLOAD bosh-helpers \(10d1d5cf2e9dfd6c8279aa99386c560ed32eb6fe\) UPLOAD hadoop \(1d3ea90f6e3173e51ce42eacccd380c8c821f3a4\) UPLOAD broker \(9c8209bff0c69156bcb15e1ed7f1c7f3b73df2cd\) UPLOAD haproxy \(88e2cea38299d775fda4bac58eba167eefae6dc5\) UPLOAD hbase \(5d5427c7c567de557a7f899f2c83f347723007c3\) UPLOAD tomcat \(462a5a0b802cb559e23fe8e59b804c594c641428\) UPLOAD java \(788dd8b3824f7ed89a51f0d870d8a5b6376820a5\) UPLOAD collector \(e0b59e5385885af84c3cb4363821d5d6d1be0eae\) UPLOAD h\_secondary \(5c00b321b374d2b166908d5bc12a0c6d16cbe49c\) UPLOAD h\_master \(4b1213e73d0c35d133c7582d68d1fd1bf4de6969\) UPLOAD webui \(9cec7497c1b103f22f3ce39bee82e92e9a50e934\) UPLOAD haproxy\_webui \(481dac37a2d65b6ce4edfa5d91a4cddd5cce9516\) UPLOAD broker \(f17d59dd28cc876ea3de8959b0bceed8df8c6eea\) UPLOAD h\_master\_register \(40d0e9f56b63ac5025f523597754a2ee6a799107\) UPLOAD h\_slave \(ca15d7c5e57fbd7ecfb7a4614dd8bee8d43efe84\) UPLOAD collector \(062974e137db2e4262036a38198c2c167fbc6f0c\) UPLOAD Uploading the whole release
 
 Uploading release paasta-pinpoi: 96% \|ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 512.4MB 26.5MB/s ETA: 00:00:00 Director task 441 Started extracting release &gt; Extracting release. Done \(00:00:06\)
@@ -147,10 +144,10 @@ Task 441 done
 
 Started 2016-12-29 07:29:24 UTC Finished 2016-12-29 07:29:40 UTC Duration 00:00:16 paasta-pinpoi: 96% \|ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 513.7MB 14.3MB/s Time: 00:00:35
 
-Release uploaded
+Release upload
 ```
 
-* 업로드 되어 있는 릴리즈 목록을 확인한다.
+- 업로드 되어 있는 릴리즈 목록을 확인한다.
 
 ```text
 $ bosh releases
@@ -406,18 +403,14 @@ releases:
 
 * Pinpoint 서비스팩을 배포한다.
 
-  ```text
+```text
   $ bosh deploy
 
-  \`\`\`
-
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
-
   Acting as user 'admin' on deployment 'paasta-pinpoint' on 'bosh'
-
   Getting deployment properties from director...
-
   Unable to get properties list from director, trying without it...
+```
 
 ### Detecting deployment changes
 
@@ -743,6 +736,7 @@ properties: master: host\_name: "" host\_ip: "" port: "" http\_port: "" replicat
 
 ### Deploying
 
+```text
 Are you sure you want to deploy? \(type 'yes' to continue\): yes
 
 Director task 446 Deprecation: Ignoring cloud config. Manifest contains 'networks' section.
@@ -766,7 +760,7 @@ Started 2016-12-29 07:54:37 UTC Finished 2016-12-29 08:28:51 UTC Duration 00:34:
 Deployed 'paasta-pinpoint' to 'bosh'
 ```
 
-* 배포된 Pinpoint 서비스팩을 확인한다.
+- 배포된 Pinpoint 서비스팩을 확인한다.
 
 ```text
 Deployment 'paasta-pinpoint'
@@ -890,15 +884,16 @@ Getting service brokers as admin... name url pinpoint-service-broker http:// 10.
 ```
 
 -   접근 가능한 서비스 목록을 확인한다.
+
 ```text
 $ cf service-access
 
 Getting service access as admin... broker: Pinpoint-service-broker service plan access orgs Pinpoint Pinpoint\_standard none
 ```
 
-서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
+- 서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
--   특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
+-  특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
 ```text
 $ cf enable-service-access Pinpoint
@@ -910,7 +905,6 @@ Enabling access to all plans of service Pinpoint for all orgs as admin... OK
 
 ```text
 $ cf service-access
-
 
 Getting service access as admin... broker: Pinpoint-service-broker service plan access orgs Pinpoint Pinpoint\_standard all
 ```
@@ -934,15 +928,10 @@ App에 Pinpoint 서비스 Bind 를 통하여 초기 데이터를 생성하게 �
 ```text
 $ cf push -b java\_buildpack\_pinpoint --no-start
 
-
 Using manifest file /home/ubuntu/workspace/bd\_test/spring-music/manifest.yml
-
 Creating app spring-music-pinpoint in org org / space space as admin... OK
-
 Creating route spring-music-pinpoint.monitoring.open-paas.com... OK
-
 Binding spring-music-pinpoint.monitoring.open-paas.com to spring-music-pinpoint... OK
-
 Uploading spring-music-pinpoint... Uploading app files from: /tmp/unzipped-app175965484 Uploading 21.2M, 126 files Done uploading
 OK
 ```
@@ -951,7 +940,6 @@ OK
 $ cf apps
 
 Getting apps in org org / space space as admin... OK
-
 name requested state instances memory disk urls php-demo started 1/1 256M 1G php-demo.monitoring.open-paas.com spring-music stopped 0/1 512M 1G spring-music.monitoring.open-paas.com spring-music-pinpoint stopped 0/1 512M 1G spring-music-pinpoint.monitoring.open-paas.com
 ```
 
@@ -970,9 +958,7 @@ Sample Web App에서 Pinpoint 서비스를 사용하기 위해서는 서비스
 ```text
 $ cf marketplace
 
-
 Getting services from marketplace in org org / space space as admin... OK
-
 service plans description Pinpoint Pinpoint\_standard A simple pinpoint implementation
 ```
 
@@ -995,7 +981,6 @@ Creating service instance PS1 in org org / space space as admin... OK
 $ cf services
 
 Getting services in org org / space space as admin... OK
-
 name service plan bound apps last operation app\_log\_drain user-provided PS1 Pinpoint Pinpoint\_standard create succeeded syslog\_service user-provided php-demo, spring-music
 ```
 
@@ -1016,9 +1001,7 @@ name service plan bound apps last operation app\_log\_drain user-provided PS1 Pi
 ```text
 $ cf s
 
-
 Getting services in org org / space space as admin... OK
-
 name service plan bound apps last operation app\_log\_drain user-provided PS1 Pinpoint Pinpoint\_standard create succeeded syslog\_service user-provided spring-music, php-demo
 ```
 
@@ -1027,10 +1010,8 @@ name service plan bound apps last operation app\_log\_drain user-provided PS1 Pi
 ```text
   $ cf bind-service spring-music-pinpoint PS1 -c '{"application_name":"spring-music"}'
 
-
   Binding service PS1 to app spring-music-pinpoint in org org / space space as admin...
   OK
-
   TIP: Use 'cf restage spring-music-pinpoint' to ensure your env variable changes take effect
 
   \`\`\`
