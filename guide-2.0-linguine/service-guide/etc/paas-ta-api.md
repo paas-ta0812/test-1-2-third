@@ -74,10 +74,8 @@
 
 * 업로드 되어 있는 릴리즈 목록을 확인한다.
 
-  ```text
+```text
   $ bosh releases
-
-  \`\`\`
 
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 
@@ -85,15 +83,14 @@
 
 +-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| empty-release \| 2.0 \| 870201f29+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
 
-Releases total: 1
-
+Release Total :1
 ```
-API 플랫폼 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-<br>
-* API 플랫폼 서비스 릴리즈 파일을 업로드한다.
+- API 플랫폼 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-```
+- API 플랫폼 서비스 릴리즈 파일을 업로드한다.
+
+```text
 $ bosh upload release paasta-apiplatform-2.0.tgz
 
 
@@ -102,6 +99,7 @@ RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting 
 Verifying manifest... Extract manifest OK Manifest exists OK Release name/version OK
 
 File exists and readable OK Read package 'apiplatform-broker' \(1 of 8\) OK Package 'apiplatform-broker' checksum OK Read package 'bam' \(2 of 8\) OK Package 'bam' checksum OK Read package 'java7' \(3 of 8\) OK Package 'java7' checksum OK Read package 'mariadb' \(4 of 8\) OK Package 'mariadb' checksum OK Read package 'jre7' \(5 of 8\) OK Package 'jre7' checksum OK Read package 'mysql\_connector\_java' \(6 of 8\) OK Package 'mysql\_connector\_java' checksum OK Read package 'apimanager' \(7 of 8\) OK Package 'apimanager' checksum OK Read package 'cf-cli' \(8 of 8\) OK Package 'cf-cli' checksum OK Package dependencies OK Checking jobs format OK Read job 'apiplatform-broker' \(1 of 6\), version d2268ddb0e90587a0354514539f328a112778e15 OK Job 'apiplatform-broker' checksum OK Extract job 'apiplatform-broker' OK Read job 'apiplatform-broker' manifest OK Check template 'bin/apiplatform-broker-ctl' for 'apiplatform-broker' OK Check template 'config/application-mvc.properties' for 'apiplatform-broker' OK Check template 'config/datasource.properties' for 'apiplatform-broker' OK Check template 'config/logback.xml' for 'apiplatform-broker' OK Check template 'helpers/ctl\_setup.sh' for 'apiplatform-broker' OK Check template 'helpers/ctl\_utils.sh' for 'apiplatform-broker' OK Job 'apiplatform-broker' needs 'jre7' package OK Job 'apiplatform-broker' needs 'apiplatform-broker' package OK Monit file for 'apiplatform-broker' OK Read job 'bam' \(2 of 6\), version 9f8e8153f5b4a8721a88f2738f1758a8451a556d OK Job 'bam' checksum OK Extract job 'bam' OK Read job 'bam' manifest OK Check template 'bam\_ctl' for 'bam' OK Check template 'bam-datasources.xml.erb' for 'bam' OK Job 'bam' needs 'java7' package OK Job 'bam' needs 'mysql\_connector\_java' package OK Job 'bam' needs 'bam' package OK Monit file for 'bam' OK Read job 'mariadb' \(3 of 6\), version 0bb32f84b995263d578b3c6a2228b071e827af45 OK Job 'mariadb' checksum OK Extract job 'mariadb' OK Read job 'mariadb' manifest OK Check template 'mariadb\_ctl.erb' for 'mariadb' OK Check template 'my.cnf.erb' for 'mariadb' OK Check template 'mariadb\_init.erb' for 'mariadb' OK Job 'mariadb' needs 'mariadb' package OK Monit file for 'mariadb' OK Read job 'broker-deregistrar' \(4 of 6\), version 0f096d882ca230b6ed27d23763d65b38553d1f11 OK Job 'broker-deregistrar' checksum OK Extract job 'broker-deregistrar' OK Read job 'broker-deregistrar' manifest OK Check template 'errand.sh.erb' for 'broker-deregistrar' OK Job 'broker-deregistrar' needs 'cf-cli' package OK Monit file for 'broker-deregistrar' OK Read job 'apimanager' \(5 of 6\), version 5931ccbd067f7a09f33c4201d731e4a7301d51e7 OK Job 'apimanager' checksum OK Extract job 'apimanager' OK Read job 'apimanager' manifest OK Check template 'apimanager\_ctl' for 'apimanager' OK Check template 'api-manager.xml.erb' for 'apimanager' OK Check template 'master-datasources.xml.erb' for 'apimanager' OK Job 'apimanager' needs 'java7' package OK Job 'apimanager' needs 'mysql\_connector\_java' package OK Job 'apimanager' needs 'apimanager' package OK Monit file for 'apimanager' OK Read job 'broker-registrar' \(6 of 6\), version a925a0139faf28cced6226236c50b605342089f1 OK Job 'broker-registrar' checksum OK Extract job 'broker-registrar' OK Read job 'broker-registrar' manifest OK Check template 'errand.sh.erb' for 'broker-registrar' OK Job 'broker-registrar' needs 'cf-cli' package OK Monit file for 'broker-registrar' OK
+```
 
 ### Release info
 
@@ -129,8 +127,9 @@ Jobs
 
 License
 
-* none
+- none
 
+```text
 Checking if can repack release for faster upload... apiplatform-broker \(905b8ef7eb62f5c3346e29cb6d2c226848d274c4\) UPLOAD bam \(6c9d63e35fbcbafffb652a77970da28d06c32888\) UPLOAD java7 \(b14c4d3bcaeb0c5d5473fa1952857a07dcb0f98c\) UPLOAD mariadb \(2d1620ee663941f4e0158a687d6ff5606a7f03b6\) UPLOAD jre7 \(61fd725f2e7a77d249a5fa90b84519f48db3f377\) UPLOAD mysql\_connector\_java \(e491992f10149ce70128a764fe9e4501ea212ec5\) UPLOAD apimanager \(54c121ed16497da84b3a0f6a6f5457fa46d59e8a\) UPLOAD cf-cli \(4356ff905496d92b0c5cab7f03c364569b562642\) UPLOAD apiplatform-broker \(d2268ddb0e90587a0354514539f328a112778e15\) UPLOAD bam \(9f8e8153f5b4a8721a88f2738f1758a8451a556d\) UPLOAD mariadb \(0bb32f84b995263d578b3c6a2228b071e827af45\) UPLOAD broker-deregistrar \(0f096d882ca230b6ed27d23763d65b38553d1f11\) UPLOAD apimanager \(5931ccbd067f7a09f33c4201d731e4a7301d51e7\) UPLOAD broker-registrar \(a925a0139faf28cced6226236c50b605342089f1\) UPLOAD Uploading the whole release
 
 Uploading release paasta-apipla: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 883.4MB 35.3MB/s ETA: 00:00:01 Director task Started extracting release &gt; Extracting release. Done \(00:00:07\)
@@ -149,12 +148,10 @@ Task 394 done
 
 Started 2017-01-17 00:29:25 UTC Finished 2017-01-17 00:29:49 UTC Duration :00:24 paasta-apipla: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 885.6MB 16.8MB/s Time: 00:00:52
 
-Release uploaded
-
+Release upload
 ```
-<br>
 
-* 업로드 된 API 플랫폼 릴리즈를 확인한다.
+- 업로드 된 API 플랫폼 릴리즈를 확인한다.
 
 ```text
 $ bosh releases
@@ -170,7 +167,6 @@ Releases total: 1
 API 플랫폼 릴리즈가 업로드 되어 있는 것을 확인
 
 
-<br>
 ### 2.3. API 플랫폼 서비스 릴리즈 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할 것인지와 Release (Software packages, Config templates, Scripts)의 이름과 버전, VMs 용량, Jobs params 등이 정의 되어 있다.
@@ -842,11 +838,11 @@ $ cf services
 
 * 샘플앱과 생성한 서비스 인스턴스를 바인드 한다.
 
-  ```text
+```text
   $ cf bind-service hello-servlet-api phoneverification-instance-unlimited
-  ```
+```
 
-  ![](../images/apiplatform/apiplatform_image_31.png)
+![](../images/apiplatform/apiplatform_image_31.png)
 
 #### 3.2. 서비스 바인드 확인
 
