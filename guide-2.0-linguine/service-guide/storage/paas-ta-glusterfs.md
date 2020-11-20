@@ -66,7 +66,7 @@ Ralease total 1
 
 * GlusterFS 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인하고 GlusterFS 서비스 릴리즈 파일을 업로드한다.
  
-```text
+  ```text
 $ bosh upload release paasta-glusterfs-2.0.tgz
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
