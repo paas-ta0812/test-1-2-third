@@ -60,7 +60,7 @@
 
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
   Acting as user 'admin' on 'my-bosh'
-+-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| empty-release \| 2.0 \| 870201f29+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
++-----------------+----------+-------------+ | Name | Versions | Commit Hash | +-----------------+----------+-------------+ | empty-release | 2.0 | 870201f29+ | +-----------------+----------+-------------+ (+) Uncommitted changes
 Ralease total 1 
 ```
 
@@ -116,7 +116,7 @@ Task 379 done
 
 Started 2017-01-16 07:24:34 UTC Finished 2017-01-16 07:24:37 UTC Duration :00:03 paasta-gluste: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 135.4MB 16.9MB/s Time: 00:00:08
 
-Release uploaded
+Release upload
 ```
 
 
