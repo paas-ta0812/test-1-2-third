@@ -85,7 +85,6 @@ Acting as user 'admin' on 'my-bosh'
 +-----------------+----------+-------------+ | Name | Versions | Commit Hash | +-----------------+----------+-------------+ | empty-release | 2.0 | 870201f29+ | +-----------------+----------+-------------+ (+) Uncommitted changes
 
 Ralease total 1
-```
 
 * RabbitMQ 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
