@@ -90,7 +90,7 @@ Ralease total 1
 * RabbitMQ 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 * RabbitMQ 서비스 릴리즈 파일을 업로드한다.
-
+```
 ```text
 $ bosh upload release paasta-rabbitmq-2.0.tgz
 
