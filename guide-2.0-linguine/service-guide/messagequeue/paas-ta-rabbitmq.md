@@ -75,21 +75,22 @@ RabbitMQ 서비스팩을 검증하기 위한 기본 설치를 기준으로 작�
   .. cf-release paasta-glusterfs-2.0.tgz paasta-pinpoint-2.0.tgz paasta-rabbitmq-2.0.tgz              paasta-web-ide-2.0.tgz
   ```
 
-* 업로드 되어 있는 릴리즈 목록을 확인한다.
+- 업로드 되어 있는 릴리즈 목록을 확인한다.
 
-  ```text
+```text
+
 $ bosh releases
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 Acting as user 'admin' on 'my-bosh'
 +-----------------+----------+-------------+ | Name | Versions | Commit Hash | +-----------------+----------+-------------+ | empty-release | 2.0 | 870201f29+ | +-----------------+----------+-------------+ (+) Uncommitted changes
 
-Ralease total 1
+Release total 1
+```
 
 - RabbitMQ 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 - RabbitMQ 서비스 릴리즈 파일을 업로드한다.
-```
 
 ```text
 $ bosh upload release paasta-rabbitmq-2.0.tgz
