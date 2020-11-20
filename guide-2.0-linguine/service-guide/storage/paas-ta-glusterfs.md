@@ -60,7 +60,7 @@
 
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
   Acting as user 'admin' on 'my-bosh'
-  Name  Versions  Commit Hash    empty-release  20  Uncommitted changes
++-----------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +-----------------+----------+-------------+ \| empty-release \| 2.0 \| 870201f29+ \| +-----------------+----------+-------------+ \(+\) Uncommitted changes
 Ralease total 1 
 ```
 
@@ -113,11 +113,11 @@ Started creating new jobs Started creating new jobs &gt; op-glusterfs-java-broke
 Started release has been created &gt; paasta-glusterfs/2.0. Done \(00:00:00\)
 
 Task 379 done
-```
 
 Started 2017-01-16 07:24:34 UTC Finished 2017-01-16 07:24:37 UTC Duration :00:03 paasta-gluste: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 135.4MB 16.9MB/s Time: 00:00:08
 
 Release uploaded
+```
 
 
 * 업로드 된 GlusterFS 릴리즈를 확인한다.
