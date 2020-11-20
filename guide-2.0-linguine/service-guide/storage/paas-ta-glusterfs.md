@@ -13,6 +13,7 @@
 #### 1.3. 시스템 구성도
 
 본 문서의 설치된 시스템 구성도이다. Mysql Server, GlusterFS 서비스 브로커로 최소사항을 구성하였고 서비스 백엔드는 외부에 구성되어 있다.
+
 ![](../images/glusterfs/glusterfs_image_01.png)
 
 | 구분 | 스펙 |
@@ -32,10 +33,13 @@
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 target 설정이 되어 있어야 한다. BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 
 * PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. \(PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip\)
+
 * 다운로드 위치
 
   > PaaSTA-Services : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip)
+
   > PaaSTA-Deployment : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip)
+
   > PaaSTA-Sample-Apps : [https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip](https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip)
 
 #### 2.2. GlusterFS 서비스 릴리즈 업로드
@@ -54,8 +58,6 @@
   ```text
   $ bosh releases
 
-  \`\`\`
-
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 
   Acting as user 'admin' on 'my-bosh'
@@ -71,7 +73,6 @@ Releases total: 1
 $ bosh upload release paasta-glusterfs-2.0.tgz
 
 RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on 'my-bosh'
-
 Verifying manifest... Extract manifest OK Manifest exists OK Release name/version OK
 
 File exists and readable OK Read package 'openjdk' \(1 of 4\) OK Package 'openjdk' checksum OK Read package 'op-gluster-java-broker' \(2 of 4\) OK Package 'op-gluster-java-broker' checksum OK Read package 'cli' \(3 of 4\) OK Package 'cli' checksum OK Read package 'mariadb' \(4 of 4\) OK Package 'mariadb' checksum OK Package dependencies OK Checking jobs format OK Read job 'op-glusterfs-java-broker' \(1 of 4\), version 4b573f84329911cc1f253796d102cf965e9d59c4 OK Job 'op-glusterfs-java-broker' checksum OK Extract job 'op-glusterfs-java-broker' OK Read job 'op-glusterfs-java-broker' manifest OK Check template 'bin/op-glusterfs-java-broker\_ctl.erb' for 'op-glusterfs-java-broker' OK Check template 'bin/monit\_debugger' for 'op-glusterfs-java-broker' OK Check template 'config/datasource.properties.erb' for 'op-glusterfs-java-broker' OK Check template 'config/glusterfs.properties.erb' for 'op-glusterfs-java-broker' OK Check template 'config/logback.xml.erb' for 'op-glusterfs-java-broker' OK Check template 'data/properties.sh.erb' for 'op-glusterfs-java-broker' OK Check template 'helpers/ctl\_setup.sh' for 'op-glusterfs-java-broker' OK Check template 'helpers/ctl\_utils.sh' for 'op-glusterfs-java-broker' OK Job 'op-glusterfs-java-broker' needs 'openjdk' package OK Job 'op-glusterfs-java-broker' needs 'op-gluster-java-broker' package OK Monit file for 'op-glusterfs-java-broker' OK Read job 'broker-deregistrar' \(2 of 4\), version b5f6f776d46eb1ac561ab1e8f58d8ddedb97f86e OK Job 'broker-deregistrar' checksum OK Extract job 'broker-deregistrar' OK Read job 'broker-deregistrar' manifest OK Check template 'errand.sh.erb' for 'broker-deregistrar' OK Job 'broker-deregistrar' needs 'cli' package OK Monit file for 'broker-deregistrar' OK Read job 'mysql' \(3 of 4\), version 8afab204ac5fc544319c81645e506eb32163f01e OK Job 'mysql' checksum OK Extract job 'mysql' OK Read job 'mysql' manifest OK Check template 'bin/mariadb\_ctl.erb' for 'mysql' OK Check template 'bin/monit\_debugger' for 'mysql' OK Check template 'data/properties.sh.erb' for 'mysql' OK Check template 'helpers/ctl\_setup.sh' for 'mysql' OK Check template 'helpers/ctl\_utils.sh' for 'mysql' OK Check template 'config/my.cnf.erb' for 'mysql' OK Check template 'config/mariadb\_init.erb' for 'mysql' OK Job 'mysql' needs 'mariadb' package OK Monit file for 'mysql' OK Read job 'broker-registrar' \(4 of 4\), version e1f5e30b87e70e916ea74ea8eb63a7b6ff6ff643 OK Job 'broker-registrar' checksum OK Extract job 'broker-registrar' OK Read job 'broker-registrar' manifest OK Check template 'errand.sh.erb' for 'broker-registrar' OK Job 'broker-registrar' needs 'cli' package OK Monit file for 'broker-registrar' OK
@@ -98,6 +99,7 @@ Jobs
 License
 
 * none
+
 ```text
 Checking if can repack release for faster upload... openjdk \(566dfae383c61dff0c9e82bee373bb68bac3e10e\) UPLOAD op-gluster-java-broker \(e281dffd1a22142658f57509183afa9be6be2983\) UPLOAD cli \(24305e50a638ece2cace4ef4803746c0c9fe4bb0\) UPLOAD mariadb \(76d00089f1c7ee1122f6b584d26d21a14254e1f0\) UPLOAD op-glusterfs-java-broker \(4b573f84329911cc1f253796d102cf965e9d59c4\) UPLOAD broker-deregistrar \(b5f6f776d46eb1ac561ab1e8f58d8ddedb97f86e\) UPLOAD mysql \(8afab204ac5fc544319c81645e506eb32163f01e\) UPLOAD broker-registrar \(e1f5e30b87e70e916ea74ea8eb63a7b6ff6ff643\) UPLOAD Uploading the whole release
 
@@ -114,11 +116,12 @@ Started creating new jobs Started creating new jobs &gt; op-glusterfs-java-broke
 Started release has been created &gt; paasta-glusterfs/2.0. Done \(00:00:00\)
 
 Task 379 done
+```
 
 Started 2017-01-16 07:24:34 UTC Finished 2017-01-16 07:24:37 UTC Duration :00:03 paasta-gluste: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 135.4MB 16.9MB/s Time: 00:00:08
 
 Release uploaded
-```
+
 
 * 업로드 된 GlusterFS 릴리즈를 확인한다.
 
