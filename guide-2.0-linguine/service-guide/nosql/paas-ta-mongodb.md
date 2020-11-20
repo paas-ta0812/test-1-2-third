@@ -162,7 +162,7 @@ $ bosh status
 $ bosh stemcells
 ```
 
-![](../images/mongodb/mongodb_image_0r52.png)
+![](../images/mongodb/mongodb_image_05.png)
 
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 해야 한다.
 

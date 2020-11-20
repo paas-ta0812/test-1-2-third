@@ -42,7 +42,10 @@ aS-TA Redis 서비스팩 설치 가이드
 
 #### 1.4. 참고자료
 
-[**http://bosh.io/docs**](http://bosh.io/docs) [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
+- [**http://bosh.io/docs**](http://bosh.io/docs)
+
+- [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
+
 
 ## 2. Redis 서비스팩 설치
 
@@ -72,10 +75,8 @@ aS-TA Redis 서비스팩 설치 가이드
 
 * 업로드 되어 있는 릴리즈 목록을 확인한다.
 
-  ```text
+```text
   $ bosh releases
-
-  \`\`\`
 
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
 
@@ -83,12 +84,12 @@ aS-TA Redis 서비스팩 설치 가이드
 
 +--------------------------+----------+-------------+ \| Name \| Versions \| Commit Hash \| +--------------------------+----------+-------------+ \| cflinuxfs2-rootfs \| 1.40.0 _\| 19fe09f4+ \| \| empty-release \| 1+dev.1_ \| 00000000 \| \| etcd \| 86 _\| 2dfbef00+ \| \| paasta-container \| 2.0_ \| b857e171 \| \| paasta-controller \| 2.0 _\| 0f315314 \| \| paasta-garden-runc \| 2.0_ \| ea5f5d4d+ \| \| paasta-influxdb-grafana \| 2.0 _\| 00000000 \| \| paasta-logsearch \| 2.0_ \| 00000000 \| \| paasta-metrics-collector \| 2.0 _\| 00000000 \| +--------------------------+----------+-------------+ \(_\) Currently deployed \(+\) Uncommitted changes
 
-Releases total: 9
+Release total : 9
 ```
 
-Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+- Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-* Redis 서비스 릴리즈 파일을 업로드한다.
+- Redis 서비스 릴리즈 파일을 업로드한다.
 
 ```text
 $ bosh upload release paasta-redis-2.0.tgz
@@ -102,6 +103,7 @@ Releases total: 9 inception@inception-new:~/bosh-space/kimdojun/redis$ bosh uplo
 Verifying manifest... Extract manifest OK Manifest exists OK Release name/version OK
 
 File exists and readable OK Read package 'cf-cli' \(1 of 8\) OK Package 'cf-cli' checksum OK Read package 'cf-redis-broker' \(2 of 8\) OK Package 'cf-redis-broker' checksum OK Read package 'cf-redis-nginx' \(3 of 8\) OK Package 'cf-redis-nginx' checksum OK Read package 'cf-redis-smoke-tests' \(4 of 8\) OK Package 'cf-redis-smoke-tests' checksum OK Read package 'go' \(5 of 8\) OK Package 'go' checksum OK Read package 'redis-common' \(6 of 8\) OK Package 'redis-common' checksum OK Read package 'redis' \(7 of 8\) OK Package 'redis' checksum OK Read package 'ruby' \(8 of 8\) OK Package 'ruby' checksum OK Package dependencies OK Checking jobs format OK Read job 'broker-deregistrar' \(1 of 6\), version fd74f060a430d793ed734328638db0a5fee34395 OK Job 'broker-deregistrar' checksum OK Extract job 'broker-deregistrar' OK Read job 'broker-deregistrar' manifest OK Check template 'errand.sh.erb' for 'broker-deregistrar' OK Job 'broker-deregistrar' needs 'cf-cli' package OK Monit file for 'broker-deregistrar' OK Read job 'broker-registrar' \(2 of 6\), version 77bba8ba0e8fa8b06cc8be6e8ef373d285fa4daf OK Job 'broker-registrar' checksum OK Extract job 'broker-registrar' OK Read job 'broker-registrar' manifest OK Check template 'errand.sh.erb' for 'broker-registrar' OK Job 'broker-registrar' needs 'cf-cli' package OK Monit file for 'broker-registrar' OK Read job 'cf-redis-broker' \(3 of 6\), version a8cc45566d5ebc66dd90bce0737a9833e7f3fcb8 OK Job 'cf-redis-broker' checksum OK Extract job 'cf-redis-broker' OK Read job 'cf-redis-broker' manifest OK Check template 'pre-start.erb' for 'cf-redis-broker' OK Check template 'cf-redis-broker\_ctl.erb' for 'cf-redis-broker' OK Check template 'health\_check.sh.erb' for 'cf-redis-broker' OK Check template 'process-watcher\_ctl.erb' for 'cf-redis-broker' OK Check template 'process-destroyer\_ctl.erb' for 'cf-redis-broker' OK Check template 'nginx\_ctl.erb' for 'cf-redis-broker' OK Check template 'broker.yml.erb' for 'cf-redis-broker' OK Check template 'nginx.conf.erb' for 'cf-redis-broker' OK Check template 'redis.conf.erb' for 'cf-redis-broker' OK Check template 'drain.sh' for 'cf-redis-broker' OK Job 'cf-redis-broker' needs 'cf-redis-broker' package OK Job 'cf-redis-broker' needs 'redis-common' package OK Job 'cf-redis-broker' needs 'cf-redis-nginx' package OK Job 'cf-redis-broker' needs 'redis' package OK Monit file for 'cf-redis-broker' OK Read job 'dedicated-node' \(4 of 6\), version 660e3ceee60783b8dcbc01fef065371370fe2265 OK Job 'dedicated-node' checksum OK Extract job 'dedicated-node' OK Read job 'dedicated-node' manifest OK Check template 'agent.yml.erb' for 'dedicated-node' OK Check template 'redis.conf.erb' for 'dedicated-node' OK Check template 'nginx.conf.erb' for 'dedicated-node' OK Check template 'redis\_ctl.erb' for 'dedicated-node' OK Check template 'redis-agent\_ctl.erb' for 'dedicated-node' OK Check template 'nginx\_ctl.erb' for 'dedicated-node' OK Check template 'redis-agent.pem.erb' for 'dedicated-node' OK Check template 'redis-agent.key.erb' for 'dedicated-node' OK Check template 'drain-redis.sh' for 'dedicated-node' OK Job 'dedicated-node' needs 'redis' package OK Job 'dedicated-node' needs 'redis-common' package OK Job 'dedicated-node' needs 'cf-redis-nginx' package OK Job 'dedicated-node' needs 'cf-redis-broker' package OK Monit file for 'dedicated-node' OK Read job 'smoke-tests' \(5 of 6\), version e9a839a060cbac2985bc79cfbcabfc2c59ad0c8c OK Job 'smoke-tests' checksum OK Extract job 'smoke-tests' OK Read job 'smoke-tests' manifest OK Check template 'config.json.erb' for 'smoke-tests' OK Check template 'errand.sh.erb' for 'smoke-tests' OK Job 'smoke-tests' needs 'go' package OK Job 'smoke-tests' needs 'cf-redis-smoke-tests' package OK Job 'smoke-tests' needs 'cf-cli' package OK Monit file for 'smoke-tests' OK Read job 'syslog-configurator' \(6 of 6\), version e74e363f8b9ac570f30b32d024e41ef2c89db03f OK Job 'syslog-configurator' checksum OK Extract job 'syslog-configurator' OK Read job 'syslog-configurator' manifest OK Check template 'syslog-configurator\_ctl.erb' for 'syslog-configurator' OK Check template 'syslog\_forwarder.conf.erb' for 'syslog-configurator' OK Job 'syslog-configurator' needs 'redis-common' package OK Monit file for 'syslog-configurator' OK
+```
 
 ### Release info
 
@@ -131,6 +133,7 @@ License
 
 * license \(443041add743bce9c52077d8f3d2e130c08340c5\)
 
+```text
 Checking if can repack release for faster upload... cf-cli \(33a64fb1b0ca68b3403fe5b0254e86ec7d672dba\) UPLOAD cf-redis-broker \(f530f8b2135eac4a888c2da20177082eb081ee65\) UPLOAD cf-redis-nginx \(dd15c82027671c74b108c52bcecb64fcaf9c0d38\) UPLOAD cf-redis-smoke-tests \(b347f491c873fdd9e878c90defd276a82f980023\) UPLOAD go \(32629593cd827ebaf88981b56d205bea6c8b7c18\) UPLOAD redis-common \(3747d5011f5405b1f8033653dae31b28e6839451\) UPLOAD redis \(c6226fd977b4bcb4693823d32ddeb4c9c2c0c76f\) UPLOAD ruby \(9b59d2f2700da81a98c38c73cd27b6ccf26f188c\) UPLOAD broker-deregistrar \(fd74f060a430d793ed734328638db0a5fee34395\) UPLOAD broker-registrar \(77bba8ba0e8fa8b06cc8be6e8ef373d285fa4daf\) UPLOAD cf-redis-broker \(a8cc45566d5ebc66dd90bce0737a9833e7f3fcb8\) UPLOAD dedicated-node \(660e3ceee60783b8dcbc01fef065371370fe2265\) UPLOAD smoke-tests \(e9a839a060cbac2985bc79cfbcabfc2c59ad0c8c\) UPLOAD syslog-configurator \(e74e363f8b9ac570f30b32d024e41ef2c89db03f\) UPLOAD Uploading the whole release
 
 Uploading release paasta-redis-: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 104.3MB 22.8MB/s ETA: 00:00:00 Director task Started extracting release &gt; Extracting release. Done \(00:00:01\)
@@ -149,9 +152,8 @@ Task 2337 done
 
 Started 2017-01-13 06:03:46 UTC Finished 2017-01-13 06:03:49 UTC Duration :00:03 paasta-redis-: 96% \|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo \| 104.6MB 10.7MB/s Time: 00:00:09
 
-Release uploaded
+Release upload
 ```
-
 
 * 업로드 된 Redis 릴리즈를 확인한다.
 
@@ -429,14 +431,15 @@ resource_pools:
 
   RSA 1024 bit CA certificates are loaded due to old openssl compatibility
   Deployment set to '/home/inception/bosh-space/kimdojun/redis/paasta_redis_vsphere_2.0.yml'
-  ```
+```
 
 * Redis 서비스팩을 배포한다.
 
-  ```text
+```text
   $ bosh deploy
 
-  \`\`\` RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on deployment 'paasta-redis-service' on 'bosh' Getting deployment properties from director...
+  RSA 1024 bit CA certificates are loaded due to old openssl compatibility Acting as user 'admin' on deployment 'paasta-redis-service' on 'bosh' Getting deployment properties from director...
+```
 
 ### Detecting deployment changes
 
@@ -446,6 +449,7 @@ Please review all changes carefully
 
 ### Deploying
 
+```text
 Are you sure you want to deploy? \(type 'yes' to continue\): yes
 
 Director task Deprecation: Ignoring cloud config. Manifest contains 'networks' section.
@@ -551,9 +555,7 @@ $ cf enable-service-access redis
 
 ```text
 $ cf service-access
-```
 
-```text
 Getting service access as admin...
 broker: paasta-redis-broker
   service   plan           access   orgs
